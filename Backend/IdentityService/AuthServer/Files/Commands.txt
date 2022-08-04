@@ -1,0 +1,45 @@
+
+----Backend-----
+--Database---
+dotnet ef migrations add InitialModels --context PersistedGrantDbContext
+dotnet ef migrations add InitialModels --context IdentityServerDbContext
+
+dotnet ef migrations script > script.sql --context PersistedGrantDbContext
+
+
+
+
+dotnet ef database update --context PersistedGrantDbContext
+dotnet ef database update --context IdentityServerDbContext
+
+-- scaffold existing database with custom dbcontext name and custom namespace for entities and dbcontext and custom tables
+
+dotnet ef dbcontext  scaffold "data source=10.233.4.7;initial catalog=OMSGD;User ID=proapps;Password=P@ssw0rd!23;Trusted_Connection=False;ConnectRetryCount=0" Microsoft.EntityFrameworkCore.SqlServer --output-dir Entities --context-dir Context\Murasalat  -t MawredLeaves  --context MurasalatDbContext --namespace Entities.Entities.Views.Murasalat --context-namespace Data.Context.Murasalat -f
+
+----------------------------------------------------------------------------
+----Frontend-------
+cd D:\Work\Refactored Apps\Frontend\OmsgdPortal
+cd D:\Work\Refactored Apps\Frontend\Sheiokh-Frontend
+cd D:\Work\Refactored Apps\Frontend\UserManagement-Frontend
+
+
+ng build --prod --base-href /
+
+
+
+----------------------------------------------------------------------------
+
+sql queries
+
+delete from AspNetRoleClaims;
+
+DBCC CHECKIDENT ('AspNetRoleClaims', RESEED, 0);
+
+delete from RolePermissions;
+
+
+-------------------------------------------------------------------------
+
+Certificate Password
+AuthServer : Auth@Omsgd@2022
+IdentityServerCert : 123456
