@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\m.ragab\.nuget\packages\select.htmltopdf.netcore\21.1.0\contentFiles\any\any\Select.Html.dep" />
+    <Content Remove="C:\Users\m.ragab\.nuget\packages\select.htmltopdf\21.1.0\contentFiles\any\any\Select.Html.dep" />
+    <Content Remove="C:\Users\m.ragab\.nuget\packages\select.pdf.netcore\21.1.0\contentFiles\any\any\Select.Html.dep" />
+    <Content Remove="C:\Users\m.ragab\.nuget\packages\select.pdf.netcore\21.1.0\contentFiles\any\any\Select.Tools.dep" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Integration\Integration.csproj" />
+  </ItemGroup>
+
+</Project>

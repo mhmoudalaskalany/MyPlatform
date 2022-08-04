@@ -1,0 +1,16 @@
+{
+  "HOST_API": "https://apis.omsgd.local:447/financial/api/",
+  "HUB_URL": "https://apis.omsgd.local:447/financial/",
+  "ID4": "https://authserver.omsgd.local",
+  "UserManagementApi": "https://apis.omsgd.local:447/User/api/",
+  "FileManagementApi": "https://apis.omsgd.local:447/FileManager/api/",
+  "SIGNAL-R-INTERVALS": "10",
+  "SIGNAL-R-INTERVAL": "5",
+  "INTERVAL": "500000",
+  "AppCode": "IDENTITY",
+  "REDIRECT-URL": "https://apps.omsgd.local:448/financial/auth-callback",
+  "LOGOUT-URL": "https://apps.omsgd.local:448/financial/",
+  "MY-PROFILE": "https://apps.omsgd.local:448/User/main/my-profile",
+  "PORTAL": "https://apps.omsgd.local:448/Portal",
+  "OidcTicket": "oidc.user:https://authserver.omsgd.local:IDENTITY"
+}

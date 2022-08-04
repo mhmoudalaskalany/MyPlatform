@@ -1,0 +1,120 @@
+{
+  "Title": "Financial System",
+  "Account": {
+    "Logout": "Logout"
+  },
+  "Pages": {
+    "Dashboard": {
+      "Title": "Statistics"
+    },
+    "Budgets": {
+      "Title": "Budgets",
+      "Add": "Add Budget",
+      "Edit": "Edit Budget"
+    },
+    "Lookups": {
+      "Title": "System Settings",
+      "Actions": {
+        "Title": "Actions"
+      },
+      "Categories": {
+        "Title": "Categories"
+      },
+      "Statuses": {
+        "Title": "Statuses"
+      },
+      "PaymentTypes": {
+        "Title": "Payment Types"
+      },
+      "Suppliers": {
+        "Title": "Suppliers"
+      }
+    }
+  },
+  "Fields": {
+    "En": " (EN)",
+    "Ar": " (AR)",
+    "ArabicName": "Arabic Name",
+    "EnglishName": "English Name",
+    "Email": "Email",
+    "CreateDate": "Creation Date",
+    "ModifiedDate": "Modified Date",
+    "Description": "Description",
+    "DescriptionEn": "English Description",
+    "DescriptionAr": "Arabic Description",
+    "Name": "Name",
+    "Code": "Code",
+    "Clause": "Clause",
+    "Clauses": "Clauses",
+    "Budget": "Budget"
+  },
+  "Validation": {
+    "InvalidEnglishName": "Name Should Be English Characters Only And More Than 3 And Less Than 100",
+    "InvalidArabicName": "Name Should Be Arabic Characters Only And More Than 3 And Less Than 100",
+    "UserNameTaken": "User Name Already Taken",
+    "EmailTaken": "Email Already Taken",
+    "FieldRequired": "Field Required",
+    "DeleteConfirmation": "Delete Confirmation",
+    "DeleteMessage": "Are You Sure You Want To Delete",
+    "DeleteSuccess": "Deleted Successfully",
+    "DeleteError": "Error In Deleting",
+    "AddSuccess": "Added Successfully",
+    "AddError": "Error In Adding",
+    "UpdateSuccess": "Updated Successfully",
+    "UpdateError": "Error In Updating",
+    "GetError": "Error getting Data From Server",
+    "NationalIdExist": "National Id Already Exist",
+    "PasswordMessage": "Password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter and 1 number",
+    "PasswordMismatchMessage": "New Password Value Is Not Matched",
+    "required_validation": "This field is required.",
+    "min_validation": "Min Value ",
+    "max_validation": "Max Value ",
+    "minlength_validation": "Min Length ",
+    "maxlength_validation": "Max Length ",
+    "email_validation": "Email isn't valid.",
+    "arabicWord_validation": "Please enter arabic characters.",
+    "englishWord_validation": "Please enter english characters.",
+    "confirmPassword_validation": "Please enter the same password."
+  },
+  "ATTACHMENT": {
+    "ATTACHMENT": "Attachment",
+    "ATTACHMENTS": "Attachments",
+    "AttachmentName": "Attachment Name",
+    "AttachmentSize": "Attachment Size",
+    "ATTACHMENT_VALIDATION": {
+      "MAXIMUM_FILES": "The maximum files are ",
+      "MAXIMUM_FILE": "The maximum files is ",
+      "MAXIMUM_SIZE": "The maximum size of file is",
+      "FILE_SELECTED": "You already uploaded this file before",
+      "REQUIRED": "Attachment file is required",
+      "ALLOWED_TYPES": "The allowed types are ",
+      "ALLOWED_TYPE": "The allowed types is ",
+      "MB": "MB"
+    },
+    "FAILED": "Failed to upload the attachment",
+    "MSG": "Drag your file here, or",
+    "SUB_MSG": "Supports:",
+    "MAX_FILES_MSG": "Max number of files: "
+  },
+  "Common": {
+    "Name": "Name",
+    "CivilId": "Civil Id",
+    "Delete": "Delete",
+    "Options": "Options",
+    "Portal": "Portal"
+  },
+  "Actions": {
+    "Title": "Actions",
+    "Add": "Add",
+    "Confirm": "Confirm",
+    "Submit": "Submit",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Close": "Close",
+    "Process": "Process",
+    "View": "View",
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "LawsuitProcess": "Process"
+  }
+}

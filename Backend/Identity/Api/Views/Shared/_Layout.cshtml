@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OMSGD Systems</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="stylesheet" href="~/css/bootstrap/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/animate.css" />
+    <link rel="stylesheet" href="~/css/boxicons.min.css" />
+    @*<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+
+</head>
+<body>
+    @*<div id="page-container">
+        <div id="content-wrap">*@
+            <!--Header-->
+            @*<header>
+                <nav class="navbar navbar-expand-sm navbar-light">
+                    <div class="container">
+                        <img src="~/img/logo.png" class="logo" alt="" style="width: 50px">
+                        <a class="navbar-brand" href="#">OMSGD Systems</a>
+                        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                                aria-label="Toggle navigation"></button>
+                        <div class="collapse navbar-collapse" id="collapsibleNavId">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                            </ul>
+                        </div>
+                    </div>
+
+                </nav>
+            </header>*@
+
+            <div>
+                @RenderBody()
+            </div>
+        @*</div>*@
+
+
+        @*<footer class="footer" id="footer">
+            <div class="container p-2">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>&copy; @DateTime.Now.Year - OMSGD Development Team</h6>
+                    </div>
+                </div>
+            </div>
+        </footer>*@
+    @*</div>*@
+
+
+
+    <script src="~/js/jquery/jquery-3.3.1.slim.min.js"></script>
+    <script src="~/js/popper/popper.min.js"></script>
+    <script src="~/js/bootstrap/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

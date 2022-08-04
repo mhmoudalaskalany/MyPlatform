@@ -1,0 +1,124 @@
+1- remove register user from auth server accounts controller ---- done
+2- test adding user repository for adding instead of user manager
+3- test sign user in using repository instead of sign in manager
+4- the oidc-client.min.js:1 Failed to execute 'postMessage' on 'DOMWindow' error 
+is because of the using http with https (front is http and back is https) i think :( so try to use http at all sides
+5- check token time
+6- set token and any data in session storage because looks like oidc client remove it when loggin out ---> done
+7- modify backend to return one role per app and the response of claims -----> done
+8- modify get permission function in front end to check if the permission contains a four permissions for the passed page name
+by using contain function  and if the count is 4 then it has all the permission so return object from Permission with all
+4 properities as true ---> done
+
+9- see this post to remove claims from token so that the cookie is not too big
+https://stackoverflow.com/questions/42562660/recommended-best-practice-for-role-claims-as-permissions
+
+10-create another method in base service that return the user with the details dto not add dto so that if the details if 
+the details api is requested we can get user with full details
+
+11- fix mapping when adding new user or updating for userapps navigation ---- done
+
+12- find solution for adding the identity to user management api because this is two identity may be this causes error in idsrv4
+
+13- pass data object in angular routing as empty one {}
+
+14- isolate user management api from identity integration so that we can add update users and roles from repository and also override
+ the constrains of index (try)
+
+15- add app user view and assign users to app from this view ---- done
+
+16- when user change his app adjust his role on the new app 
+
+17- add checkbox to show if this is an admin role or normal role to solve the static string for role name in checking logic
+
+18-check profile service to return only role on current application as every time the user enter new app the break point at profile service is hit
+
+19- add default role for portal users and add one page for portal application with view application permissions ---- done
+20- Add default user app on registering (portal) ---done
+
+21- the cookie post that describe why every 15 mins the cookie expires
+22- translate from database
+23- add it to user roles so that we can do soft delete and recored logging
+
+24- remove add role component from all systems and add edit only also remove add role permission from any role 
+except super admin in user management system ---done
+
+25- when removing user from app not the user management app  send app id so we remove user from that app only not from all apps because user may have differnt apps
+26- set break point at profile service claims and see when the cookie expire what happen see if this services is called twice or not and compare the response ---done
+
+*********************important **************************
+
+27- in user management remove the iprofile service registration from configure extensions in register main core --- done
+
+28- user oracle database to get user info ---------------->  done
+
+29- don not take user id in changing password api from the frontend take it from current logged in user because any one can change id 
+in session storage
+
+30- see why when going to user profile page with user that is not on users application we are redirected to home no profile page
+this is a fornt end issue ---done
+
+31- give access to single api end point on controller in client configuration ( like get users only and add users only )
+32- change user number in number oof users in application cards in portal to be dynamic ---done
+33- update idenity server and nuguts and see new samples in identity server documentation
+34- user user claims table to handle user custom permissions
+35- implement  change password at first login  and change password after setting it by 3 months using these posts ---done
+https://stackoverflow.com/questions/27911032/how-to-have-users-change-their-passwords-after-the-first-login
+https://forums.asp.net/t/1273575.aspx?Forced+change+password+upon+first+login
+https://www.codeproject.com/Articles/288631/Secure-ASP-NET-MVC-applications
+
+36- Add User Role Component Will Be Deleted at User Management ----done
+37- create method to handle http response status from backend and get the error message according to code from backend 
+from translation files
+38-add language check in backend to return localized message
+
+39- try other oprtion in logout instead of using signinmanager pass Identity.Application to the HttpContext.SignOutAsync
+
+40- in get user pagged instead of applying the check of app id after getting data apply it in the predicate builder funtion
+
+41-investigate how to see the request from any protected api to the identity server to check for the token validation
+
+42- check the behaviour subject in the authservice in front end this may be causing the user 
+to be logged in for one second -> try to unsubscribe to it in the observer sign out event
+43 how to implement design time dbcontext factory that takes data intializer in its context
+44- add middlewrre to return the message in catch block in each method
+
+45- add the external login controller for external login providers
+
+46- make order by desc by default in get all async api
+
+47- check token if it works after signout
+
+48- check token if we deleted user from database after sign in
+
+49- change ipphone response type and authentication method in client configuration try to use something different and change frontend to work the same
+
+50- check openid-configuration api and response for more details on idsrv 4
+****************************************************************************************************************************
+
+*************************************************************
+****************************NOTES****************************
+*************************************************************
+note:: The protocol used in this Template is http and the port is set to 5000 
+when running on Kestrel or a random one on IISExpress. You can change that in the 
+Properties\launchSettings.json file. However, 
+all of the quickstart instructions will assume you use the default port on Kestrel as well as the http protocol, 
+which is sufficient for local development.
+
+
+**************************************************************
+Front end tasks
+
+create get edit lookup in base edit component and map it to api in backend
+to solve the problem in editing mode when there is multiple dropdown and there are independent dropdown
+
+create an observable to get the data of the role when edit an see if the changes will be reflected instead of storing role in storage and login and logut to reflect changes
+
+use dynamic routing in front end 
+let auth guard read the page name dynamic and check for permissions
+
+
+
+
+*******************TOPICS******************
+https://gigi.nullneuron.net/gigilabs/managing-asp-net-core-settings-in-multiple-environments/

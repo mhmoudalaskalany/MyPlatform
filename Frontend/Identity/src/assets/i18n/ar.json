@@ -1,0 +1,120 @@
+{
+  "Title": "النظام المالى",
+  "Account": {
+    "Logout": "تسجيل خروج"
+  },
+  "Pages": {
+    "Dashboard": {
+      "Title": "إحصائيات"
+    },
+    "Budgets": {
+      "Title": "الموازنات",
+      "Add": "اضافة موازنة",
+      "Edit": "تعديل موازنة"
+    },
+    "Lookups": {
+      "Title": "إعدادات النظام",
+      "Actions": {
+        "Title": "خيارات الطلبات"
+      },
+      "Categories": {
+        "Title": "التصنيفات"
+      },
+      "Statuses": {
+        "Title": "حالات الطلبات"
+      },
+      "PaymentTypes": {
+        "Title": "طرق الدفع"
+      },
+      "Suppliers": {
+        "Title": "الموردين"
+      }
+    }
+  },
+  "Fields": {
+    "En": " (بالإنجليزية)",
+    "Ar": " (بالعربية)",
+    "ArabicName": "الاسم العربى",
+    "EnglishName": "الاسم الانجليزى",
+    "Email": "البريد الالكترونى",
+    "CreateDate": "تاريخ الإنشاء",
+    "ModifiedDate": "تاريخ التعديل",
+    "Description": "الوصف",
+    "DescriptionEn": "الوصف الانجليزى",
+    "DescriptionAr": "الوصف العربى",
+    "Name": "الاسم",
+    "Code": "الكود",
+    "Clause": "البند",
+    "Clauses": "البنود",
+    "Budget": "الموازنة"
+  },
+  "Validation": {
+    "InvalidEnglishName": "يجب ان تكون الاحرف انجليزية فقط واكثر من 3 واقل من 100",
+    "InvalidArabicName": "يجب ان تكون الاحرف العربية فقط واكثر من 3 واقل من 100",
+    "PasswordMessage": "يجب ان تتكون كلمة المرور من 8 رموز على الاقل وتشتمل على رقم وحرف كبير وحرف صغير ",
+    "UserNameTaken": "اسم المستخدم هذا مستخدم بالفعل",
+    "EmailTaken": "البريد الالكترونى مستخدم بالفعل",
+    "FieldRequired": "حقل مطلوب",
+    "DeleteConfirmation": "تأكيد الحذف",
+    "DeleteMessage": "هل انت متأكد انك تريد الحذف",
+    "DeleteSuccess": "تم الحذف بنجاح",
+    "DeleteError": "خطأ فى الحذف",
+    "AddSuccess": "تمت الإضافة بنجاح",
+    "AddError": "خطأ فى الإضافة",
+    "UpdateSuccess": "تم التحديث بنجاح",
+    "UpdateError": "خطأ فى التحديث",
+    "GetError": "خطأ فى جلب البيانات من الخادم",
+    "NationalIdExist": "الرقم المدنى موجود بالفعل",
+    "InternalServerError": "خطأ ف الخادم",
+    "PasswordMismatchMessage": "كلمة السر الجديدة غير متطابقة",
+    "required_validation": "هذا الحقل إجباري.",
+    "min_validation": "أقل قيمة ",
+    "max_validation": "أكبر قيمة ",
+    "minlength_validation": "الحد الأدنى ",
+    "maxlength_validation": "الحد الأقصى ",
+    "email_validation": "البريد الإلكترونى غير صحيح.",
+    "arabicWord_validation": "من فضلك إدخل حروف عربي.",
+    "englishWord_validation": "من فضلك إدخل حروف انجليزي."
+  },
+  "ATTACHMENT": {
+    "ATTACHMENT": "المرفق",
+    "ATTACHMENTS": "المرفقات",
+    "AttachmentName": "اسم المرفق",
+    "AttachmentSize": "حجم المرفق",
+    "ATTACHMENT_VALIDATION": {
+      "MAXIMUM_FILES": "الحد الأقصى للملفات هو",
+      "MAXIMUM_FILE": "الحد الأقصى للملفات هو",
+      "MAXIMUM_SIZE": " الحجم الأقصى للملف هو",
+      "FILE_SELECTED": "لقد قمت بالفعل بتحميل هذا الملف من قبل",
+      "REQUIRED": "مطلوب ارفاق هذا الملف",
+      "ALLOWED_TYPES": "الأنواع المسموح بها هي",
+      "ALLOWED_TYPE": "الأنواع المسموح بها هي",
+      "MB": "ميجا بايت"
+    },
+    "FAILED": "فشل تحميل المرفق",
+    "MSG": "اسحب ملفك هنا، أو",
+    "SUB_MSG": "يدعم:",
+    "MAX_FILES_MSG": "العدد الأقصى للملفات المسموح برفعها: "
+  },
+  "Common": {
+    "Name": "الاسم",
+    "CivilId": "الرقم المدنى",
+    "Delete": "حذف",
+    "Options": "خيارات",
+    "Portal": "البوابة"
+  },
+  "Actions": {
+    "Title": "خيارات",
+    "Add": "اضافة",
+    "Submit": "حفظ",
+    "Confirm": "تأكيد",
+    "Save": "حفظ",
+    "Cancel": "الغاء",
+    "Close": "إغلاق",
+    "Process": "معالجة",
+    "View": "عرض",
+    "Edit": "تعديل",
+    "Delete": "حذف",
+    "LawsuitProcess": "اجراءات"
+  }
+}
