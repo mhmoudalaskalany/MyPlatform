@@ -22,7 +22,7 @@ namespace Common.Helper.EmailHelper
                 var message = new EmailMessage
                 {
                     Sender = new MailboxAddress(_notificationMetadata.SenderName, _notificationMetadata.Sender),
-                    Receiver = new MailboxAddress(mailTo),
+                    Receiver = new MailboxAddress(mailTo, mailTo),
                     Subject = subject,
                     Content = body
                 };

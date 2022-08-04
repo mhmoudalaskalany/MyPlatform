@@ -19,7 +19,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AuthServer": {
+    "Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

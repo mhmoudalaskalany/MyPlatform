@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
@@ -27,9 +26,7 @@ namespace Common.Helper.HttpClient.RestSharp
         }
         public async Task<T> SendRequest<T>(string url, Method method, object obj = null, string urlEncoded = null , Dictionary<string, string> headers = null)
         {
-            _client.CookieContainer = new CookieContainer();
             var request = new RestRequest(url, method);
-            _client.Timeout = -1;
             if (headers != null)
             {
                 foreach (var header in headers)
@@ -37,7 +34,7 @@ namespace Common.Helper.HttpClient.RestSharp
                     request.AddHeader(header.Key, header.Value);
                 }
             }
-            if (method == Method.POST || method == Method.PUT)
+            if (method == Method.Post || method == Method.Put)
             {
                 if (urlEncoded != null)
                 {
@@ -71,13 +68,11 @@ namespace Common.Helper.HttpClient.RestSharp
         {
             try
             {
-                _client.CookieContainer = new CookieContainer();
                 _client.Authenticator =
                     new HttpBasicAuthenticator(_configuration["BpmCredentials:UserName"], _configuration["BpmCredentials:Password"]);
 
                 var request = new RestRequest(url, method);
-                _client.Timeout = -1;
-                _client.ClearHandlers();
+              
 
                 request.AddHeader("Accept", "application/json");
                 if (headers != null)
@@ -88,7 +83,7 @@ namespace Common.Helper.HttpClient.RestSharp
                     }
                 }
                 
-                if (method == Method.POST || method == Method.PUT)
+                if (method == Method.Post || method == Method.Put)
                 {
                     SetJsonContent(request, obj);
                 }
@@ -120,13 +115,11 @@ namespace Common.Helper.HttpClient.RestSharp
         {
             try
             {
-                _client.CookieContainer = new CookieContainer();
                 _client.Authenticator =
                     new HttpBasicAuthenticator(username, password);
 
                 var request = new RestRequest(url, method);
-                _client.Timeout = -1;
-                _client.ClearHandlers();
+               
 
                 request.AddHeader("Accept", "application/json");
                 if (headers != null)
@@ -137,7 +130,7 @@ namespace Common.Helper.HttpClient.RestSharp
                     }
                 }
 
-                if (method == Method.POST || method == Method.PUT)
+                if (method == Method.Post || method == Method.Put)
                 {
                     SetJsonContent(request, obj);
                 }
@@ -168,7 +161,6 @@ namespace Common.Helper.HttpClient.RestSharp
         private void SetJsonContent(RestRequest request, object obj)
         {
             request.RequestFormat = DataFormat.Json;
-            request.JsonSerializer = NewtonsoftJsonSerializer.Default;
             request.AddJsonBody(obj);
         }
 

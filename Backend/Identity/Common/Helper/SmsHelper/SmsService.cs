@@ -143,7 +143,7 @@ namespace Common.Helper.SmsHelper
                 {"Cache-Control", "no-cache"}
             };
 
-            var result = await _restSharpContainer.SendRequest<dynamic>("https://ismartsms.net/RestApi/api/SMS/PostSMS", Method.POST,
+            var result = await _restSharpContainer.SendRequest<dynamic>("https://ismartsms.net/RestApi/api/SMS/PostSMS", Method.Post,
                 obj, headers: http);
             return result;
 
