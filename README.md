@@ -1,6 +1,6 @@
 # MyPlatform
 
-# SSO Platofrm with enterprise applications 
+# SSO Platoform with enterprise applications 
 
 # Application List Provided
 - Single Sign On And Identity Management
