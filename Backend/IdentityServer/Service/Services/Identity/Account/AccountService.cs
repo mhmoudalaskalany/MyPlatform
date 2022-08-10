@@ -23,14 +23,14 @@ namespace Service.Services.Identity.Account
     {
         private readonly UserManager<Entities.Entities.Identity.User> _userManager;
         private readonly RoleManager<Entities.Entities.Identity.Role> _roleManager;
-        private readonly IUnitOfWork<Entities.Entities.Hr.FullEmployee> _employeeUnitOfWork;
+        private readonly IUnitOfWork<Entities.Entities.Hr.Employee> _employeeUnitOfWork;
         private readonly IUnitOfWork<Entities.Entities.Identity.UserRole> _userRoleUnitOfWork;
         private readonly IUnitOfWork<LoginHistory> _loginHistoryUnitOfWork;
         private readonly IMapper _mapper;
         private readonly ISmsService _smsService;
         private readonly IConfiguration _configuration;
         public static IDictionary<string, string> OtpDictionary = new Dictionary<string, string>();
-        public AccountService(UserManager<Entities.Entities.Identity.User> userManager, IMapper mapper, IUnitOfWork<Entities.Entities.Hr.FullEmployee> employeeUnitOfWork, ISmsService smsService, IConfiguration configuration, RoleManager<Entities.Entities.Identity.Role> roleManager, IUnitOfWork<Entities.Entities.Identity.UserRole> userRoleUnitOfWork, IUnitOfWork<LoginHistory> loginHistoryUnitOfWork)
+        public AccountService(UserManager<Entities.Entities.Identity.User> userManager, IMapper mapper, IUnitOfWork<Entities.Entities.Hr.Employee> employeeUnitOfWork, ISmsService smsService, IConfiguration configuration, RoleManager<Entities.Entities.Identity.Role> roleManager, IUnitOfWork<Entities.Entities.Identity.UserRole> userRoleUnitOfWork, IUnitOfWork<LoginHistory> loginHistoryUnitOfWork)
         {
             _userManager = userManager;
             _mapper = mapper;
@@ -166,8 +166,8 @@ namespace Service.Services.Identity.Account
 
             var manager = await _employeeUnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == employee.ManagerId , include:src => src.Include( u => u.Unit));
             
-            var employeeDto = _mapper.Map<Entities.Entities.Hr.FullEmployee, EmployeeProfileDto>(employee);
-            employeeDto.Manager = _mapper.Map<Entities.Entities.Hr.FullEmployee, EmployeeProfileDto>(manager);
+            var employeeDto = _mapper.Map<Entities.Entities.Hr.Employee, EmployeeProfileDto>(employee);
+            employeeDto.Manager = _mapper.Map<Entities.Entities.Hr.Employee, EmployeeProfileDto>(manager);
             employeeDto.Roles = _mapper.Map<List<Entities.Entities.Identity.Role>, List<RoleDto>>(roles);
             employeeDto.LastCacheUpdate = DateTime.Now;
             RedisCacheHelper.Set(employeeDto.NationalId, employeeDto);
@@ -178,28 +178,7 @@ namespace Service.Services.Identity.Account
         #region Private Methods
 
        
-        /// <summary>
-        /// Update User After Getting From Active Directory
-        /// </summary>
-        /// <param name="activeDirectoryUser"></param>
-        /// <returns></returns>
-        private async Task<bool> UpdateOrAddUserAsync(ActiveDirectoryUserDto activeDirectoryUser)
-        {
-            var employee =
-                await _employeeUnitOfWork.Repository.FirstOrDefaultAsync(x =>
-                    x.CivilNumber == activeDirectoryUser.LogonName);
-            var entity = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == activeDirectoryUser.LogonName);
-            if (entity == null)
-            {
-                var user = _mapper.Map<ActiveDirectoryUserDto, Entities.Entities.Identity.User>(activeDirectoryUser);
-                user.UserTypeId = employee?.Id.ToString();
-                user.PersonId = employee?.Id.ToString();
-                await _userManager.CreateAsync(user);
-            }
-
-            return true;
-        }
-
+        
         /// <summary>
         /// Send OTP
         /// </summary>

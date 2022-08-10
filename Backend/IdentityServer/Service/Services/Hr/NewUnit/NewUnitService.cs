@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Domain.Abstraction.UnitOfWork;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.Unit;
 using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
@@ -17,10 +16,10 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit
 {
-    public class NewUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>, INewUnitService
+    public class UnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>, IUnitService
     {
         private readonly IUnitOfWork<Entities.Entities.Hr.Team> _teamUnitOfWork;
-        public NewUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters, IUnitOfWork<Entities.Entities.Hr.Team> teamUnitOfWork) : base(parameters)
+        public UnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters, IUnitOfWork<Entities.Entities.Hr.Team> teamUnitOfWork) : base(parameters)
         {
             _teamUnitOfWork = teamUnitOfWork;
         }
@@ -154,7 +153,7 @@ namespace Service.Services.Hr.NewUnit
         /// <param name="sectionId"></param>
         /// <returns></returns>
 
-        public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(string sectionId)
+        public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(Guid sectionId)
         {
 
 
@@ -178,12 +177,12 @@ namespace Service.Services.Hr.NewUnit
         /// <param name="id"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetUnitOrTeamAsync(string id, UnitType unitType)
+        public async Task<IFinalResult> GetUnitOrTeamAsync(Guid id, UnitType unitType)
         {
             dynamic unit;
             if (unitType == UnitType.Team)
             {
-                unit = await _teamUnitOfWork.Repository.GetAsync(long.Parse(id));
+                unit = await _teamUnitOfWork.Repository.GetAsync(id);
             }
             else
             {
@@ -202,14 +201,14 @@ namespace Service.Services.Hr.NewUnit
         {
             var localDatabase = (await UnitOfWork.Repository.GetAllAsync()).ToList();
             var unitList = new List<UnitChildrenDto>();
-            var list = new List<string>();
+            var list = new List<Guid>();
             // get unit type 3
             var units = localDatabase.Where(x => x.UnitType == UnitType.Department);
 
 
             foreach (var unit in units)
             {
-                var ids = new List<string> { unit.Id };
+                var ids = new List<Guid> { unit.Id };
                 var unitDto = new UnitChildrenDto
                 {
                     NameAr = unit.NameAr,
@@ -259,7 +258,6 @@ namespace Service.Services.Hr.NewUnit
             {
                 predicate = predicate.Or(b => b.NameAr.Contains(filter.SearchCriteria.ToLower()));
                 predicate = predicate.Or(b => b.NameAr.Contains(filter.SearchCriteria));
-                predicate = predicate.Or(b => b.Id.Contains(filter.SearchCriteria));
             }
             return predicate;
         }
@@ -271,11 +269,6 @@ namespace Service.Services.Hr.NewUnit
         static Expression<Func<Entities.Entities.Hr.Unit, bool>> PredicateBuilderFunction(UnitFilter filter)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
-            if (!string.IsNullOrEmpty(filter?.Id))
-            {
-                predicate.And(x => x.Id == filter.Id);
-            }
-
             if (!string.IsNullOrWhiteSpace(filter?.NameAr))
             {
                 predicate = predicate.And(b => b.NameAr.ToLower().Contains(filter.NameAr.ToLower()));
@@ -293,7 +286,7 @@ namespace Service.Services.Hr.NewUnit
         /// <param name="ids"></param>
         /// <param name="localDatabase"></param>
         /// <returns></returns>
-        async Task GetChildren(Entities.Entities.Hr.Unit current, List<string> ids, List<Entities.Entities.Hr.Unit> localDatabase)
+        async Task GetChildren(Entities.Entities.Hr.Unit current, List<Guid> ids, List<Entities.Entities.Hr.Unit> localDatabase)
         {
             if (current == null)
             {
@@ -315,7 +308,7 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="sectionId"></param>
         /// <returns></returns>
-        async Task<Expression<Func<Entities.Entities.Hr.Unit, bool>>> SectionsPredicateBuilderFunction(string sectionId)
+        async Task<Expression<Func<Entities.Entities.Hr.Unit, bool>>> SectionsPredicateBuilderFunction(Guid sectionId)
         {
             // get employee parent unit ( department , directorate , any thing )
             // then get all children under it when its parent id = the id of the parent unit we got in first query
@@ -334,12 +327,12 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="sectionId"></param>
         /// <returns></returns>
-        Expression<Func<Entities.Entities.Hr.Team, bool>> TeamsPredicateBuilderFunction(string sectionId)
+        Expression<Func<Entities.Entities.Hr.Team, bool>> TeamsPredicateBuilderFunction(Guid sectionId)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Hr.Team>(x => x.UnitId == sectionId);
             if (!string.IsNullOrEmpty(ClaimData.TeamId))
             {
-                predicate = predicate.And(x => x.Id != long.Parse(ClaimData.TeamId));
+                predicate = predicate.And(x => x.Id != Guid.Parse(ClaimData.TeamId));
             }
             return predicate;
         }

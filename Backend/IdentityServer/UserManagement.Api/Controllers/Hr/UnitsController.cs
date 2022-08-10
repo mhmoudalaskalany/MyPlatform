@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.Unit;
 using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
@@ -17,11 +16,11 @@ namespace UserManagement.Api.Controllers.Hr
     /// </summary>
     public class UnitsController : BaseController
     {
-        private readonly INewUnitService _unitService;
+        private readonly IUnitService _unitService;
         /// <summary>
         /// Constructor
         /// </summary>
-        public UnitsController(INewUnitService unitService)
+        public UnitsController(IUnitService unitService)
         {
             _unitService = unitService;
         }

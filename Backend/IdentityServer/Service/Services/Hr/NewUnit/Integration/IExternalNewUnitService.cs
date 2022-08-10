@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.Unit;
 using Service.Services.Base;
 
@@ -14,7 +14,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// Get Unit Parent ( Used In Stock )
         /// </summary>
         /// <returns></returns>
-        Task<IFinalResult> GetUnitParentAsync(string childId);
+        Task<IFinalResult> GetUnitParentAsync(Guid childId);
         /// <summary>
         /// Get All Units
         /// </summary>
@@ -24,7 +24,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// Get Units By Ids (Used In Stock)
         /// </summary>
         /// <returns></returns>
-        Task<IFinalResult> GetUnitsByIdsAsync(List<string> unitIds);
+        Task<IFinalResult> GetUnitsByIdsAsync(List<Guid> unitIds);
         /// <summary>
         /// Get All Departments
         /// </summary>

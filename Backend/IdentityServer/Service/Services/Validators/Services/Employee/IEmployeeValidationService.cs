@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Domain.Core;
-using Domain.DTO.Hr.FullEmployee;
-using Entities.Entities.Hr;
+using Domain.DTO.Hr.Employee;
 using Service.Services.Base;
 
 namespace Service.Services.Validators.Services.Employee
 {
-    public interface IEmployeeValidationService : IBaseService<FullEmployee , AddMurasalatEmployeeDto , MurasalatEmployeeDto , Guid?>
+    public interface IEmployeeValidationService : IBaseService<Entities.Entities.Hr.Employee , AddEmployeeDto , EmployeeDto , Guid?>
     {
         /// <summary>
         /// Check National Id

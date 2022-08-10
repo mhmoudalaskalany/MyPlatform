@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
-using Domain.DTO.Hr.FullEmployee;
 using Domain.DTO.Integration.ItHelpDesk.Ticket;
 using Service.Services.Base;
 
@@ -49,7 +48,7 @@ namespace Service.Services.Hr.Employee.Integration
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
-        Task<IFinalResult> GetTeamManagerPhone(long teamId);
+        Task<IFinalResult> GetTeamManagerPhone(Guid teamId);
         /// <summary>
         /// Get Employees Phones By Role Code (Used By Legal Affairs)
         /// </summary>

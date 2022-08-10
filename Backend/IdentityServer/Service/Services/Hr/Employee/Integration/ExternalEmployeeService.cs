@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
+using Domain.DTO.Integration.ItHelpDesk.Ticket;
 using Entities.Entities.Hr;
 using Entities.Enum;
 using LinqKit;
@@ -17,7 +18,7 @@ namespace Service.Services.Hr.Employee.Integration
 {
     public class ExternalEmployeeService : BaseService<Entities.Entities.Hr.Employee, AddEmployeeDto, EmployeeDto, Guid?>, IExternalEmployeeService
     {
-        
+
         public ExternalEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.Employee> parameters) : base(parameters)
         {
         }
@@ -32,7 +33,7 @@ namespace Service.Services.Hr.Employee.Integration
         /// <returns></returns>
         public override async Task<IFinalResult> GetByIdAsync(object id)
         {
-            var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == (Guid)id, include: src=>src.Include(x=>x.Unit)
+            var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == (Guid)id, include: src => src.Include(x => x.Unit)
                 .ThenInclude(p => p.Parent)
                 .ThenInclude(pr => pr.Parent)
                 .ThenInclude(pt => pt.Parent));
@@ -129,7 +130,7 @@ namespace Service.Services.Hr.Employee.Integration
             {
                 if (dto.UnitType == UnitType.Team)
                 {
-                    var employee = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.DepartmentCode == dto.UnitId.ToString());
+                    var employee = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.UnitId == dto.UnitId);
                     dto.PhoneNumber = employee?.Phone;
                 }
                 else
@@ -150,11 +151,11 @@ namespace Service.Services.Hr.Employee.Integration
         public async Task<IFinalResult> GetEmployeesByUnitOrTeamIdAsync(string unitId)
         {
             var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().GetAsync(unitId);
-            List<Entities.Entities.Hr.FullEmployee> entities;
+            List<Entities.Entities.Hr.Employee> entities;
             if (!string.IsNullOrEmpty(ClaimData.TeamId))
             {
                 var team = await UnitOfWork.GetRepository<EmployeeTeam>()
-                    .FindAsync(x => x.TeamId == long.Parse(ClaimData.TeamId) && x.IsTeamManager == false);
+                    .FindAsync(x => x.TeamId == Guid.Parse(ClaimData.TeamId) && x.IsTeamManager == false);
 
                 var empIds = team.Select(x => x.EmployeeId).ToList();
 
@@ -164,7 +165,7 @@ namespace Service.Services.Hr.Employee.Integration
             else
             {
                 // get unit teams and exclude all employees in these teams from response
-                var unitTeams = await UnitOfWork.GetRepository<Entities.Entities.Hr.Team>().FindAsync(x => x.UnitId == unitId);
+                var unitTeams = await UnitOfWork.GetRepository<Entities.Entities.Hr.Team>().FindAsync(x => x.UnitId == Guid.Parse(unitId));
 
                 var teamIds = unitTeams.Select(x => x.Id).ToList();
 
@@ -172,13 +173,13 @@ namespace Service.Services.Hr.Employee.Integration
 
                 var excludedEmployeeIds = teamEmployees.Select(x => x.EmployeeId).ToList();
 
-                entities = (await UnitOfWork.Repository.FindAsync(x => x.DepartmentCode == unitId && !excludedEmployeeIds.Contains(x.Id))).ToList();
+                entities = (await UnitOfWork.Repository.FindAsync(x => x.UnitId == Guid.Parse(unitId) && !excludedEmployeeIds.Contains(x.Id))).ToList();
 
                 var hos = await GetHeadOfSections(unit);
 
                 entities.AddRange(hos);
             }
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullEmployee>, IEnumerable<NewEmployeeDto>>(entities);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Employee>, IEnumerable<EmployeeDto>>(entities);
             return new ResponseResult(data, HttpStatusCode.OK);
         }
         /// <summary>
@@ -186,14 +187,14 @@ namespace Service.Services.Hr.Employee.Integration
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetTeamManagerPhone(long teamId)
+        public async Task<IFinalResult> GetTeamManagerPhone(Guid teamId)
         {
             var teamManager =
-                await UnitOfWork.GetRepository<EmployeeTeam>().FirstOrDefaultAsync(t => t.TeamId == teamId && t.IsTeamManager);
+                await UnitOfWork.GetRepository<EmployeeTeam>().FirstOrDefaultAsync(t => t.TeamId ==  teamId && t.IsTeamManager);
 
             var manager = await UnitOfWork.Repository.GetAsync(teamManager.EmployeeId);
 
-            var data = Mapper.Map<Entities.Entities.Hr.FullEmployee, NewEmployeeDto>(manager);
+            var data = Mapper.Map<Entities.Entities.Hr.Employee, EmployeeDto>(manager);
 
             return new ResponseResult(data.PhoneNumber, HttpStatusCode.OK, null, "Data Retrieved Successfully");
         }
@@ -222,7 +223,7 @@ namespace Service.Services.Hr.Employee.Integration
 
         public async Task<IFinalResult> GetEmployeePhoneByIdAsync(string employeeId)
         {
-            var employee = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(employeeId));
+            var employee = await UnitOfWork.GetRepository<Entities.Entities.Hr.Employee>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(employeeId));
             return ResponseResult.PostResult(employee.Phone, HttpStatusCode.OK);
         }
         /// <summary>
@@ -244,7 +245,7 @@ namespace Service.Services.Hr.Employee.Integration
                         .ThenInclude(pr => pr.Parent)
                         .ThenInclude(pt => pt.Parent));
 
-            var data = Mapper.Map<IEnumerable<NewEmployeeDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<EmployeeDto>>(query.Item2);
             foreach (var employee in data)
             {
                 var unit = query.Item2.First(x => x.Id == employee.Id).Unit;
@@ -309,19 +310,19 @@ namespace Service.Services.Hr.Employee.Integration
 
             if (option == false)
             {
-                var managementUnitEmployees = await UnitOfWork.Repository.FindAsync(x => x.DepartmentCode == unitId);
+                var managementUnitEmployees = await UnitOfWork.Repository.FindAsync(x => x.UnitId == Guid.Parse(unitId));
 
                 var managementIds = managementUnitEmployees.Select(x => x.Id).ToList();
                 return ResponseResult.PostResult(managementIds, status: HttpStatusCode.OK,
                     message: HttpStatusCode.OK.ToString());
             }
 
-            var ids = new List<string> { unitId };
+            var ids = new List<Guid> { Guid.Parse(unitId)};
 
-            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().FirstOrDefaultAsync(x => x.Id == unitId);
+            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(unitId));
             //   , include: src => src.Include(sb => sb.SubUnits)
             await GetChildren(unit, ids);
-            var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.DepartmentCode));
+            var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.UnitId));
 
             var employeeIds = employees.Select(x => x.Id).ToList();
             return ResponseResult.PostResult(employeeIds, status: HttpStatusCode.OK,
@@ -346,15 +347,15 @@ namespace Service.Services.Hr.Employee.Integration
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Hr.FullEmployee, bool>> PredicateBuilderFunction(SearchCriteriaFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Employee, bool>> PredicateBuilderFunction(SearchCriteriaFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullEmployee>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Employee>(true);
             if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
             {
-                predicate = predicate.Or(b => b.ArFullName.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b.FullNameAr.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.CivilNumber.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.FileNumber.Contains(filter.SearchCriteria));
-                
+
             }
             return predicate;
         }
@@ -363,13 +364,13 @@ namespace Service.Services.Hr.Employee.Integration
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private async Task<List<Entities.Entities.Hr.FullEmployee>> GetHeadOfSections(Entities.Entities.Hr.Unit entity)
+        private async Task<List<Entities.Entities.Hr.Employee>> GetHeadOfSections(Entities.Entities.Hr.Unit entity)
         {
-            var hos = new List<Entities.Entities.Hr.FullEmployee>();
+            var hos = new List<Entities.Entities.Hr.Employee>();
             if (entity.UnitType == UnitType.Department)
             {
                 hos = (await UnitOfWork.Repository.FindAsync(x =>
-                   x.Unit.ParentId == entity.Id && x.IsManager)).ToList();
+                   x.Unit.ParentId == entity.Id && x.IsManager == true)).ToList();
             }
             return hos;
         }
@@ -380,7 +381,7 @@ namespace Service.Services.Hr.Employee.Integration
         /// <param name="current"></param>
         /// <param name="ids"></param>
         /// <returns></returns>
-        async Task GetChildren(Entities.Entities.Hr.Unit current, List<string> ids)
+        async Task GetChildren(Entities.Entities.Hr.Unit current, List<Guid> ids)
         {
             if (current == null)
             {

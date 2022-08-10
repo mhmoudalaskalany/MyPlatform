@@ -2,17 +2,16 @@
 using System.Net;
 using System.Threading.Tasks;
 using Domain.Core;
-using Domain.DTO.Hr.FullEmployee;
-using Entities.Entities.Hr;
+using Domain.DTO.Hr.Employee;
 using Service.Services.Base;
 using Service.Services.Validators.Employee;
 
 namespace Service.Services.Validators.Services.Employee
 {
-    public class EmployeeValidationService : BaseService<FullEmployee , AddMurasalatEmployeeDto , MurasalatEmployeeDto , Guid?> , IEmployeeValidationService
+    public class EmployeeValidationService : BaseService<Entities.Entities.Hr.Employee , AddEmployeeDto , EmployeeDto , Guid?> , IEmployeeValidationService
     {
         private readonly IEmployeeValidator _employeeValidator;
-        public EmployeeValidationService(IServiceBaseParameter<FullEmployee> parameters, IEmployeeValidator employeeValidator) : base(parameters)
+        public EmployeeValidationService(IServiceBaseParameter<Entities.Entities.Hr.Employee> parameters, IEmployeeValidator employeeValidator) : base(parameters)
         {
             _employeeValidator = employeeValidator;
         }

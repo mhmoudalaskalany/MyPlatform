@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Domain.Abstraction.UnitOfWork;
-using Entities.Entities.Hr;
 using Service.Services.Validators.Base;
 
 namespace Service.Services.Validators.Employee
 {
-    public class EmployeeValidator : Validator<FullEmployee>, IEmployeeValidator
+    public class EmployeeValidator : Validator<Entities.Entities.Hr.Employee>, IEmployeeValidator
     {
-        private readonly IUnitOfWork<FullEmployee> _uow;
-        public EmployeeValidator(IUnitOfWork<FullEmployee> uow)
+        private readonly IUnitOfWork<Entities.Entities.Hr.Employee> _uow;
+        public EmployeeValidator(IUnitOfWork<Entities.Entities.Hr.Employee> uow)
         {
             _uow = uow;
         }
 
         #region Public Methods
 
-        public override async Task<(bool, string)> Validate(FullEmployee entity)
+        public override async Task<(bool, string)> Validate(Entities.Entities.Hr.Employee entity)
         {
             return await Task.FromResult((true, ""));
         }

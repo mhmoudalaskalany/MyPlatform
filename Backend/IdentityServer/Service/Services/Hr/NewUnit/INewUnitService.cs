@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.Unit;
 using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
@@ -9,7 +9,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit
 {
-    public interface INewUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>
+    public interface IUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>
     {
 
         /// <summary>
@@ -44,13 +44,13 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="sectionId"></param>
         /// <returns></returns>
-        Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(string sectionId);
+        Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(Guid sectionId);
         /// <summary>
         /// Get Unit Or Team By Id And Type
         /// </summary>
         /// <param name="id"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        Task<IFinalResult> GetUnitOrTeamAsync(string id, UnitType unitType);
+        Task<IFinalResult> GetUnitOrTeamAsync(Guid id, UnitType unitType);
     }
 }

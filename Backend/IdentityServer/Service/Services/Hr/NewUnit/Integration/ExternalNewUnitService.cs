@@ -6,7 +6,6 @@ using System.Net;
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.Unit;
 using Entities.Enum;
 using LinqKit;
@@ -15,7 +14,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit.Integration
 {
-    public class ExternalNewFullUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>, IExternalNewUnitService
+    public class ExternalNewFullUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>, IExternalNewUnitService
     {
 
         public ExternalNewFullUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters) : base(parameters)
@@ -29,7 +28,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// </summary>
         /// <param name="childId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetUnitParentAsync(string childId)
+        public async Task<IFinalResult> GetUnitParentAsync(Guid childId)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == childId, include:
                 src => src.Include(p => p.Parent));
@@ -106,7 +105,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// </summary>
         /// <param name="unitIds"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetUnitsByIdsAsync(List<string> unitIds)
+        public async Task<IFinalResult> GetUnitsByIdsAsync(List<Guid> unitIds)
         {
             var entities = (await UnitOfWork.Repository.FindAsync(x => unitIds.Contains(x.Id), include:
                 src => src.Include(p => p.Parent))).ToList();
