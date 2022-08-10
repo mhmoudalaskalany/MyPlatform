@@ -12,7 +12,7 @@ namespace Entities.Entities.Hr
         public string Size { get; set; }
         public bool IsPublic { get; set; }
         public string AttachmentDisplaySize { get; set; }
-        public Guid? FullEmployeeId { get; set; }
-        public virtual FullEmployee FullEmployee { get; set; }
+        public Guid? EmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

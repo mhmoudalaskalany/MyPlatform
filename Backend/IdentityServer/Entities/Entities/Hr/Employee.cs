@@ -10,6 +10,7 @@ namespace Entities.Entities.Hr
     {
         public Guid Id { get; set; }
         public string CivilNumber { get; set; }
+        public string FileNumber { get; set; }
         public string Position { get; set; }
         public string FullNameEn { get; set; }
         public string FullNameAr { get; set; }

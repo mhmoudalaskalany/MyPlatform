@@ -8,11 +8,12 @@ namespace Service.Mapping
     {
         public void MapUnit()
         {
-            CreateMap<Unit, UnitDto>()
-                .ReverseMap();
             CreateMap<Unit, AddUnitDto>()
                 .ReverseMap();
-            // used in omsgd services app to show teams in unit drop down and manager can use it
+
+            CreateMap<Unit, UnitDto>();
+
+
             CreateMap<Team, UnitDto>();
 
             CreateMap<dynamic, UnitDto>();

@@ -7,17 +7,10 @@ namespace Service.Mapping
         public MappingService()
         {
             #region Hr Profiles
-            MapFullUnit();
-            MapMurasalatUnit();
-            MapFullEmployee();
-            MapMurasalatEmployee();
             MapUnit();
-            MapBudget();
             MapEmployee();
             MapNationality();
-            MapGradeProfile();
             MapTeam();
-            MapCard();
 
             #endregion
 

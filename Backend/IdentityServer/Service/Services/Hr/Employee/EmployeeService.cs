@@ -8,8 +8,6 @@ using Domain.Abstraction.UnitOfWork;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
-using Domain.DTO.Hr.FullEmployee;
-using Domain.DTO.Hr.FullEmployee.Parameters;
 using Domain.Helper.HttpClient;
 using Entities.Entities.Hr;
 using Entities.Enum;
@@ -18,17 +16,16 @@ using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using MoreLinq;
 using Service.Services.Base;
-using Service.Services.Hr.Employee;
 
-namespace Service.Services.Hr.NewEmployee
+namespace Service.Services.Hr.Employee
 {
-    public class EmployeeService : BaseService<FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, IEmployeeService
+    public class EmployeeService : BaseService<Entities.Entities.Hr.Employee, AddEmployeeDto, EmployeeDto, Guid?>, IEmployeeService
     {
         private readonly MicroServicesUrls _urls;
         private readonly IFileRepository _fileRepository;
         private readonly IUnitOfWork<Entities.Entities.Hr.Unit> _unitOfWork;
 
-        public EmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters,  IUnitOfWork<Entities.Entities.Hr.Unit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
+        public EmployeeService(IServiceBaseParameter<Entities.Entities.Hr.Employee> parameters,  IUnitOfWork<Entities.Entities.Hr.Unit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
         {
             _unitOfWork = unitOfWork;
             _fileRepository = fileRepository;
@@ -56,22 +53,22 @@ namespace Service.Services.Hr.NewEmployee
         /// <returns></returns>
         public async Task<IFinalResult> GetUnitManagerAsync(string unitId, UnitType? unitType)
         {
-            Entities.Entities.Hr.FullEmployee employee;
+            Entities.Entities.Hr.Employee employee;
             // if user have a team id get the employee according to team if
             if (unitType == UnitType.Team)
             {
                 var team = await UnitOfWork.GetRepository<EmployeeTeam>()
-                    .FirstOrDefaultAsync(x => x.TeamId == long.Parse(unitId) && x.IsTeamManager);
+                    .FirstOrDefaultAsync(x => x.TeamId == Guid.Parse(unitId) && x.IsTeamManager);
                 employee =
                     await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == team.EmployeeId);
             }
             else
             {
                 employee =
-                    await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.DepartmentCode == unitId && x.IsManager);
+                    await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.UnitId == Guid.Parse(unitId) && x.IsManager == true);
             }
 
-            var data = Mapper.Map<Entities.Entities.Hr.FullEmployee, NewEmployeeDto>(employee);
+            var data = Mapper.Map<Entities.Entities.Hr.Employee, EmployeeDto>(employee);
             return new ResponseResult(data, HttpStatusCode.OK);
         }
         /// <summary>
@@ -86,7 +83,7 @@ namespace Service.Services.Hr.NewEmployee
                     include: src => src.Include(u => u.Unit)
                      .ThenInclude(p => p.Parent).ThenInclude(gp => gp.Parent));
 
-            var data = Mapper.Map<Entities.Entities.Hr.FullEmployee, NewEmployeeDto>(entity);
+            var data = Mapper.Map<Entities.Entities.Hr.Employee, EmployeeDto>(entity);
             if (data.ManagerId != null)
             {
                 var manager = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == Guid.Parse(data.ManagerId));
@@ -99,12 +96,12 @@ namespace Service.Services.Hr.NewEmployee
         public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId)
         {
 
-            var ids = new List<string> { unitId };
+            var ids = new List<Guid> { Guid.Parse(unitId) };
 
-            var unit = await _unitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == unitId);
+            var unit = await _unitOfWork.Repository.FirstOrDefaultAsync(x => x.Id ==Guid.Parse(unitId));
             //  ,include: src => src.Include(sb => sb.SubUnits));
             await GetChildren(unit, ids);
-            var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.DepartmentCode));
+            var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.UnitId));
 
             var employeeIds = employees.Select(x => x.Id).ToList();
             return ResponseResult.PostResult(employeeIds, status: HttpStatusCode.OK,
@@ -269,22 +266,22 @@ namespace Service.Services.Hr.NewEmployee
             return predicate;
         }
 
-        static Expression<Func<Entities.Entities.Hr.FullEmployee, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Employee, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullEmployee>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Employee>(true);
             if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
             {
-                predicate = predicate.Or(b => b.ArFullName.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b.FullNameAr.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.CivilNumber.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.Phone.Contains(filter.SearchCriteria));
-                predicate = predicate.Or(b => b.FileNumber.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b..Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.EnFullName.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.Email.Contains(filter.SearchCriteria));
             }
             return predicate;
         }
 
-        async Task GetChildren(Entities.Entities.Hr.Unit current, List<string> ids)
+        async Task GetChildren(Entities.Entities.Hr.Unit current, List<Guid> ids)
         {
             if (current == null)
             {
