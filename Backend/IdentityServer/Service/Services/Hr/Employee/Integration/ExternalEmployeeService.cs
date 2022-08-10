@@ -7,21 +7,18 @@ using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
-using Domain.DTO.Hr.FullEmployee;
-using Domain.DTO.Integration.ItHelpDesk.Ticket;
 using Entities.Entities.Hr;
 using Entities.Enum;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Service.Services.Base;
-using Service.Services.Hr.Employee.Integration;
 
-namespace Service.Services.Hr.NewEmployee.Integration
+namespace Service.Services.Hr.Employee.Integration
 {
-    public class ExternalEmployeeService : BaseService<Entities.Entities.Hr.FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, IExternalEmployeeService
+    public class ExternalEmployeeService : BaseService<Entities.Entities.Hr.Employee, AddEmployeeDto, EmployeeDto, Guid?>, IExternalEmployeeService
     {
         
-        public ExternalEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters) : base(parameters)
+        public ExternalEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.Employee> parameters) : base(parameters)
         {
         }
 
@@ -40,7 +37,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
                 .ThenInclude(pr => pr.Parent)
                 .ThenInclude(pt => pt.Parent));
 
-            var data = Mapper.Map<NewEmployeeDto>(entity);
+            var data = Mapper.Map<Entities.Entities.Hr.Employee>(entity);
             if (entity.Unit != null)
             {
                 data.Unit.NameAr = entity.Unit.NameAr;
@@ -70,7 +67,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         {
             var entities = (await UnitOfWork.Repository.GetAllAsync()).ToList();
 
-            var data = Mapper.Map<List<NewEmployeeDto>>(entities);
+            var data = Mapper.Map<List<EmployeeDto>>(entities);
 
             return ResponseResult.PostResult(data, HttpStatusCode.OK);
 
@@ -93,15 +90,15 @@ namespace Service.Services.Hr.NewEmployee.Integration
 
             var ids = employeeIds.Select(x => Guid.Parse(x.PersonId)).ToList();
             var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.Id));
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullEmployee>, List<NewEmployeeDto>>(employees);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Employee>, List<EmployeeDto>>(employees);
 
             return ResponseResult.PostResult(data, HttpStatusCode.OK);
 
         }
         public async Task<IFinalResult> GetManagerEmailByUnitIdAsync(string unitId)
         {
-            var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.DepartmentCode == unitId && x.IsManager);
-            var data = Mapper.Map<NewEmployeeDto>(entity);
+            var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.UnitId == Guid.Parse(unitId) && x.IsManager == true);
+            var data = Mapper.Map<EmployeeDto>(entity);
             return ResponseResult.PostResult(data, HttpStatusCode.OK);
 
         }

@@ -8,6 +8,7 @@ using Domain.Abstraction.UnitOfWork;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
+using Domain.DTO.Hr.Employee.Parameters;
 using Domain.Helper.HttpClient;
 using Entities.Entities.Hr;
 using Entities.Enum;
@@ -86,7 +87,7 @@ namespace Service.Services.Hr.Employee
             var data = Mapper.Map<Entities.Entities.Hr.Employee, EmployeeDto>(entity);
             if (data.ManagerId != null)
             {
-                var manager = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == Guid.Parse(data.ManagerId));
+                var manager = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == data.ManagerId);
                 data.Manager.Email = manager.Email;
             }
             return new ResponseResult(data, HttpStatusCode.OK);
@@ -109,13 +110,13 @@ namespace Service.Services.Hr.Employee
 
         }
 
-        public async Task<DataPaging> GetAllPagedAsync(BaseParam<NewEmployeeFilter> filter)
+        public async Task<DataPaging> GetAllPagedAsync(BaseParam<EmployeeFilter> filter)
         {
 
             var limit = filter.PageSize;
             var offset = ((--filter.PageNumber) * filter.PageSize);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullEmployee>, IEnumerable<NewEmployeeDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Employee>, IEnumerable<EmployeeDto>>(query.Item2);
             return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
 
         }
@@ -134,7 +135,7 @@ namespace Service.Services.Hr.Employee
                         .ThenInclude(pr => pr.Parent)
                         .ThenInclude(pt => pt.Parent));
 
-            var data = Mapper.Map<IEnumerable<NewEmployeeDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<EmployeeDto>>(query.Item2);
             foreach (var employee in data)
             {
                 var unit = query.Item2.First(x => x.Id == employee.Id).Unit;
@@ -166,7 +167,7 @@ namespace Service.Services.Hr.Employee
             var limit = filter.PageSize;
             var offset = ((--filter.PageNumber) * filter.PageSize);
             var query = await UnitOfWork.Repository.FindPagedAsync(predicate: DropDownPredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullEmployee>, IEnumerable<MurasalatEmployeeDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Employee>, IEnumerable<EmployeeDto>>(query.Item2);
             data.ForEach(e =>
             {
                 if (e.PhotoId != null)
@@ -179,44 +180,13 @@ namespace Service.Services.Hr.Employee
 
 
 
-        public async Task<IFinalResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto)
+      
+
+
+        public override async Task<IFinalResult> AddAsync(AddEmployeeDto model)
         {
-            var entity = await _unitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().GetAsync(dto.EmployeeId);
-            entity.PhotoId = dto.NewPhotoId;
-            await UnitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().UpdateAsync(entity.Id, entity);
-            var affectedRows = await UnitOfWork.SaveChanges();
-            if (affectedRows > 0)
-            {
-                if (dto.OldPhotoId != null)
-                {
-                    await _fileRepository.DeleteFile(dto.OldPhotoId.Value);
-                }
-
-                return ResponseResult.PostResult(true, HttpStatusCode.Accepted, null, "UpdateSuccess");
-            }
-            return ResponseResult.PostResult(false, HttpStatusCode.BadRequest, null, "UpdateError");
-        }
-
-
-        public override async Task<IFinalResult> AddAsync(AddMurasalatEmployeeDto model)
-        {
-            var entity = Mapper.Map<AddMurasalatEmployeeDto, Entities.Entities.Hr.FullEmployee>(model);
-            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().GetAsync(model.UnitId);
-            if (model.ManagerId != Guid.Empty && model.ManagerId != Guid.NewGuid() && model.ManagerId != null)
-            {
-                var manager = await UnitOfWork.Repository.GetAsync(model.ManagerId);
-                entity.DirectManagerCivilNumber = manager.CivilNumber.TrimStart('0');
-                entity.DirectManagerEmail = manager.Email;
-                entity.DirectManagerFileNumber = manager.FileNumber;
-                entity.ArDirectManagerName = manager.ArFullName;
-                entity.ArDirectManagerPosition = manager.ArPositiontype;
-            }
+            var entity = Mapper.Map<AddEmployeeDto, Entities.Entities.Hr.Employee>(model);
             entity.Id = Guid.NewGuid();
-            entity.Unit = null;
-            entity.ArDepartmentName = unit.NameAr;
-            entity.EnDepartmentName = unit.NameAr;
-          //  entity.CivilNumber = entity.CivilNumber.TrimStart('0');
-
             UnitOfWork.Repository.Add(entity);
             await UnitOfWork.SaveChanges();
             return ResponseResult.PostResult(true, HttpStatusCode.Created,null , "AddSuccess");
@@ -231,37 +201,33 @@ namespace Service.Services.Hr.Employee
 
 
 
-        static Expression<Func<Entities.Entities.Hr.FullEmployee, bool>> PredicateBuilderFunction(NewEmployeeFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Employee, bool>> PredicateBuilderFunction(EmployeeFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullEmployee>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Employee>(true);
 
-            if (filter.Id != 0 && filter.Id != null)
+            if (filter.Id != null)
             {
                 predicate = predicate.And(b => b.Id.ToString().Contains(filter.Id.ToString()));
             }
             if (!string.IsNullOrWhiteSpace(filter.FullNameAr))
             {
-                predicate = predicate.And(b => b.ArFullName.ToLower().Contains(filter.FullNameAr.ToLower()));
+                predicate = predicate.And(b => b.FullNameAr.ToLower().Contains(filter.FullNameAr.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(filter.FullNameEn))
             {
-                predicate = predicate.And(b => b.EnFullName.ToLower().Contains(filter.FullNameEn.ToLower()));
+                predicate = predicate.And(b => b.FullNameEn.ToLower().Contains(filter.FullNameEn.ToLower()));
             }
             if (!string.IsNullOrWhiteSpace(filter.NationalId))
             {
                 predicate = predicate.And(b => b.CivilNumber.Contains(filter.NationalId));
             }
-            if (!string.IsNullOrWhiteSpace(filter.UnitId))
-            {
-                predicate = predicate.And(b => b.DepartmentCode.Contains(filter.UnitId));
-            }
             if (!string.IsNullOrWhiteSpace(filter.FileNumber))
             {
                 predicate = predicate.And(b => b.FileNumber.Contains(filter.FileNumber));
             }
-            if (!string.IsNullOrWhiteSpace(filter.PhoneNumber))
+            if (!string.IsNullOrWhiteSpace(filter.Phone))
             {
-                predicate = predicate.And(b => b.Phone.Contains(filter.PhoneNumber));
+                predicate = predicate.And(b => b.Phone.Contains(filter.Phone));
             }
             return predicate;
         }
@@ -274,8 +240,7 @@ namespace Service.Services.Hr.Employee
                 predicate = predicate.Or(b => b.FullNameAr.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.CivilNumber.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.Phone.Contains(filter.SearchCriteria));
-                predicate = predicate.Or(b => b..Contains(filter.SearchCriteria));
-                predicate = predicate.Or(b => b.EnFullName.Contains(filter.SearchCriteria));
+                predicate = predicate.Or(b => b.FullNameEn.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.Email.Contains(filter.SearchCriteria));
             }
             return predicate;

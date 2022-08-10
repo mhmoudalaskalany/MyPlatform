@@ -7,7 +7,6 @@ using Domain.DTO.Integration.ItHelpDesk.Ticket;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.Hr.Employee.Integration;
-using Service.Services.Hr.NewEmployee.Integration;
 using UserManagement.Api.Controllers.Base;
 
 namespace UserManagement.Api.Controllers.IntegrationControllers.Hr

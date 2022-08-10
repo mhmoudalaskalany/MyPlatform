@@ -1,13 +1,15 @@
-﻿using Domain.DTO.Base;
+﻿using System;
+using Domain.DTO.Base;
 
 namespace Domain.DTO.Hr.Employee.Parameters
 {
     public class EmployeeFilter : MainFilter
     {
-        public long? Id { get; set; }
-        public string FullnameEn { get; set; }
-        public string FullnameAr { get; set; }
+        public Guid? Id { get; set; }
+        public string FullNameEn { get; set; }
+        public string FullNameAr { get; set; }
         public string NationalId { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
+        public string FileNumber { get; set; }
     }
 }

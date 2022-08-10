@@ -8,13 +8,13 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.Team
 {
-    public interface ITeamService : IBaseService<Entities.Entities.Hr.Team, AddTeamDto, TeamDto, long?>
+    public interface ITeamService : IBaseService<Entities.Entities.Hr.Team, AddTeamDto, TeamDto, Guid?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<TeamFilter> filter);
         Task<IFinalResult> GetTeamsByUnitIdAsync(string unitId);
-        Task<IFinalResult> GetEmployeesByTeamIdAsync(long teamId);
-        Task<IFinalResult> DeleteEmployeeTeamAsync(Guid employeeId, long teamId);
+        Task<IFinalResult> GetEmployeesByTeamIdAsync(Guid teamId);
+        Task<IFinalResult> DeleteEmployeeTeamAsync(Guid employeeId, Guid teamId);
         Task<IFinalResult> AddEmployeeTeamAsync(TeamEmployeeDto dto);
-        Task<IFinalResult> GetByIdAsync(long id);
+        Task<IFinalResult> GetByIdAsync(Guid id);
     }
 }

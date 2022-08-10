@@ -1,9 +1,10 @@
-﻿using Domain.DTO.Base;
+﻿using System;
+using Domain.DTO.Base;
 
 namespace Domain.DTO.Hr.Nationality.Parameters
 {
     public class NationalityFilter : MainFilter
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
     }
 }

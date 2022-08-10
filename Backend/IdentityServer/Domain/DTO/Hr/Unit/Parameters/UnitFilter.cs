@@ -1,9 +1,10 @@
-﻿using Domain.DTO.Base;
+﻿using System;
+using Domain.DTO.Base;
 
-namespace Domain.DTO.Hr.FullUnit.Parameters
+namespace Domain.DTO.Hr.Unit.Parameters
 {
     public class UnitFilter : MainFilter
     {
-        public string Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

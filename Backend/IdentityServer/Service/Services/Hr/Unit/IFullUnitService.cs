@@ -2,8 +2,8 @@
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
-using Domain.DTO.Hr.FullUnit.Parameters;
 using Domain.DTO.Hr.Unit;
+using Domain.DTO.Hr.Unit.Parameters;
 using Service.Services.Base;
 
 namespace Service.Services.Hr.Unit

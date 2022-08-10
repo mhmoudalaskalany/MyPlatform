@@ -8,6 +8,7 @@ namespace Domain.DTO.Hr.Employee
     public class EmployeeDto : IPrimaryKeyField<Guid?>
     {
         public Guid? Id { get; set; }
+        public string FileNumber { get; set; }
         public string PhoneNumber { get; set; }
         public string IpPhone { get; set; }
         public string Position { get; set; }
@@ -30,5 +31,7 @@ namespace Domain.DTO.Hr.Employee
         public Guid? NationalityId { get; set; }
         public DateTime? HireDate { get; set; }
         public DateTime? BirthDate { get; set; }
+        public Guid? PhotoId { get; set; }
+        public string PhotoUrl { get; set; }
     }
 }

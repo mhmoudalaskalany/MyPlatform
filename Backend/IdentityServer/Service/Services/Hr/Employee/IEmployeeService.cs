@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullEmployee;
-using Domain.DTO.Hr.FullEmployee.Parameters;
+using Domain.DTO.Hr.Employee;
+using Domain.DTO.Hr.Employee.Parameters;
 using Entities.Enum;
 using Service.Services.Base;
 
 namespace Service.Services.Hr.Employee
 {
-    public interface IEmployeeService : IBaseService<Entities.Entities.Hr.Employee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>
+    public interface IEmployeeService : IBaseService<Entities.Entities.Hr.Employee, AddEmployeeDto, EmployeeDto, Guid?>
     {
         
         /// <summary>
@@ -22,7 +22,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        Task<DataPaging> GetAllPagedAsync(BaseParam<NewEmployeeFilter> filter);
+        Task<DataPaging> GetAllPagedAsync(BaseParam<EmployeeFilter> filter);
         /// <summary>
         /// Get Drop Down
         /// </summary>
@@ -56,11 +56,5 @@ namespace Service.Services.Hr.Employee
         /// <param name="id"></param>
         /// <returns></returns>
         Task<IFinalResult> GetByIdForViewAsync(Guid id);
-        /// <summary>
-        /// Update Employee Image For Card (Update FullEmployee Entity For Now)
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        Task<IFinalResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto);
     }
 }

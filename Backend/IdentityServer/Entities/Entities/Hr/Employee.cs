@@ -15,7 +15,7 @@ namespace Entities.Entities.Hr
         public string FullNameEn { get; set; }
         public string FullNameAr { get; set; }
         public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Phone { get; set; }
         public string IpPhone { get; set; }
         public Gender? Gender { get; set; }
         public DateTime? HireDate { get; set; }
@@ -35,6 +35,7 @@ namespace Entities.Entities.Hr
         public virtual Unit Unit { get; set; }
         public Guid? TeamId { get; set; }
         public virtual Team Team { get; set; }
+        public Guid? PhotoId { get; set; }
 
     }
 }

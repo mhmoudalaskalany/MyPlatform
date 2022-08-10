@@ -16,7 +16,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.Team
 {
-    public class TeamService : BaseService<Entities.Entities.Hr.Team, AddTeamDto, TeamDto, long?>, ITeamService
+    public class TeamService : BaseService<Entities.Entities.Hr.Team, AddTeamDto, TeamDto, Guid?>, ITeamService
     {
 
 
@@ -25,7 +25,7 @@ namespace Service.Services.Hr.Team
         }
 
 
-        public async Task<IFinalResult> GetByIdAsync(long id)
+        public async Task<IFinalResult> GetByIdAsync(Guid id)
         {
             var team = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false,
                 include: src => src.Include(x => x.Unit));
@@ -36,23 +36,23 @@ namespace Service.Services.Hr.Team
         #region Public Methods
         public async Task<IFinalResult> GetTeamsByUnitIdAsync(string unitId)
         {
-            var entities = await UnitOfWork.Repository.FindAsync(x => x.UnitId == unitId);
+            var entities = await UnitOfWork.Repository.FindAsync(x => x.UnitId == Guid.Parse(unitId));
             var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Team>, IEnumerable<TeamDto>>(entities);
             return Result = ResponseResult.PostResult(data, HttpStatusCode.OK);
         }
 
-        public async Task<IFinalResult> GetEmployeesByTeamIdAsync(long teamId)
+        public async Task<IFinalResult> GetEmployeesByTeamIdAsync(Guid teamId)
         {
 
             var employeeTeam = await UnitOfWork.GetRepository<EmployeeTeam>().FindAsync(x => x.TeamId == teamId);
             var employeeIds = employeeTeam.Select(x => x.EmployeeId).ToList();
-            var employees = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>()
+            var employees = await UnitOfWork.GetRepository<Entities.Entities.Hr.Employee>()
                 .FindAsync(x => employeeIds.Contains(x.Id));
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullEmployee>, IEnumerable<NewEmployeeDto>>(employees);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Employee>, IEnumerable<EmployeeDto>>(employees);
             return Result = ResponseResult.PostResult(data, HttpStatusCode.OK);
         }
 
-        public async Task<IFinalResult> DeleteEmployeeTeamAsync(Guid employeeId, long teamId)
+        public async Task<IFinalResult> DeleteEmployeeTeamAsync(Guid employeeId, Guid teamId)
         {
 
             var employeeTeam = await UnitOfWork.GetRepository<EmployeeTeam>().FirstOrDefaultAsync(x => x.EmployeeId == employeeId && x.TeamId == teamId);
