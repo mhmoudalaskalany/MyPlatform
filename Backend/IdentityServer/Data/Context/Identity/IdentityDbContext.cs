@@ -53,7 +53,7 @@ namespace Data.Context.Identity
         public virtual DbSet<Nationality> Nationalities { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Attachment> Attachments { get; set; }
-        public virtual DbSet<Unit> FullUnits { get; set; }
+        public virtual DbSet<Unit> Units { get; set; }
 
         #endregion
 
@@ -72,7 +72,6 @@ namespace Data.Context.Identity
             modelBuilder.ApplyConfiguration(new AppConfig());
             modelBuilder.ApplyConfiguration(new RoleClaimConfig());
             modelBuilder.ApplyConfiguration(new RoleConfig());
-            modelBuilder.ApplyConfiguration(new UserClaimConfig());
             modelBuilder.ApplyConfiguration(new UserLoginConfig());
             modelBuilder.ApplyConfiguration(new UserAppConfig());
             modelBuilder.ApplyConfiguration(new RolePermissionConfig());
@@ -80,13 +79,6 @@ namespace Data.Context.Identity
             modelBuilder.ApplyConfiguration(new PagePermissionConfig());
             modelBuilder.ApplyConfiguration(new UserTokenConfig());
 
-            //modelBuilder.Entity<User>().ToTable("Users");
-            //modelBuilder.Entity<IdentityRole>().ToTable("Roles"); 
-            //modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles"); 
-            //modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims"); 
-            //modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins"); 
-            //modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims"); 
-            //modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens");
             #endregion
 
             #region Hr Configuration
@@ -96,7 +88,18 @@ namespace Data.Context.Identity
             #region Seed Data
             //modelBuilder.Entity<Permission>().HasData(_dataInitializer.SeedPermissions());
             #endregion
+
+
+            
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaims");
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogins");
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserTokens");
+
             modelBuilder.Entity<Role>(builder =>
             {
                 builder.Metadata.RemoveIndex(new[] { builder.Property(r => r.NormalizedName).Metadata });

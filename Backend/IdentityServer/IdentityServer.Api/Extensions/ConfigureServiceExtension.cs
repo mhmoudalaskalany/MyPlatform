@@ -123,15 +123,15 @@ namespace IdentityServer.Api.Extensions
 
                 })
                 .AddProfileService<IdentityClaimsProfileService>()
-                .AddInMemoryApiScopes(AuthServer.Config.Config.GetApiScopes())
-                .AddInMemoryIdentityResources(AuthServer.Config.Config.GetIdentityResources())
-                .AddInMemoryApiResources(AuthServer.Config.Config.GetApiResources())
-                .AddInMemoryClients(AuthServer.Config.Config.GetClients(env,configuration))
+                .AddInMemoryApiScopes(Config.GetApiScopes())
+                .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients(env,configuration))
                 .AddAspNetIdentity<User>()
                 .GetIdentityServerCertificate(configuration["Certificates:Signing"],
                 configuration["Certificates:Password"] , configuration);
 
-            services.ConfigureApplicationCookie((obj) =>
+            services.ConfigureApplicationCookie(obj =>
             {
                 obj.LoginPath = "/Accounts/Login";
                 obj.LogoutPath = "/Accounts/Logout";
