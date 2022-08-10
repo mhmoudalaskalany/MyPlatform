@@ -101,8 +101,6 @@ namespace Entities.Entities.Hr
         public Guid? ManagerId { get; set; }
         public virtual Attachment Attachment { get; set; }
 
-        public virtual List<Card> Cards { get; set; }
-
         public virtual ICollection<EmployeeTeam> EmployeeTeams { get; set; } = new List<EmployeeTeam>();
     }
 }

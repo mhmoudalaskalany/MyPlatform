@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Abstraction.ActiveDirectory;
 using Domain.Abstraction.UnitOfWork;
 using Domain.Caching.Redis;
 using Domain.Core;
@@ -24,7 +23,6 @@ namespace Service.Services.Identity.Account
     {
         private readonly UserManager<Entities.Entities.Identity.User> _userManager;
         private readonly RoleManager<Entities.Entities.Identity.Role> _roleManager;
-        private readonly IActiveDirectoryRepository _activeDirectoryRepository;
         private readonly IUnitOfWork<Entities.Entities.Hr.FullEmployee> _employeeUnitOfWork;
         private readonly IUnitOfWork<Entities.Entities.Identity.UserRole> _userRoleUnitOfWork;
         private readonly IUnitOfWork<LoginHistory> _loginHistoryUnitOfWork;
@@ -32,10 +30,9 @@ namespace Service.Services.Identity.Account
         private readonly ISmsService _smsService;
         private readonly IConfiguration _configuration;
         public static IDictionary<string, string> OtpDictionary = new Dictionary<string, string>();
-        public AccountService(UserManager<Entities.Entities.Identity.User> userManager, IActiveDirectoryRepository activeDirectoryRepository, IMapper mapper, IUnitOfWork<Entities.Entities.Hr.FullEmployee> employeeUnitOfWork, ISmsService smsService, IConfiguration configuration, RoleManager<Entities.Entities.Identity.Role> roleManager, IUnitOfWork<Entities.Entities.Identity.UserRole> userRoleUnitOfWork, IUnitOfWork<LoginHistory> loginHistoryUnitOfWork)
+        public AccountService(UserManager<Entities.Entities.Identity.User> userManager, IMapper mapper, IUnitOfWork<Entities.Entities.Hr.FullEmployee> employeeUnitOfWork, ISmsService smsService, IConfiguration configuration, RoleManager<Entities.Entities.Identity.Role> roleManager, IUnitOfWork<Entities.Entities.Identity.UserRole> userRoleUnitOfWork, IUnitOfWork<LoginHistory> loginHistoryUnitOfWork)
         {
             _userManager = userManager;
-            _activeDirectoryRepository = activeDirectoryRepository;
             _mapper = mapper;
             _employeeUnitOfWork = employeeUnitOfWork;
             _smsService = smsService;
@@ -46,19 +43,6 @@ namespace Service.Services.Identity.Account
         }
 
         #region Public Methods
-        /// <summary>
-        /// Login ( AD and Form Based )
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public async Task<IFinalResult> LoginAsync(LoginInputModel model)
-        {
-            var user = ActiveDirectoryLogin(model);
-            if (user == null) return new ResponseResult(HttpStatusCode.BadRequest);
-
-            var result = await UpdateOrAddUserAsync(user);
-            return new ResponseResult(result, HttpStatusCode.OK);
-        }
         /// <summary>
         /// Update Percentage
         /// </summary>
@@ -193,17 +177,7 @@ namespace Service.Services.Identity.Account
 
         #region Private Methods
 
-        /// <summary>
-        /// Active Directory Login
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-
-        private ActiveDirectoryUserDto ActiveDirectoryLogin(LoginInputModel model)
-        {
-            var result = _activeDirectoryRepository.Login(model);
-            return result;
-        }
+       
         /// <summary>
         /// Update User After Getting From Active Directory
         /// </summary>

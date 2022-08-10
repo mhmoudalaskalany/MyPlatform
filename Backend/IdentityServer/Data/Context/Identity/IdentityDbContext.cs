@@ -47,18 +47,13 @@ namespace Data.Context.Identity
         #endregion
 
         #region Hr Entities
-
-        public virtual DbSet<Employee> Employees { get; set; }
-        public virtual DbSet<Unit> Units { get; set; }
+        
         public virtual DbSet<Budget> Budgets { get; set; }
         public virtual DbSet<Nationality> Nationalities { get; set; }
-        public virtual DbSet<Grade> Grades { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<FullEmployee> FullEmployees { get; set; }
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<FullUnit> FullUnits { get; set; }
-        public virtual DbSet<MurasalatUnit> MurasalatUnits { get; set; }
-        public virtual DbSet<Card> Cards { get; set; }
         public virtual DbSet<EmployeeTeam> EmployeeTeams { get; set; }
 
         #endregion

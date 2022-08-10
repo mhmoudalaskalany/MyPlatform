@@ -10,6 +10,6 @@ namespace Entities.Entities.Hr
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public string Code { get; set; }
-        public virtual ICollection<Employee> Employees { get; set; } = new Collection<Employee>();
+        public virtual ICollection<FullEmployee> Employees { get; set; } = new Collection<FullEmployee>();
     }
 }

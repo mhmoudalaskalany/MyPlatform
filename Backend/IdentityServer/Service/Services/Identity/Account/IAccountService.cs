@@ -13,12 +13,6 @@ namespace Service.Services.Identity.Account
         /// <returns></returns>
         Task AddLoginHistory(long userId);
         /// <summary>
-        /// Ad Login
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        Task<IFinalResult> LoginAsync(LoginInputModel model);
-        /// <summary>
         /// Check If User First Login
         /// </summary>
         /// <param name="user"></param>

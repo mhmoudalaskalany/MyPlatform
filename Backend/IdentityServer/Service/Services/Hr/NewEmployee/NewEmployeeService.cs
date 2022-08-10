@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
-using Domain.Abstraction.Repository.Employee;
 using Domain.Abstraction.UnitOfWork;
 using Domain.Core;
 using Domain.DTO.Base;
