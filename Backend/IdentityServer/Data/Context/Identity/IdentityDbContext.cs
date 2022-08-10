@@ -90,7 +90,6 @@ namespace Data.Context.Identity
 
             #region Hr Configuration
             modelBuilder.ApplyConfiguration(new FullEmployeeConfig());
-            modelBuilder.ApplyConfiguration(new EmployeeConfig());
             #endregion
 
             #region Seed Data
