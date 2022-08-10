@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Entities.Entities;
 using Entities.Entities.Identity;
 
 namespace Data.DataInitializer
