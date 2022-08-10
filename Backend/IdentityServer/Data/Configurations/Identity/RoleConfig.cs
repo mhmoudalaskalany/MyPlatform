@@ -13,8 +13,7 @@ namespace Data.Configurations.Identity
             builder.Property(a => a.Code).HasMaxLength(255).IsRequired();
 
             builder.HasIndex(a => a.Code).IsUnique();
-
-            builder.ToTable("Roles");
+            
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Entities.Entities.Audit
 {
     public class Audit : BaseEntity
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public string UserId { get; set; }
         public string Type { get; set; }
         public string TableName { get; set; }

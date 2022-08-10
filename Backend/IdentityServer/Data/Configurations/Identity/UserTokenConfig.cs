@@ -9,7 +9,6 @@ namespace Data.Configurations.Identity
         public void Configure(EntityTypeBuilder<UserToken> builder)
         {
             builder.Property(e => e.LoginProvider).HasMaxLength(255);
-            builder.ToTable("UserTokens");
         }
     }
 }
