@@ -1,5 +1,4 @@
-﻿using Entities.Entities;
-using Entities.Entities.Identity;
+﻿using Entities.Entities.Identity;
 
 namespace Data.DataInitializer
 {
