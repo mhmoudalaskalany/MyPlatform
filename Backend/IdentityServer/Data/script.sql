@@ -1,7 +1,6 @@
 Build started...
 Build succeeded.
-The EF Core tools version '3.1.6' is older than that of the runtime '3.1.7'. Update the tools for the latest features and bug fixes.
-DesignTimeDbContextFactory.Create(string): Connection string: data source=.;initial catalog=OmsgdUserManagement;User ID=sa;Password=admin@123456;Trusted_Connection=False;ConnectRetryCount=0
+DesignTimeDbContextFactory.Create(string): Connection string: data source=.;initial catalog=PlatformUserManagement;User ID=sa;Password=admin@123456;Trusted_Connection=False;ConnectRetryCount=0
 IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
     CREATE TABLE [__EFMigrationsHistory] (
@@ -65,7 +64,7 @@ CREATE INDEX [IX_PersistedGrants_SubjectId_SessionId_Type] ON [PersistedGrants] 
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20200818071418_InitialModels', N'3.1.7');
+VALUES (N'20220810091309_InitialModels', N'3.1.21');
 
 GO
 
