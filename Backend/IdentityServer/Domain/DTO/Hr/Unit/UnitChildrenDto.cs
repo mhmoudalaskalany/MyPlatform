@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Domain.DTO.Hr.Unit
 {
@@ -8,6 +9,6 @@ namespace Domain.DTO.Hr.Unit
         public string NameAr { get; set; }
         public string FullNameEn { get; set; }
         public string FullNameAr { get; set; }
-        public List<long> ChildrenIds { get; set; }
+        public List<Guid> ChildrenIds { get; set; } = new List<Guid>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.DTO.Hr.FullUnit;
+using Domain.DTO.Hr.Unit;
 using Entities.Entities.Hr;
 
 // ReSharper disable once CheckNamespace
@@ -8,15 +9,15 @@ namespace Service.Mapping
     {
         public void MapFullUnit()
         {
-            CreateMap<FullUnit, AddFullUnitDto>()
+            CreateMap<Unit, AddUnitDto>()
                 .ReverseMap();
 
-            CreateMap<FullUnit, FullUnitDto>();
+            CreateMap<Unit, UnitDto>();
 
 
-            CreateMap<Team, FullUnitDto>();
+            CreateMap<Team, UnitDto>();
 
-            CreateMap<dynamic, FullUnitDto>();
+            CreateMap<dynamic, UnitDto>();
         }
     }
 }

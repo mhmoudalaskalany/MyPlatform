@@ -7,9 +7,9 @@ using Domain.DTO.Hr.FullEmployee.Parameters;
 using Entities.Enum;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.NewEmployee
+namespace Service.Services.Hr.Employee
 {
-    public interface INewEmployeeService : IBaseService<Entities.Entities.Hr.FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>
+    public interface IEmployeeService : IBaseService<Entities.Entities.Hr.Employee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>
     {
         
         /// <summary>

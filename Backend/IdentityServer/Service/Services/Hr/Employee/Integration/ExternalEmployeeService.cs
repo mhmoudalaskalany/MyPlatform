@@ -14,13 +14,14 @@ using Entities.Enum;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Service.Services.Base;
+using Service.Services.Hr.Employee.Integration;
 
 namespace Service.Services.Hr.NewEmployee.Integration
 {
-    public class ExternalNewEmployeeService : BaseService<Entities.Entities.Hr.FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, IExternalNewEmployeeService
+    public class ExternalEmployeeService : BaseService<Entities.Entities.Hr.FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, IExternalEmployeeService
     {
         
-        public ExternalNewEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters) : base(parameters)
+        public ExternalEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters) : base(parameters)
         {
         }
 
@@ -151,7 +152,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// <returns></returns>
         public async Task<IFinalResult> GetEmployeesByUnitOrTeamIdAsync(string unitId)
         {
-            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullUnit>().GetAsync(unitId);
+            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().GetAsync(unitId);
             List<Entities.Entities.Hr.FullEmployee> entities;
             if (!string.IsNullOrEmpty(ClaimData.TeamId))
             {
@@ -320,7 +321,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
 
             var ids = new List<string> { unitId };
 
-            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullUnit>().FirstOrDefaultAsync(x => x.Id == unitId);
+            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().FirstOrDefaultAsync(x => x.Id == unitId);
             //   , include: src => src.Include(sb => sb.SubUnits)
             await GetChildren(unit, ids);
             var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.DepartmentCode));
@@ -365,7 +366,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private async Task<List<Entities.Entities.Hr.FullEmployee>> GetHeadOfSections(Entities.Entities.Hr.FullUnit entity)
+        private async Task<List<Entities.Entities.Hr.FullEmployee>> GetHeadOfSections(Entities.Entities.Hr.Unit entity)
         {
             var hos = new List<Entities.Entities.Hr.FullEmployee>();
             if (entity.UnitType == UnitType.Department)
@@ -382,14 +383,14 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// <param name="current"></param>
         /// <param name="ids"></param>
         /// <returns></returns>
-        async Task GetChildren(Entities.Entities.Hr.FullUnit current, List<string> ids)
+        async Task GetChildren(Entities.Entities.Hr.Unit current, List<string> ids)
         {
             if (current == null)
             {
                 return;
             }
 
-            current = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullUnit>().FirstOrDefaultAsync(x => x.Id == current.Id,
+            current = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().FirstOrDefaultAsync(x => x.Id == current.Id,
                 include: src => src.Include(sb => sb.Children));
             ids.AddRange(current.Children.Select(x => x.Id));
             foreach (var child in current.Children)

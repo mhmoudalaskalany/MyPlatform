@@ -8,6 +8,7 @@ using Domain.Abstraction.UnitOfWork;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
+using Domain.DTO.Hr.Unit;
 using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
 using LinqKit;
@@ -16,10 +17,10 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit
 {
-    public class NewUnitService : BaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>, INewUnitService
+    public class NewUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>, INewUnitService
     {
         private readonly IUnitOfWork<Entities.Entities.Hr.Team> _teamUnitOfWork;
-        public NewUnitService(IServiceBaseParameter<Entities.Entities.Hr.FullUnit> parameters, IUnitOfWork<Entities.Entities.Hr.Team> teamUnitOfWork) : base(parameters)
+        public NewUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters, IUnitOfWork<Entities.Entities.Hr.Team> teamUnitOfWork) : base(parameters)
         {
             _teamUnitOfWork = teamUnitOfWork;
         }
@@ -75,7 +76,7 @@ namespace Service.Services.Hr.NewUnit
             var query = (await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking,
                 include: src => src.Include(p => p.Parent))).ToList();
 
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query);
             foreach (var item in data)
             {
                 var unit = query.First(x => x.Id == item.Id);
@@ -110,7 +111,7 @@ namespace Service.Services.Hr.NewUnit
             var predicate = PredicateBuilderFunction(filter.Filter);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: predicate
                 , skip: offset, take: limit, filter.OrderByValue, include: src => src.Include(s => s.Parent).ThenInclude(p => p.Parent).ThenInclude(p => p.Parent));
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query.Item2);
             foreach (var item in data)
             {
                 var unit = query.Item2.First(x => x.Id == item.Id);
@@ -143,7 +144,7 @@ namespace Service.Services.Hr.NewUnit
             int limit = filter.PageSize;
             int offset = ((--filter.PageNumber) * filter.PageSize);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query.Item2);
             return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
 
         }
@@ -160,12 +161,12 @@ namespace Service.Services.Hr.NewUnit
             var query = await UnitOfWork.Repository.FindAsync(await SectionsPredicateBuilderFunction(sectionId));
             // get teams under the section and return it as unit dto to be show in in the drop down so manager can select it
             var teams = await _teamUnitOfWork.Repository.FindAsync(TeamsPredicateBuilderFunction(sectionId));
-            var teamsDtos = Mapper.Map<IEnumerable<Entities.Entities.Hr.Team>, List<FullUnitDto>>(teams);
+            var teamsDtos = Mapper.Map<IEnumerable<Entities.Entities.Hr.Team>, List<UnitDto>>(teams);
             teamsDtos.ForEach(e =>
             {
                 e.UnitType = UnitType.Team;
             });
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, List<FullUnitDto>>(query);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, List<UnitDto>>(query);
             data.AddRange(teamsDtos);
             return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
                 message: HttpStatusCode.OK.ToString());
@@ -189,7 +190,7 @@ namespace Service.Services.Hr.NewUnit
                 unit = await UnitOfWork.Repository.GetAsync(id);
             }
 
-            var data = Mapper.Map<dynamic, FullUnitDto>(unit);
+            var data = Mapper.Map<dynamic, UnitDto>(unit);
 
             return ResponseResult.PostResult(data, HttpStatusCode.OK);
         }
@@ -200,7 +201,7 @@ namespace Service.Services.Hr.NewUnit
         public async Task<IFinalResult> GetUnitsWithChildren()
         {
             var localDatabase = (await UnitOfWork.Repository.GetAllAsync()).ToList();
-            var unitList = new List<FullUnitChildrenDto>();
+            var unitList = new List<UnitChildrenDto>();
             var list = new List<string>();
             // get unit type 3
             var units = localDatabase.Where(x => x.UnitType == UnitType.Department);
@@ -209,7 +210,7 @@ namespace Service.Services.Hr.NewUnit
             foreach (var unit in units)
             {
                 var ids = new List<string> { unit.Id };
-                var unitDto = new FullUnitChildrenDto
+                var unitDto = new UnitChildrenDto
                 {
                     NameAr = unit.NameAr,
                     NameEn = unit.NameEn,
@@ -224,11 +225,11 @@ namespace Service.Services.Hr.NewUnit
             var sectorsAndDirectorates = localDatabase.Where(x =>
                 x.UnitType == UnitType.Sector || x.UnitType == UnitType.Directorate);
 
-            var sectorAndDireChildrenList = new List<FullUnitChildrenDto>();
+            var sectorAndDireChildrenList = new List<UnitChildrenDto>();
             foreach (var item in sectorsAndDirectorates)
             {
                 var sections = localDatabase.Where(x => x.ParentId == item.Id && x.UnitType == UnitType.Section);
-                var unitDto = new FullUnitChildrenDto
+                var unitDto = new UnitChildrenDto
                 {
                     NameAr = item.NameAr,
                     NameEn = item.NameEn,
@@ -251,9 +252,9 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Hr.FullUnit, bool>> PredicateBuilderFunction(SearchCriteriaFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Unit, bool>> PredicateBuilderFunction(SearchCriteriaFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
             {
                 predicate = predicate.Or(b => b.NameAr.Contains(filter.SearchCriteria.ToLower()));
@@ -267,9 +268,9 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Hr.FullUnit, bool>> PredicateBuilderFunction(UnitFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Unit, bool>> PredicateBuilderFunction(UnitFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             if (!string.IsNullOrEmpty(filter?.Id))
             {
                 predicate.And(x => x.Id == filter.Id);
@@ -292,7 +293,7 @@ namespace Service.Services.Hr.NewUnit
         /// <param name="ids"></param>
         /// <param name="localDatabase"></param>
         /// <returns></returns>
-        async Task GetChildren(Entities.Entities.Hr.FullUnit current, List<string> ids, List<Entities.Entities.Hr.FullUnit> localDatabase)
+        async Task GetChildren(Entities.Entities.Hr.Unit current, List<string> ids, List<Entities.Entities.Hr.Unit> localDatabase)
         {
             if (current == null)
             {
@@ -314,11 +315,11 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="sectionId"></param>
         /// <returns></returns>
-        async Task<Expression<Func<Entities.Entities.Hr.FullUnit, bool>>> SectionsPredicateBuilderFunction(string sectionId)
+        async Task<Expression<Func<Entities.Entities.Hr.Unit, bool>>> SectionsPredicateBuilderFunction(string sectionId)
         {
             // get employee parent unit ( department , directorate , any thing )
             // then get all children under it when its parent id = the id of the parent unit we got in first query
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             var departmentOfTheSection = await UnitOfWork.Repository.GetAsync(sectionId);
             predicate = predicate.And(x => x.ParentId == departmentOfTheSection.ParentId);
             if (string.IsNullOrEmpty(ClaimData.TeamId))

@@ -1,6 +1,6 @@
 ﻿using Domain.DTO.Base;
 
-namespace Domain.DTO.Hr.Unit.Parameters
+namespace Domain.DTO.Hr.FullUnit.Parameters
 {
     public class UnitFilter : MainFilter
     {

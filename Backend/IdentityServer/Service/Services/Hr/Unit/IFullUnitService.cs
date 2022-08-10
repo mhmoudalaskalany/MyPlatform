@@ -3,11 +3,12 @@ using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.FullUnit.Parameters;
+using Domain.DTO.Hr.Unit;
 using Service.Services.Base;
 
 namespace Service.Services.Hr.Unit
 {
-    public interface IFullUnitService : IBaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>
+    public interface IFullUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>
     {
         /// <summary>
         /// Get Count For Dashboard
@@ -24,7 +25,7 @@ namespace Service.Services.Hr.Unit
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        Task<DataPaging> GetAllPagedAsync(BaseParam<FullUnitFilter> filter);
+        Task<DataPaging> GetAllPagedAsync(BaseParam<UnitFilter> filter);
         /// <summary>
         /// Get All Paged For Drop Down
         /// </summary>

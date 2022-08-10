@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
+using Domain.DTO.Hr.Employee;
 using Domain.DTO.Hr.FullEmployee;
 using Domain.DTO.Integration.ItHelpDesk.Ticket;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.NewEmployee.Integration
+namespace Service.Services.Hr.Employee.Integration
 {
-    public interface IExternalNewEmployeeService : IBaseService<Entities.Entities.Hr.FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>
+    public interface IExternalEmployeeService : IBaseService<Entities.Entities.Hr.Employee, AddEmployeeDto, EmployeeDto, Guid?>
     {
         /// <summary>
         /// Get Manager Email By UnitId 

@@ -18,16 +18,17 @@ using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using MoreLinq;
 using Service.Services.Base;
+using Service.Services.Hr.Employee;
 
 namespace Service.Services.Hr.NewEmployee
 {
-    public class NewEmployeeService : BaseService<FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, INewEmployeeService
+    public class EmployeeService : BaseService<FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, IEmployeeService
     {
         private readonly MicroServicesUrls _urls;
         private readonly IFileRepository _fileRepository;
-        private readonly IUnitOfWork<Entities.Entities.Hr.FullUnit> _unitOfWork;
+        private readonly IUnitOfWork<Entities.Entities.Hr.Unit> _unitOfWork;
 
-        public NewEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters,  IUnitOfWork<Entities.Entities.Hr.FullUnit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
+        public EmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters,  IUnitOfWork<Entities.Entities.Hr.Unit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
         {
             _unitOfWork = unitOfWork;
             _fileRepository = fileRepository;
@@ -203,7 +204,7 @@ namespace Service.Services.Hr.NewEmployee
         public override async Task<IFinalResult> AddAsync(AddMurasalatEmployeeDto model)
         {
             var entity = Mapper.Map<AddMurasalatEmployeeDto, Entities.Entities.Hr.FullEmployee>(model);
-            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullUnit>().GetAsync(model.UnitId);
+            var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().GetAsync(model.UnitId);
             if (model.ManagerId != Guid.Empty && model.ManagerId != Guid.NewGuid() && model.ManagerId != null)
             {
                 var manager = await UnitOfWork.Repository.GetAsync(model.ManagerId);
@@ -283,7 +284,7 @@ namespace Service.Services.Hr.NewEmployee
             return predicate;
         }
 
-        async Task GetChildren(Entities.Entities.Hr.FullUnit current, List<string> ids)
+        async Task GetChildren(Entities.Entities.Hr.Unit current, List<string> ids)
         {
             if (current == null)
             {

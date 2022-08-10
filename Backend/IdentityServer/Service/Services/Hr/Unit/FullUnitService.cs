@@ -8,6 +8,7 @@ using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.FullUnit.Parameters;
+using Domain.DTO.Hr.Unit;
 using Domain.Extensions;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -15,9 +16,9 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.Unit
 {
-    public class FullUnitService : BaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>, IFullUnitService
+    public class FullUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>, IFullUnitService
     {
-        public FullUnitService(IServiceBaseParameter<Entities.Entities.Hr.FullUnit> parameters) : base(parameters)
+        public FullUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters) : base(parameters)
         {
 
         }
@@ -30,13 +31,13 @@ namespace Service.Services.Hr.Unit
             return ResponseResult.PostResult(count, HttpStatusCode.OK);
         }
 
-        public async Task<DataPaging> GetAllPagedAsync(BaseParam<FullUnitFilter> filter)
+        public async Task<DataPaging> GetAllPagedAsync(BaseParam<UnitFilter> filter)
         {
 
             var limit = filter.PageSize;
             var offset = ((--filter.PageNumber) * filter.PageSize);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue);
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query.Item2);
             return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
 
         }
@@ -50,7 +51,7 @@ namespace Service.Services.Hr.Unit
             var predicate = DropDownPredicateBuilderFunction(filter.Filter);
             var query = await UnitOfWork.Repository.FindPagedAsync(predicate: predicate
                 , skip: offset, take: limit, Utilities.GetOrderByList("Type" , "Asc"), include: src => src.Include(s => s.Parent).ThenInclude(p => p.Parent).ThenInclude(p => p.Parent));
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query.Item2);
             foreach (var item in data)
             {
                 var unit = query.Item2.First(x => x.Id == item.Id);
@@ -105,9 +106,9 @@ namespace Service.Services.Hr.Unit
 
         #region Private Methods
 
-        static Expression<Func<Entities.Entities.Hr.FullUnit, bool>> PredicateBuilderFunction(FullUnitFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Unit, bool>> PredicateBuilderFunction(UnitFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             if (!string.IsNullOrWhiteSpace(filter?.Id))
             {
                 predicate = predicate.And(b => b.Id.Contains(filter.Id));
@@ -123,9 +124,9 @@ namespace Service.Services.Hr.Unit
             return predicate;
         }
 
-        static Expression<Func<Entities.Entities.Hr.FullUnit, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Unit, bool>> DropDownPredicateBuilderFunction(SearchCriteriaFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
             {
                 predicate = predicate.And(b => b.NameAr.ToLower().Contains(filter.SearchCriteria.ToLower()));

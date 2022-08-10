@@ -3,6 +3,7 @@ using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.FullUnit.Parameters;
+using Domain.DTO.Hr.Unit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.Hr.Unit;
@@ -79,7 +80,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("GetPaged")]
-        public async Task<DataPaging> GetPaged([FromBody] BaseParam<FullUnitFilter> filter)
+        public async Task<DataPaging> GetPaged([FromBody] BaseParam<UnitFilter> filter)
         {
             return await _unitService.GetAllPagedAsync(filter);
         }
@@ -103,7 +104,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IFinalResult> AddAsync([FromBody] AddFullUnitDto dto)
+        public async Task<IFinalResult> AddAsync([FromBody] AddUnitDto dto)
         {
             var result = await _unitService.AddAsync(dto);
             return result;
@@ -117,7 +118,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IFinalResult> UpdateAsync(AddFullUnitDto model)
+        public async Task<IFinalResult> UpdateAsync(AddUnitDto model)
         {
             return await _unitService.UpdateAsync(model);
         }

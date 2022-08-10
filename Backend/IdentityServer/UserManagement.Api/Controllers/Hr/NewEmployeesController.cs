@@ -7,6 +7,7 @@ using Domain.DTO.Hr.FullEmployee.Parameters;
 using Entities.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Service.Services.Hr.Employee;
 using Service.Services.Hr.NewEmployee;
 using Service.Services.Validators.Services.Employee;
 using UserManagement.Api.Controllers.Base;
@@ -18,12 +19,12 @@ namespace UserManagement.Api.Controllers.Hr
     /// </summary>
     public class NewEmployeesController : BaseController
     {
-        private readonly INewEmployeeService _employeeService;
+        private readonly IEmployeeService _employeeService;
         private readonly IEmployeeValidationService _employeeValidationService;
         /// <summary>
         /// Constructor
         /// </summary>
-        public NewEmployeesController(INewEmployeeService employeeService, IEmployeeValidationService employeeValidationService)
+        public NewEmployeesController(IEmployeeService employeeService, IEmployeeValidationService employeeValidationService)
         {
             _employeeService = employeeService;
             _employeeValidationService = employeeValidationService;

@@ -15,10 +15,10 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit.Integration
 {
-    public class ExternalNewFullUnitService : BaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>, IExternalNewUnitService
+    public class ExternalNewFullUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>, IExternalNewUnitService
     {
 
-        public ExternalNewFullUnitService(IServiceBaseParameter<Entities.Entities.Hr.FullUnit> parameters) : base(parameters)
+        public ExternalNewFullUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters) : base(parameters)
         {
 
         }
@@ -33,7 +33,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == childId, include:
                 src => src.Include(p => p.Parent));
-            var parent = Mapper.Map<Entities.Entities.Hr.FullUnit, UnitDto>(entity.Parent);
+            var parent = Mapper.Map<Entities.Entities.Hr.Unit, UnitDto>(entity.Parent);
             return ResponseResult.PostResult(parent, HttpStatusCode.OK);
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Service.Services.Hr.NewUnit.Integration
             var predicate = PredicateBuilderFunctionForDepartment(filter.Filter);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: predicate
                 , skip: offset, take: limit, filter.OrderByValue, include: src => src.Include(s => s.Parent).ThenInclude(p => p.Parent).ThenInclude(p => p.Parent));
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query.Item2);
 
             foreach (var unit in data)
             {
@@ -81,7 +81,7 @@ namespace Service.Services.Hr.NewUnit.Integration
             var predicate = PredicateBuilderFunction(filter.Filter);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: predicate
                 , skip: offset, take: limit, filter.OrderByValue, include: src => src.Include(s => s.Parent).ThenInclude(p => p.Parent).ThenInclude(p => p.Parent));
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, IEnumerable<FullUnitDto>>(query.Item2);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, IEnumerable<UnitDto>>(query.Item2);
 
             foreach (var unit in data)
             {
@@ -110,7 +110,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         {
             var entities = (await UnitOfWork.Repository.FindAsync(x => unitIds.Contains(x.Id), include:
                 src => src.Include(p => p.Parent))).ToList();
-            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.FullUnit>, List<FullUnitDto>>(entities);
+            var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, List<UnitDto>>(entities);
             foreach (var unit in data)
             {
                 var parent = entities.First(x => x.Id == unit.Id).Parent;
@@ -131,9 +131,9 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Hr.FullUnit, bool>> PredicateBuilderFunctionForDepartment(SearchCriteriaFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Unit, bool>> PredicateBuilderFunctionForDepartment(SearchCriteriaFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
             {
                 predicate = predicate.Or(b => b.NameAr.Contains(filter.SearchCriteria));
@@ -149,9 +149,9 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Hr.FullUnit, bool>> PredicateBuilderFunction(SearchCriteriaFilter filter)
+        static Expression<Func<Entities.Entities.Hr.Unit, bool>> PredicateBuilderFunction(SearchCriteriaFilter filter)
         {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.FullUnit>(true);
+            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             if (!string.IsNullOrWhiteSpace(filter.SearchCriteria))
             {
                 predicate = predicate.Or(b => b.NameAr.ToLower().Contains(filter.SearchCriteria));

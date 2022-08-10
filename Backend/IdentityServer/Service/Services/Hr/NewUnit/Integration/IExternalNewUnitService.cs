@@ -3,11 +3,12 @@ using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
+using Domain.DTO.Hr.Unit;
 using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit.Integration
 {
-    public interface IExternalNewUnitService : IBaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto , string>
+    public interface IExternalNewUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto , string>
     {
         /// <summary>
         /// Get Unit Parent ( Used In Stock )

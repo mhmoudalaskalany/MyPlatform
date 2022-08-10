@@ -37,7 +37,7 @@ namespace Service.Mapping
             CreateMap<MurasalatUnit, AddMurasalatUnitDto>()
                 .ReverseMap();
 
-            CreateMap<FullUnit, MurasalatUnitDto>();
+            CreateMap<Unit, MurasalatUnitDto>();
 
 
             CreateMap<Team, MurasalatUnitDto>();

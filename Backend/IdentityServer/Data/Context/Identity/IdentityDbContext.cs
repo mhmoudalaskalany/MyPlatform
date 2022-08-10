@@ -53,7 +53,7 @@ namespace Data.Context.Identity
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<FullEmployee> FullEmployees { get; set; }
         public virtual DbSet<Attachment> Attachments { get; set; }
-        public virtual DbSet<FullUnit> FullUnits { get; set; }
+        public virtual DbSet<Unit> FullUnits { get; set; }
         public virtual DbSet<EmployeeTeam> EmployeeTeams { get; set; }
 
         #endregion

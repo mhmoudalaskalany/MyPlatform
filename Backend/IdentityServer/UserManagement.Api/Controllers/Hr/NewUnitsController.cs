@@ -2,6 +2,7 @@
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
+using Domain.DTO.Hr.Unit;
 using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
 using Microsoft.AspNetCore.Authorization;
@@ -151,7 +152,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IFinalResult> PostAsync([FromBody] AddFullUnitDto dto)
+        public async Task<IFinalResult> PostAsync([FromBody] AddUnitDto dto)
         {
             var result = await _unitService.AddAsync(dto);
             return result;
@@ -165,7 +166,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IFinalResult> Update(AddFullUnitDto model)
+        public async Task<IFinalResult> Update(AddUnitDto model)
         {
 
             return await _unitService.UpdateAsync(model);

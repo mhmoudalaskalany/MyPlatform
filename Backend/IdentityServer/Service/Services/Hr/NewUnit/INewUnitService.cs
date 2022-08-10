@@ -2,13 +2,14 @@
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.FullUnit;
+using Domain.DTO.Hr.Unit;
 using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
 using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit
 {
-    public interface INewUnitService : IBaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>
+    public interface INewUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, string>
     {
 
         /// <summary>
