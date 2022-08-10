@@ -8,7 +8,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit.Integration
 {
-    public interface IExternalNewUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto , string>
+    public interface IExternalUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto , Guid>
     {
         /// <summary>
         /// Get Unit Parent ( Used In Stock )

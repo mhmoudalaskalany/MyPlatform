@@ -14,10 +14,10 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewUnit.Integration
 {
-    public class ExternalNewFullUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>, IExternalNewUnitService
+    public class ExternalUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>, IExternalUnitService
     {
 
-        public ExternalNewFullUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters) : base(parameters)
+        public ExternalUnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters) : base(parameters)
         {
 
         }
