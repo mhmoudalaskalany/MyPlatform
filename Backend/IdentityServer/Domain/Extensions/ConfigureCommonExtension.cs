@@ -30,7 +30,7 @@ namespace Domain.Extensions
         {
             services.AddSingleton<MicroServicesUrls>();
             services.AddTransient<IResponseResult, ResponseResult>();
-            services.AddTransient<IResult, Result>();
+            services.AddTransient<IFinalResult, Result>();
             services.AddSingleton<IUploaderConfiguration, UploaderConfiguration>();
             services.AddTransient<ISmsService, SmsService>();
             services.AddSingleton<ISendMail, SendMail>();

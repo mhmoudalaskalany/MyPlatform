@@ -27,7 +27,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppId/{appId}")]
-        public async Task<IResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(long appId)
         {
             var result = await _externalRoleService.GetByAppIdAsync(appId);
             return result;

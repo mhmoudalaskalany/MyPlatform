@@ -37,7 +37,7 @@ namespace Service.Services.Identity.UserRole
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override async Task<IResult> GetByIdAsync(object id)
+        public override async Task<IFinalResult> GetByIdAsync(object id)
         {
 
             var userRoles = await UnitOfWork.Repository.FindAsync(x => x.UserId == Convert.ToInt64(id)
@@ -64,7 +64,7 @@ namespace Service.Services.Identity.UserRole
         /// <param name="userId"></param>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByUserIdAsync(long userId, long appId)
+        public async Task<IFinalResult> GetByUserIdAsync(long userId, long appId)
         {
 
             var userRole =
@@ -89,7 +89,7 @@ namespace Service.Services.Identity.UserRole
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<IResult> UpdateAsync(AddUserRoleDto model)
+        public override async Task<IFinalResult> UpdateAsync(AddUserRoleDto model)
         {
 
             var portalCode = _configuration["Roles:Portal"];
@@ -115,7 +115,7 @@ namespace Service.Services.Identity.UserRole
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<IResult> AddMultipleRolesAsync(AddMultipleRolesDto model)
+        public async Task<IFinalResult> AddMultipleRolesAsync(AddMultipleRolesDto model)
         {
             var assignedRoles =  await UnitOfWork.Repository.FindAsync(x => x.UserId == model.UserId && x.AppId == model.AppId);
 
@@ -172,7 +172,7 @@ namespace Service.Services.Identity.UserRole
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<IResult> DeleteUserRoleAsync(AddUserRoleDto dto)
+        public async Task<IFinalResult> DeleteUserRoleAsync(AddUserRoleDto dto)
         {
 
             var portalCode = _configuration["Roles:Portal"];

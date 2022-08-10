@@ -29,7 +29,7 @@ namespace Service.Services.Hr.MurasalatEmployee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByIdFromViewAsync(Guid id)
+        public async Task<IFinalResult> GetByIdFromViewAsync(Guid id)
         {
             var entity = await _murasalatEmployeeRepository.GetByIdAsync(id);
             return new ResponseResult(entity, HttpStatusCode.OK);
@@ -39,7 +39,7 @@ namespace Service.Services.Hr.MurasalatEmployee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByIdAsync(Guid id)
+        public async Task<IFinalResult> GetByIdAsync(Guid id)
         {
             var entity = await _uow.Repository.GetAsync(id);
             return new ResponseResult(entity, HttpStatusCode.OK);
@@ -48,7 +48,7 @@ namespace Service.Services.Hr.MurasalatEmployee
         /// Get All
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var entities = await _murasalatEmployeeRepository.GetAllAsync();
             return new ResponseResult(entities, HttpStatusCode.OK);
@@ -57,7 +57,7 @@ namespace Service.Services.Hr.MurasalatEmployee
         /// Get All Distinct
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetNonDuplicateAllAsync()
+        public async Task<IFinalResult> GetNonDuplicateAllAsync()
         {
             var entities = await _murasalatEmployeeRepository.GetNonDuplicateAllAsync();
             var mappedEntities = _mapper.Map<List<Entities.Entities.Hr.FullEmployee>>(entities);
@@ -70,7 +70,7 @@ namespace Service.Services.Hr.MurasalatEmployee
         /// Get All Distinct
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> UpdateNonDuplicateAllAsync()
+        public async Task<IFinalResult> UpdateNonDuplicateAllAsync()
         {
             try
             {

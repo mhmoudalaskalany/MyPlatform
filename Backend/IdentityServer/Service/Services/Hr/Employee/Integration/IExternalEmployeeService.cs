@@ -15,7 +15,7 @@ namespace Service.Services.Hr.Employee.Integration
         /// </summary>
         /// <param name="unitId"></param>
         /// <returns></returns>
-        Task<IResult> GetManagerEmailByUnitIdAsync(long unitId);
+        Task<IFinalResult> GetManagerEmailByUnitIdAsync(long unitId);
         ///// <summary>
         ///// Get Employees by App Code ( Used In Stock )
         ///// </summary>
@@ -26,19 +26,19 @@ namespace Service.Services.Hr.Employee.Integration
         /// this method update employee phone , ip phone and unit from e-services service
         /// </summary>
         /// <returns></returns>
-        Task<IResult> UpdateEmployeeFromServices(UpdateEmployeeFromServicesDto dto);
+        Task<IFinalResult> UpdateEmployeeFromServices(UpdateEmployeeFromServicesDto dto);
         /// <summary>
         /// Get Employee Phones By List Of Ids from e-services service
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeePhonesByIdsAsync(List<TicketSmsDto> dtos);
+        Task<IFinalResult> GetEmployeePhonesByIdsAsync(List<TicketSmsDto> dtos);
         /// <summary>
         /// Get Unit Managers By Unit Or Team Ids  from e-services service
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        Task<IResult> GetUnitManagersPhonesByUnitIdsAsync(List<TicketSmsDto> dtos);
+        Task<IFinalResult> GetUnitManagersPhonesByUnitIdsAsync(List<TicketSmsDto> dtos);
         ///// <summary>
         ///// Get Employees By Unit Or Team Id from e-services service
         ///// </summary>
@@ -51,25 +51,25 @@ namespace Service.Services.Hr.Employee.Integration
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
-        Task<IResult> GetTeamManagerPhone(long teamId);
+        Task<IFinalResult> GetTeamManagerPhone(long teamId);
         /// <summary>
         /// Get Employees Phones By Role Code (Used By Legal Affairs)
         /// </summary>
         /// <param name="roleCode"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeesPhonesByRoleCodeAsync(string roleCode);
+        Task<IFinalResult> GetEmployeesPhonesByRoleCodeAsync(string roleCode);
         /// <summary>
         /// Get Employee Phone By Id (Used By Legal Affairs)
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeePhoneByIdAsync(long employeeId);
+        Task<IFinalResult> GetEmployeePhoneByIdAsync(long employeeId);
         /// <summary>
         /// Get By Role Code (Used In Legal Affairs)
         /// </summary>
         /// <param name="roleCode"></param>
         /// <returns></returns>
-        Task<IResult> GetByRoleCodeAsync(string roleCode);
+        Task<IFinalResult> GetByRoleCodeAsync(string roleCode);
         /// <summary>
         /// Get Employee Ids By Unit (Used By Stock System To Get Unit Report)
         /// if option is false it will get the unit employees only
@@ -78,13 +78,13 @@ namespace Service.Services.Hr.Employee.Integration
         /// <param name="unitId"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeIdsByUnitIdAsync(long unitId, bool option);
+        Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(long unitId, bool option);
         /// <summary>
         /// Get By Id (For Stock)
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeByIdAsync(long employeeId);
+        Task<IFinalResult> GetEmployeeByIdAsync(long employeeId);
 
 
 

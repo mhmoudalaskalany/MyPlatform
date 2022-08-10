@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("GetFromView/{id:guid}")]
-        public async Task<IResult> GetFromViewAsync(Guid id)
+        public async Task<IFinalResult> GetFromViewAsync(Guid id)
         {
             var result = await _unitService.GetByIdFromViewAsync(id);
             return result;
@@ -41,7 +41,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("Get/{id:guid}")]
-        public async Task<IResult> GetAsync(Guid id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _unitService.GetByIdAsync(id);
             return result;
@@ -54,7 +54,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _unitService.GetAllAsync();
             return result;
@@ -67,7 +67,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("GetAllDistinct")]
-        public async Task<IResult> GetNonDuplicateAllAsync()
+        public async Task<IFinalResult> GetNonDuplicateAllAsync()
         {
             var result = await _unitService.GetNonDuplicateAllAsync();
             return result;
@@ -80,7 +80,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("UpdateAllDistinct")]
-        public async Task<IResult> UpdateNonDuplicateAllAsync()
+        public async Task<IFinalResult> UpdateNonDuplicateAllAsync()
         {
             var result = await _unitService.UpdateNonDuplicateAllAsync();
             return result;

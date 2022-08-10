@@ -30,7 +30,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// 
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(string id)
+        public async Task<IFinalResult> GetAsync(string id)
         {
             var result = await _unitService.GetByIdAsync(id);
             return result;
@@ -42,7 +42,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitsCount")]
-        public async Task<IResult> GetUnitsCountAsync()
+        public async Task<IFinalResult> GetUnitsCountAsync()
         {
             var result = await _unitService.GetUnitsCountAsync();
             return result;
@@ -66,7 +66,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _unitService.GetAllAsync();
             return result;
@@ -103,7 +103,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> AddAsync([FromBody] AddFullUnitDto dto)
+        public async Task<IFinalResult> AddAsync([FromBody] AddFullUnitDto dto)
         {
             var result = await _unitService.AddAsync(dto);
             return result;
@@ -117,7 +117,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> UpdateAsync(AddFullUnitDto model)
+        public async Task<IFinalResult> UpdateAsync(AddFullUnitDto model)
         {
             return await _unitService.UpdateAsync(model);
         }
@@ -128,7 +128,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete]
         [Route("Delete/{id}")]
-        public async Task<IResult> DeleteAsync(string id)
+        public async Task<IFinalResult> DeleteAsync(string id)
         {
             return await _unitService.DeleteAsync(id);
         }
@@ -140,7 +140,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete]
         [Route("DeleteSoft/{id}")]
-        public async Task<IResult> DeleteSoftAsync(string id)
+        public async Task<IFinalResult> DeleteSoftAsync(string id)
         {
             return await _unitService.DeleteSoftAsync(id);
         }

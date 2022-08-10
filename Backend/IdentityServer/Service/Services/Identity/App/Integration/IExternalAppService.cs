@@ -7,6 +7,6 @@ namespace Service.Services.Identity.App.Integration
 {
     public interface IExternalAppService : IBaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, long?>
     {
-        Task<IResult> GetLoggedUserAppsAsync();
+        Task<IFinalResult> GetLoggedUserAppsAsync();
     }
 }

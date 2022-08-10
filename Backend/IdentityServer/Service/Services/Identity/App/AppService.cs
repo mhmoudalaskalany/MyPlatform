@@ -25,7 +25,7 @@ namespace Service.Services.Identity.App
 
         #region Public Methods
 
-        public async Task<IResult> GetAppsCountAsync()
+        public async Task<IFinalResult> GetAppsCountAsync()
         {
             var apps = await UnitOfWork.Repository.Count();
             return ResponseResult.PostResult(apps, status: HttpStatusCode.OK,
@@ -43,7 +43,7 @@ namespace Service.Services.Identity.App
 
         }
 
-        public async Task<IResult> GetByUserIdAsync(long userId)
+        public async Task<IFinalResult> GetByUserIdAsync(long userId)
         {
 
             var userApps = await UnitOfWork.Repository
@@ -53,7 +53,7 @@ namespace Service.Services.Identity.App
                 message: HttpStatusCode.OK.ToString());
 
         }
-        public async Task<IResult> GetUserAppsWithNoRoles(UserAppRolesDto dto)
+        public async Task<IFinalResult> GetUserAppsWithNoRoles(UserAppRolesDto dto)
         {
 
             var userApps = await _userAppsUnitOfWork.Repository.FindAsync(
@@ -68,7 +68,7 @@ namespace Service.Services.Identity.App
 
         }
 
-        public async Task<IResult> GetUserAppsWithRoles(UserAppRolesDto dto)
+        public async Task<IFinalResult> GetUserAppsWithRoles(UserAppRolesDto dto)
         {
 
             var userApps = await _userAppsUnitOfWork.Repository.FindAsync(
@@ -82,7 +82,7 @@ namespace Service.Services.Identity.App
 
         }
         // user this to get only the user app on the sub system that request user apps and system is not user management
-        public async Task<IResult> GetByUserAppIdAsync(long userId, long appId)
+        public async Task<IFinalResult> GetByUserAppIdAsync(long userId, long appId)
         {
 
             var userApps = await UnitOfWork.Repository.FindAsync(app =>
@@ -96,7 +96,7 @@ namespace Service.Services.Identity.App
         /// Get Apps For Non Registered Users
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetPublicAppsAsync()
+        public async Task<IFinalResult> GetPublicAppsAsync()
         {
 
             var userApps = await UnitOfWork.Repository.FindAsync(app => app.IsPublic == true && app.IsDeleted == false);

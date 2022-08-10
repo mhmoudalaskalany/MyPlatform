@@ -9,13 +9,13 @@ namespace Service.Services.Identity.App
 {
     public interface IAppService : IBaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, long?>
     {
-        Task<IResult> GetAppsCountAsync();
-        Task<IResult> GetByUserIdAsync(long userId);
-        Task<IResult> GetByUserAppIdAsync(long userId, long appId);
+        Task<IFinalResult> GetAppsCountAsync();
+        Task<IFinalResult> GetByUserIdAsync(long userId);
+        Task<IFinalResult> GetByUserAppIdAsync(long userId, long appId);
         Task<DataPaging> GetAllPagedAsync(BaseParam<AppFilter> filter);
-        Task<IResult> GetUserAppsWithNoRoles(UserAppRolesDto dto);
-        Task<IResult> GetUserAppsWithRoles(UserAppRolesDto dto);
-        Task<IResult> GetPublicAppsAsync();
+        Task<IFinalResult> GetUserAppsWithNoRoles(UserAppRolesDto dto);
+        Task<IFinalResult> GetUserAppsWithRoles(UserAppRolesDto dto);
+        Task<IFinalResult> GetPublicAppsAsync();
     }
 
 }

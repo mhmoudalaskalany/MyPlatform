@@ -29,7 +29,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// </summary>
         /// <param name="childId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUnitParentAsync(string childId)
+        public async Task<IFinalResult> GetUnitParentAsync(string childId)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == childId, include:
                 src => src.Include(p => p.Parent));
@@ -106,7 +106,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// </summary>
         /// <param name="unitIds"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUnitsByIdsAsync(List<string> unitIds)
+        public async Task<IFinalResult> GetUnitsByIdsAsync(List<string> unitIds)
         {
             var entities = (await UnitOfWork.Repository.FindAsync(x => unitIds.Contains(x.Id), include:
                 src => src.Include(p => p.Parent))).ToList();

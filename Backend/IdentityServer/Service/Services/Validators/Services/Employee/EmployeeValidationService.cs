@@ -19,19 +19,19 @@ namespace Service.Services.Validators.Services.Employee
 
         #region Public Methods
 
-        public async Task<IResult> CheckNationalIdAsync(string nationalId, Guid employeeId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, Guid employeeId)
         {
             var result = await _employeeValidator.CheckNationalIdAsync(nationalId, employeeId);
             return ResponseResult.PostResult(result , HttpStatusCode.OK);
         }
 
-        public async Task<IResult> CheckEmailAsync(string email, Guid employeeId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, Guid employeeId)
         {
             var result = await _employeeValidator.CheckEmailAsync(email, employeeId);
             return ResponseResult.PostResult(result , HttpStatusCode.OK);
         }
 
-        public async Task<IResult> CheckFileNumberAsync(string fileNumber, Guid employeeId)
+        public async Task<IFinalResult> CheckFileNumberAsync(string fileNumber, Guid employeeId)
         {
             var result = await _employeeValidator.CheckFileNumberAsync(fileNumber, employeeId);
             return ResponseResult.PostResult(result, HttpStatusCode.OK);

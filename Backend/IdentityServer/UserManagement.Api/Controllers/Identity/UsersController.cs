@@ -29,7 +29,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetByIdAsync(long id)
+        public async Task<IFinalResult> GetByIdAsync(long id)
         {
             var result = await _userService.GetByIdAsync(id);
             return result;
@@ -42,7 +42,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(long id)
         {
             return await _userService.GetByIdForEditAsync(id);
         }
@@ -55,7 +55,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppIdAsync/{id}")]
-        public async Task<IResult> GetByAppIdAsync(long id)
+        public async Task<IFinalResult> GetByAppIdAsync(long id)
         {
             var result = await _userService.GetByAppIdAsync(id);
             return result;
@@ -69,7 +69,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetProfileAsync/{id}")]
-        public async Task<IResult> GetProfileAsync(long id)
+        public async Task<IFinalResult> GetProfileAsync(long id)
         {
             var result = await _userService.GetUserProfileAsync(id);
             return result;
@@ -80,7 +80,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetUserCount")]
-        public async Task<IResult> GetUserCountAsync()
+        public async Task<IFinalResult> GetUserCountAsync()
         {
             var result = await _userService.GetUserCountAsync();
             return result;
@@ -91,7 +91,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _userService.GetAllAsync();
             return result;
@@ -105,7 +105,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("CheckNationalId/{nationalId}/{userId}")]
-        public async Task<IResult> CheckNationalIdAsync(string nationalId, long userId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, long userId)
         {
             var result = await _userService.CheckNationalIdAsync(nationalId, userId);
             return result;
@@ -119,7 +119,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("CheckEmail/{email}/{userId}")]
-        public async Task<IResult> CheckEmailAsync(string email, long userId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, long userId)
         {
             var result = await _userService.CheckEmailAsync(email, userId);
             return result;
@@ -157,7 +157,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("UploadProfileImageAsync")]
-        public async Task<IResult> Post([FromBody] UploadProfileImageDto dto)
+        public async Task<IFinalResult> Post([FromBody] UploadProfileImageDto dto)
         {
             var result = await _userService.UploadProfileImageAsync(dto);
             return result;
@@ -170,7 +170,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> Post([FromBody] AddUserDto model)
+        public async Task<IFinalResult> Post([FromBody] AddUserDto model)
         {
             var result = await _userService.AddAsync(model);
             return result;
@@ -182,7 +182,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("ChangePasswordAsync")]
-        public async Task<IResult> ChangePasswordAsync([FromBody] ChangePasswordDto model)
+        public async Task<IFinalResult> ChangePasswordAsync([FromBody] ChangePasswordDto model)
         {
             var result = await _userService.ChangePasswordAsync(model);
             return result;
@@ -194,7 +194,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddUserDto model)
+        public async Task<IFinalResult> Update(AddUserDto model)
         {
             return await _userService.UpdateAsync(model);
         }
@@ -208,7 +208,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IResult> Remove(long id)
+        public async Task<IFinalResult> Remove(long id)
         {
             return await _userService.DeleteAsync(id);
         }
@@ -219,7 +219,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("DeleteSoft/{id}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _userService.DeleteSoftAsync(id);
         }
@@ -232,7 +232,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("DeleteByUserAppId/{id}/{appId}")]
-        public async Task<IResult> RemoveByUserAppId(long id, long appId)
+        public async Task<IFinalResult> RemoveByUserAppId(long id, long appId)
         {
             return await _userService.DeleteByUserAppId(id, appId);
         }

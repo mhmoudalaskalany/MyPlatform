@@ -29,7 +29,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("GetGeneralReport")]
-        public async Task<IResult> GetGeneralReportAsync([FromBody] GeneralReportFilter filter)
+        public async Task<IFinalResult> GetGeneralReportAsync([FromBody] GeneralReportFilter filter)
         {
             var result = await _cardService.GetGeneralReportAsync(filter);
             return result;

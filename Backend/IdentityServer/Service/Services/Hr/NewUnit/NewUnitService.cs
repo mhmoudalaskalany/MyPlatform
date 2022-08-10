@@ -60,7 +60,7 @@ namespace Service.Services.Hr.NewUnit
         /// Get Units Count For Dashboard
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetUnitsCountAsync()
+        public async Task<IFinalResult> GetUnitsCountAsync()
         {
             var count = await UnitOfWork.Repository.Count(x => x.IsDeleted == false);
             return ResponseResult.PostResult(count, HttpStatusCode.OK);
@@ -70,7 +70,7 @@ namespace Service.Services.Hr.NewUnit
         /// </summary>
         /// <param name="disableTracking"></param>
         /// <returns></returns>
-        public override async Task<IResult> GetAllAsync(bool disableTracking = false)
+        public override async Task<IFinalResult> GetAllAsync(bool disableTracking = false)
         {
             var query = (await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking,
                 include: src => src.Include(p => p.Parent))).ToList();
@@ -153,7 +153,7 @@ namespace Service.Services.Hr.NewUnit
         /// <param name="sectionId"></param>
         /// <returns></returns>
 
-        public async Task<IResult> GetSectionsByEmployeeSectionIdAsync(string sectionId)
+        public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(string sectionId)
         {
 
 
@@ -177,7 +177,7 @@ namespace Service.Services.Hr.NewUnit
         /// <param name="id"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUnitOrTeamAsync(string id, UnitType unitType)
+        public async Task<IFinalResult> GetUnitOrTeamAsync(string id, UnitType unitType)
         {
             dynamic unit;
             if (unitType == UnitType.Team)
@@ -197,7 +197,7 @@ namespace Service.Services.Hr.NewUnit
         /// Get Recursion Units
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetUnitsWithChildren()
+        public async Task<IFinalResult> GetUnitsWithChildren()
         {
             var localDatabase = (await UnitOfWork.Repository.GetAllAsync()).ToList();
             var unitList = new List<FullUnitChildrenDto>();

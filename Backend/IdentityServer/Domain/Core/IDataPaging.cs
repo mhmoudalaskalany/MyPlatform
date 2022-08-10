@@ -5,6 +5,6 @@
         int PageNumber { get; set; }
         int PageSize { get; set; }
         int TotalPage { get; set; }
-        IResult Result { get; set; }
+        IFinalResult Result { get; set; }
     }
 }

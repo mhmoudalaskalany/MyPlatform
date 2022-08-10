@@ -9,8 +9,8 @@ namespace Service.Services.Identity.UserApp
     public interface IUserAppService : IBaseService<Entities.Entities.Identity.UserApp,AddUserAppDto, UserAppDto , long?>
     {
         Task<bool> AddAppListAsync(List<long> ids, long userId);
-        Task<IResult> AddUsersToAppAsync(List<AddUserAppDto> userAppDtos);
-        Task<IResult> GetUserApps(long userId);
+        Task<IFinalResult> AddUsersToAppAsync(List<AddUserAppDto> userAppDtos);
+        Task<IFinalResult> GetUserApps(long userId);
 
     }
     

@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByIdAsync")]
-        public async Task<IResult> GetByIdAsync(long id)
+        public async Task<IFinalResult> GetByIdAsync(long id)
         {
             return await _userAppService.GetByIdAsync(id);
         }
@@ -40,7 +40,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(long id)
         {
             return await _userAppService.GetByIdForEditAsync(id);
         }
@@ -52,7 +52,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByUserIdAsync/{id}")]
-        public async Task<IResult> GetByUserIdAsync(long id)
+        public async Task<IFinalResult> GetByUserIdAsync(long id)
         {
             return await _userAppService.GetUserApps(id);
         }
@@ -64,7 +64,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("AddUsersToAppAsync")]
-        public async Task<IResult> AddUsersToAppAsync(List<AddUserAppDto> dtos)
+        public async Task<IFinalResult> AddUsersToAppAsync(List<AddUserAppDto> dtos)
         {
             var result = await _userAppService.AddUsersToAppAsync(dtos);
             return result;

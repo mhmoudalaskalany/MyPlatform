@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{userId}")]
-        public async Task<IResult> GetByIdAsync(long userId)
+        public async Task<IFinalResult> GetByIdAsync(long userId)
         {
             var result = await _userRoleService.GetByIdAsync(userId);
             return result;
@@ -41,7 +41,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(long id)
         {
             return await _userRoleService.GetByIdForEditAsync(id);
         }
@@ -55,7 +55,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByUserIdAsync/{userId}/{appId}")]
-        public async Task<IResult> GetByUserIdAsync(long userId, long appId)
+        public async Task<IFinalResult> GetByUserIdAsync(long userId, long appId)
         {
             var result = await _userRoleService.GetByUserIdAsync(userId, appId);
             return result;
@@ -66,7 +66,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _userRoleService.GetAllAsync();
             return result;
@@ -79,7 +79,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> Post([FromBody] AddUserRoleDto dto)
+        public async Task<IFinalResult> Post([FromBody] AddUserRoleDto dto)
         {
             var result = await _userRoleService.AddAsync(dto);
             return result;
@@ -93,7 +93,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("AddMulitpleRoles")]
-        public async Task<IResult> AddMulitpleRolesAsync([FromBody] AddMultipleRolesDto dto)
+        public async Task<IFinalResult> AddMulitpleRolesAsync([FromBody] AddMultipleRolesDto dto)
         {
             var result = await _userRoleService.AddMultipleRolesAsync(dto);
             return result;
@@ -106,7 +106,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddUserRoleDto model)
+        public async Task<IFinalResult> Update(AddUserRoleDto model)
         {
 
             return await _userRoleService.UpdateAsync(model);
@@ -118,7 +118,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete]
         [Route("Delete/{id}")]
-        public async Task<IResult> Remove(long id)
+        public async Task<IFinalResult> Remove(long id)
         {
             return await _userRoleService.DeleteAsync(id);
         }
@@ -130,7 +130,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("DeleteUserRole")]
-        public async Task<IResult> DeleteUserRole(AddUserRoleDto dto)
+        public async Task<IFinalResult> DeleteUserRole(AddUserRoleDto dto)
         {
             return await _userRoleService.DeleteUserRoleAsync(dto);
         }

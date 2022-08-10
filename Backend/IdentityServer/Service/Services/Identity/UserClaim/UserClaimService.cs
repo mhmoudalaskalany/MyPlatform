@@ -32,7 +32,7 @@ namespace Service.Services.Identity.UserClaim
 
         #region Public Methods
 
-        public async Task<IResult> GeyUserClaimsAsync(long userId, string authMethod, string appCode)
+        public async Task<IFinalResult> GeyUserClaimsAsync(long userId, string authMethod, string appCode)
         {
             try
             {

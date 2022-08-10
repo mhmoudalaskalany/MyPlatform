@@ -33,7 +33,7 @@ namespace Service.Services.Hr.Card.Reports
 
         #region Public Methods
 
-        public async Task<IResult> GetGeneralReportAsync(GeneralReportFilter filter)
+        public async Task<IFinalResult> GetGeneralReportAsync(GeneralReportFilter filter)
         {
             var predicate = GeneralPredicateBuilder(filter);
             var cards = await UnitOfWork.Repository.FindAsync(predicate, include: src =>

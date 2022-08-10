@@ -30,7 +30,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _unitService.GetByIdAsync(id);
             return result;
@@ -42,7 +42,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitsCount")]
-        public async Task<IResult> GetUnitsCountAsync()
+        public async Task<IFinalResult> GetUnitsCountAsync()
         {
             var result = await _unitService.GetUnitsCountAsync();
             return result;
@@ -66,7 +66,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitOrTeam/{id}/{unitType}")]
-        public async Task<IResult> GetUnitOrTeamAsync(long id , UnitType unitType)
+        public async Task<IFinalResult> GetUnitOrTeamAsync(long id , UnitType unitType)
         {
             var result = await _unitService.GetUnitOrTeamAsync(id , unitType);
             return result;
@@ -79,7 +79,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(long id)
         {
             return await _unitService.GetByIdForEditAsync(id);
         }
@@ -90,7 +90,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitsWithChildren")]
-        public async Task<IResult> GetUnitsWithChildren()
+        public async Task<IFinalResult> GetUnitsWithChildren()
         {
             var result = await _unitService.GetUnitsWithChildren();
             return result;
@@ -103,7 +103,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetSectionsByEmployeeSectionId/{sectionId}")]
-        public async Task<IResult> GetSectionsByEmployeeSectionIdAsync(long sectionId)
+        public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(long sectionId)
         {
             var result = await _unitService.GetSectionsByEmployeeSectionIdAsync(sectionId);
             return result;
@@ -115,7 +115,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _unitService.GetAllAsync();
             return result;
@@ -151,7 +151,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> PostAsync([FromBody] AddUnitDto dto)
+        public async Task<IFinalResult> PostAsync([FromBody] AddUnitDto dto)
         {
             var result = await _unitService.AddAsync(dto);
             return result;
@@ -165,7 +165,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddUnitDto model)
+        public async Task<IFinalResult> Update(AddUnitDto model)
         {
 
             return await _unitService.UpdateAsync(model);
@@ -177,7 +177,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IResult> Remove(long id)
+        public async Task<IFinalResult> Remove(long id)
         {
             return await _unitService.DeleteAsync(id);
         }
@@ -188,7 +188,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _unitService.DeleteSoftAsync(id);
         }

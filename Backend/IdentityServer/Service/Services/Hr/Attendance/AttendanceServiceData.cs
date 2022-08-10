@@ -21,7 +21,7 @@ namespace Service.Services.Hr.Attendance
         /// </summary>
         /// <param name="employeeNumber"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeLeaveAsync(string employeeNumber)
+        public async Task<IFinalResult> GetEmployeeLeaveAsync(string employeeNumber)
         {
             var data = await _attendanceRepository.GetAttendanceAsync(employeeNumber);
             return new ResponseResult(data, HttpStatusCode.OK);
@@ -31,7 +31,7 @@ namespace Service.Services.Hr.Attendance
         /// Get Mawred Leaves
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetMawredLeaveAsync()
+        public async Task<IFinalResult> GetMawredLeaveAsync()
         {
             var data = await _attendanceRepository.GetMawredAttendanceAsync();
             return new ResponseResult(data, HttpStatusCode.OK);
@@ -41,7 +41,7 @@ namespace Service.Services.Hr.Attendance
         /// Insert Mawred Leaves
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> InsertMawredLeaveAsync()
+        public async Task<IFinalResult> InsertMawredLeaveAsync()
         {
             var data = await _attendanceRepository.InsertMawredAttendanceAsync();
             return new ResponseResult(data, HttpStatusCode.OK);

@@ -34,7 +34,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(Guid id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _employeeService.GetByIdAsync(id);
             return result;
@@ -46,7 +46,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeInfo/{nationalId}")]
-        public async Task<IResult> GetEmployeeInfoAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoAsync(string nationalId)
         {
             var result = await _employeeService.GetEmployeeInfoAsync(nationalId);
             return result;
@@ -59,7 +59,7 @@ namespace UserManagement.Api.Controllers.Hr
         [HttpGet]
         [AllowAnonymous]
         [Route("GetEmployeeInfoFromOracle/{nationalId}")]
-        public async Task<IResult> GetEmployeeInfoFromOracleAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoFromOracleAsync(string nationalId)
         {
             var result = await _employeeService.GetEmployeeInfoNewViewAsync(nationalId);
             return result;
@@ -70,7 +70,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeCount")]
-        public async Task<IResult> GetEmployeeCountAsync()
+        public async Task<IFinalResult> GetEmployeeCountAsync()
         {
             return await _employeeService.GetEmployeeCountAsync();
         }
@@ -81,7 +81,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEditAsync(Guid id)
+        public async Task<IFinalResult> GetEditAsync(Guid id)
         {
             return await _employeeService.GetByIdForEditAsync(id);
         }
@@ -93,7 +93,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetView/{id}")]
-        public async Task<IResult> GetViewAsync(Guid id)
+        public async Task<IFinalResult> GetViewAsync(Guid id)
         {
             return await _employeeService.GetByIdForViewAsync(id);
         }
@@ -106,7 +106,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("CheckNationalId/{nationalId}/{employeeId}")]
-        public async Task<IResult> CheckNationalIdAsync(string nationalId, Guid employeeId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, Guid employeeId)
         {
             var result = await _employeeValidationService.CheckNationalIdAsync(nationalId, employeeId);
             return result;
@@ -120,7 +120,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("CheckFileNumber/{fileNumber}/{employeeId}")]
-        public async Task<IResult> CheckFileNumberAsync(string fileNumber, Guid employeeId)
+        public async Task<IFinalResult> CheckFileNumberAsync(string fileNumber, Guid employeeId)
         {
             var result = await _employeeValidationService.CheckFileNumberAsync(fileNumber, employeeId);
             return result;
@@ -134,7 +134,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("CheckEmail/{email}/{employeeId}")]
-        public async Task<IResult> CheckEmailAsync(string email, Guid employeeId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, Guid employeeId)
         {
             var result = await _employeeValidationService.CheckEmailAsync(email, employeeId);
             return result;
@@ -146,7 +146,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeIdsByUnitId/{unitId}")]
-        public async Task<IResult> GetEmployeeIdsByUnitIdAsync(string unitId)
+        public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId)
         {
             var result = await _employeeService.GetEmployeeIdsByUnitIdAsync(unitId);
             return result;
@@ -159,7 +159,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("UpdateEmployeeImage")]
-        public async Task<IResult> UpdateEmployeeImageAsync([FromBody] UpdateEmployeeImageDto dto)
+        public async Task<IFinalResult> UpdateEmployeeImageAsync([FromBody] UpdateEmployeeImageDto dto)
         {
             return await _employeeService.UpdateEmployeeImageAsync(dto);
         }
@@ -171,7 +171,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitManager/{unitId}/{unitType}")]
-        public async Task<IResult> GetUnitManagerAsync(string unitId, UnitType? unitType)
+        public async Task<IFinalResult> GetUnitManagerAsync(string unitId, UnitType? unitType)
         {
             var result = await _employeeService.GetUnitManagerAsync(unitId, unitType);
             return result;
@@ -183,7 +183,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _employeeService.GetAllAsync();
             return result;
@@ -233,7 +233,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> PostAsync([FromBody] AddMurasalatEmployeeDto dto)
+        public async Task<IFinalResult> PostAsync([FromBody] AddMurasalatEmployeeDto dto)
         {
             var result = await _employeeService.AddAsync(dto);
             return result;
@@ -247,7 +247,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddMurasalatEmployeeDto model)
+        public async Task<IFinalResult> Update(AddMurasalatEmployeeDto model)
         {
             return await _employeeService.UpdateAsync(model);
         }

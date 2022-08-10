@@ -32,7 +32,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(Guid id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _externalEmployeeService.GetByIdAsync(id);
             return result;
@@ -45,7 +45,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpGet]
         [Route("GetAll")]
         [AllowAnonymous]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _externalEmployeeService.GetAllAsync();
             return result;
@@ -58,7 +58,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpGet]
         [Route("GetAllMurasalat")]
         [AllowAnonymous]
-        public async Task<IResult> GetAllMurasalatAsync()
+        public async Task<IFinalResult> GetAllMurasalatAsync()
         {
             var result = await _externalEmployeeService.GetAllMurasalatAsync();
             return result;
@@ -70,7 +70,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeIdsByUnitId/{unitId}/{option}")]
-        public async Task<IResult> GetEmployeeIdsByUnitIdAsync(string unitId, bool option)
+        public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId, bool option)
         {
             var result = await _externalEmployeeService.GetEmployeeIdsByUnitIdAsync(unitId, option);
             return result;
@@ -83,7 +83,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppCode/{appCode}")]
-        public async Task<IResult> GetByAppCodeAsync(string appCode)
+        public async Task<IFinalResult> GetByAppCodeAsync(string appCode)
         {
             var result = await _externalEmployeeService.GetByAppCodeAsync(appCode);
             return result;
@@ -97,7 +97,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpPost]
         [AllowAnonymous]
         [Route("GetEmployeePhonesByIds")]
-        public async Task<IResult> GetEmployeePhonesByIdsAsync([FromBody] List<TicketSmsDto> dtos)
+        public async Task<IFinalResult> GetEmployeePhonesByIdsAsync([FromBody] List<TicketSmsDto> dtos)
         {
             var result = await _externalEmployeeService.GetEmployeePhonesByIdsAsync(dtos);
             return result;
@@ -111,7 +111,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpPost]
         [AllowAnonymous]
         [Route("GetUnitManagersPhonesByUnitIds")]
-        public async Task<IResult> GetUnitManagersPhonesByUnitIdsAsync([FromBody] List<TicketSmsDto> dtos)
+        public async Task<IFinalResult> GetUnitManagersPhonesByUnitIdsAsync([FromBody] List<TicketSmsDto> dtos)
         {
             var result = await _externalEmployeeService.GetUnitManagersPhonesByUnitIdsAsync(dtos);
             return result;
@@ -124,7 +124,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpPost]
         [AllowAnonymous]
         [Route("GetTeamManagerPhone")]
-        public async Task<IResult> GetTeamManagerPhoneAsync([FromBody] long teamId)
+        public async Task<IFinalResult> GetTeamManagerPhoneAsync([FromBody] long teamId)
         {
             var result = await _externalEmployeeService.GetTeamManagerPhone(teamId);
             return result;
@@ -137,7 +137,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeesByUnitOrTeamId/{unitId}")]
-        public async Task<IResult> GetEmployeesByUnitIdAsync(string unitId)
+        public async Task<IFinalResult> GetEmployeesByUnitIdAsync(string unitId)
         {
             var result = await _externalEmployeeService.GetEmployeesByUnitOrTeamIdAsync(unitId);
             return result;
@@ -150,7 +150,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeesPhonesByRoleCode/{roleCode}")]
-        public async Task<IResult> GetEmployeesPhonesByRoleCodeAsync(string roleCode)
+        public async Task<IFinalResult> GetEmployeesPhonesByRoleCodeAsync(string roleCode)
         {
             var result = await _externalEmployeeService.GetEmployeesPhonesByRoleCodeAsync(roleCode);
             return result;
@@ -163,7 +163,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitManagerEmail/{unitId}")]
-        public async Task<IResult> GetUnitManagerEmail(string unitId)
+        public async Task<IFinalResult> GetUnitManagerEmail(string unitId)
         {
             var result = await _externalEmployeeService.GetManagerEmailByUnitIdAsync(unitId);
             return result;
@@ -177,7 +177,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpGet]
         [AllowAnonymous]
         [Route("GetEmployeePhoneById/{employeeId}")]
-        public async Task<IResult> GetEmployeePhoneByIdAsync(string employeeId)
+        public async Task<IFinalResult> GetEmployeePhoneByIdAsync(string employeeId)
         {
             var result = await _externalEmployeeService.GetEmployeePhoneByIdAsync(employeeId);
             return result;
@@ -190,7 +190,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetByRoleCode/{roleCode}")]
-        public async Task<IResult> GetByRoleCodeAsync(string roleCode)
+        public async Task<IFinalResult> GetByRoleCodeAsync(string roleCode)
         {
             var result = await _externalEmployeeService.GetByRoleCodeAsync(roleCode);
             return result;

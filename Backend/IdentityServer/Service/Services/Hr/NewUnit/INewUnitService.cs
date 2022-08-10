@@ -20,7 +20,7 @@ namespace Service.Services.Hr.NewUnit
         /// Get Count For Dashboard
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetUnitsCountAsync();
+        Task<IFinalResult> GetUnitsCountAsync();
         /// <summary>
         /// Get All Paged
         /// </summary>
@@ -37,19 +37,19 @@ namespace Service.Services.Hr.NewUnit
         /// Get With Children
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetUnitsWithChildren();
+        Task<IFinalResult> GetUnitsWithChildren();
         /// <summary>
         /// Get By Employee Section Id
         /// </summary>
         /// <param name="sectionId"></param>
         /// <returns></returns>
-        Task<IResult> GetSectionsByEmployeeSectionIdAsync(string sectionId);
+        Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(string sectionId);
         /// <summary>
         /// Get Unit Or Team By Id And Type
         /// </summary>
         /// <param name="id"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        Task<IResult> GetUnitOrTeamAsync(string id, UnitType unitType);
+        Task<IFinalResult> GetUnitOrTeamAsync(string id, UnitType unitType);
     }
 }

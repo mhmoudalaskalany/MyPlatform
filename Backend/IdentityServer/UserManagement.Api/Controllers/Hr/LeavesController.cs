@@ -29,7 +29,7 @@ namespace UserManagement.Api.Controllers.Hr
         [HttpGet]
         [AllowAnonymous]
         [Route("GetEmployeeLeave/{employeeNumber}")]
-        public async Task<IResult> GetEmployeeLeaveAsync(string employeeNumber)
+        public async Task<IFinalResult> GetEmployeeLeaveAsync(string employeeNumber)
         {
             var result = await _attendanceService.GetEmployeeLeaveAsync(employeeNumber);
             return result;
@@ -42,7 +42,7 @@ namespace UserManagement.Api.Controllers.Hr
         [HttpGet]
         [AllowAnonymous]
         [Route("GetMawredLeave")]
-        public async Task<IResult> GetMawredLeaveAsync()
+        public async Task<IFinalResult> GetMawredLeaveAsync()
         {
             var result = await _attendanceService.GetMawredLeaveAsync();
             return result;
@@ -55,7 +55,7 @@ namespace UserManagement.Api.Controllers.Hr
         [HttpGet]
         [AllowAnonymous]
         [Route("InsertMawredLeave")]
-        public async Task<IResult> InsertMawredLeaveAsync()
+        public async Task<IFinalResult> InsertMawredLeaveAsync()
         {
             var result = await _attendanceService.InsertMawredLeaveAsync();
             return result;

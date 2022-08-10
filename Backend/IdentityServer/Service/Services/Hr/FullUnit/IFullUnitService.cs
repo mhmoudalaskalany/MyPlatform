@@ -13,7 +13,7 @@ namespace Service.Services.Hr.FullUnit
         /// Get Count For Dashboard
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetUnitsCountAsync();
+        Task<IFinalResult> GetUnitsCountAsync();
         /// <summary>
         /// Transform Name To Full Name
         /// </summary>

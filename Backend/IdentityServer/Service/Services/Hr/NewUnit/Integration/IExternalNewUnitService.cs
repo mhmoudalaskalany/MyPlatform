@@ -13,7 +13,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// Get Unit Parent ( Used In Stock )
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetUnitParentAsync(string childId);
+        Task<IFinalResult> GetUnitParentAsync(string childId);
         /// <summary>
         /// Get All Units
         /// </summary>
@@ -23,7 +23,7 @@ namespace Service.Services.Hr.NewUnit.Integration
         /// Get Units By Ids (Used In Stock)
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetUnitsByIdsAsync(List<string> unitIds);
+        Task<IFinalResult> GetUnitsByIdsAsync(List<string> unitIds);
         /// <summary>
         /// Get All Departments
         /// </summary>

@@ -24,7 +24,7 @@ namespace Service.Services.Hr.FullUnit
 
         #region Public Method
 
-        public async Task<IResult> GetUnitsCountAsync()
+        public async Task<IFinalResult> GetUnitsCountAsync()
         {
             var count = await UnitOfWork.Repository.Count(x => x.IsDeleted == false);
             return ResponseResult.PostResult(count, HttpStatusCode.OK);

@@ -54,7 +54,7 @@ namespace Service.Services.Identity.UserApp
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUserApps(long userId)
+        public async Task<IFinalResult> GetUserApps(long userId)
         {
 
             var predicate = PredicateBuilderFunction(userId);
@@ -79,7 +79,7 @@ namespace Service.Services.Identity.UserApp
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        public async Task<IResult> AddUsersToAppAsync(List<AddUserAppDto> dtos)
+        public async Task<IFinalResult> AddUsersToAppAsync(List<AddUserAppDto> dtos)
         {
 
             var entities = Mapper.Map<IEnumerable<AddUserAppDto>, IEnumerable<Entities.Entities.Identity.UserApp>>(dtos);

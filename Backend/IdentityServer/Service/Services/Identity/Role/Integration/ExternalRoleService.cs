@@ -13,7 +13,7 @@ namespace Service.Services.Identity.Role.Integration
         {
 
         }
-        public async Task<IResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(long appId)
         {
 
             var entities = await UnitOfWork.Repository.FindAsync(r => r.AppId == appId);

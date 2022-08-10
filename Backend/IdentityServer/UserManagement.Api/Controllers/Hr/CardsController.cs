@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id:long}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _cardService.GetByIdAsync(id);
             return result;
@@ -40,7 +40,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetByEmployeeId/{id:guid}")]
-        public async Task<IResult> GetByEmployeeIdAsync(Guid id)
+        public async Task<IFinalResult> GetByEmployeeIdAsync(Guid id)
         {
             var result = await _cardService.GetByEmployeeIdAsync(id);
             return result;
@@ -74,7 +74,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete]
         [Route("DeleteSoft/{id:long}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _cardService.DeleteSoftAsync(id);
         }

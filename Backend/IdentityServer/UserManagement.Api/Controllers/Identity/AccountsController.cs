@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IResult> ResetPassword([FromBody] ResetPasswordDto model)
+        public async Task<IFinalResult> ResetPassword([FromBody] ResetPasswordDto model)
         {
             var result = await _accountService.ResetPassword(model);
             return result;

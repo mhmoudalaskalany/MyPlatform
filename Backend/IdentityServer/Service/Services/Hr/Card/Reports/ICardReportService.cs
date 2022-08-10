@@ -12,7 +12,7 @@ namespace Service.Services.Hr.Card.Reports
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
-        Task<IResult> GetGeneralReportAsync(GeneralReportFilter filter);
+        Task<IFinalResult> GetGeneralReportAsync(GeneralReportFilter filter);
 
 
     }

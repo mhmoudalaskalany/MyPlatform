@@ -29,7 +29,7 @@ namespace Service.Services.Hr.MurasalatUnit
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByIdFromViewAsync(Guid id)
+        public async Task<IFinalResult> GetByIdFromViewAsync(Guid id)
         {
             var entity = await _murasalatUnitRepository.GetByIdAsync(id);
             return new ResponseResult(entity, HttpStatusCode.OK);
@@ -39,7 +39,7 @@ namespace Service.Services.Hr.MurasalatUnit
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByIdAsync(Guid id)
+        public async Task<IFinalResult> GetByIdAsync(Guid id)
         {
             var entity = await _uow.Repository.GetAsync(id);
             return new ResponseResult(entity, HttpStatusCode.OK);
@@ -48,7 +48,7 @@ namespace Service.Services.Hr.MurasalatUnit
         /// Get All
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var entities = await _murasalatUnitRepository.GetAllAsync();
             return new ResponseResult(entities, HttpStatusCode.OK);
@@ -57,7 +57,7 @@ namespace Service.Services.Hr.MurasalatUnit
         /// Get All Distinct
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetNonDuplicateAllAsync()
+        public async Task<IFinalResult> GetNonDuplicateAllAsync()
         {
             var entities = await _murasalatUnitRepository.GetNonDuplicateAllAsync();
             var mappedEntities = _mapper.Map<List<Entities.Entities.Hr.MurasalatUnit>>(entities);
@@ -70,7 +70,7 @@ namespace Service.Services.Hr.MurasalatUnit
         /// Get All Distinct
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> UpdateNonDuplicateAllAsync()
+        public async Task<IFinalResult> UpdateNonDuplicateAllAsync()
         {
             try
             {

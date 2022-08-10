@@ -9,16 +9,16 @@ namespace Service.Services.Identity.User
 {
     public interface IUserService : IBaseService<Entities.Entities.Identity.User, AddUserDto, UserDto, long?>
     {
-        Task<IResult> GetUserCountAsync();
+        Task<IFinalResult> GetUserCountAsync();
         Task<DataPaging> GetAllPagedAsync(BaseParam<UserFilter> filter);
-        Task<IResult> DeleteByUserAppId(long userId, long appId);
-        Task<IResult> GetByAppIdAsync(long appId);
+        Task<IFinalResult> DeleteByUserAppId(long userId, long appId);
+        Task<IFinalResult> GetByAppIdAsync(long appId);
         Task<DataPaging> GetByAppIdPagedAsync(BaseParam<UserSearchCriteriaFilter> filter);
-        Task<IResult> ChangePasswordAsync(ChangePasswordDto model);
-        Task<IResult> CheckNationalIdAsync(string username, long userId);
-        Task<IResult> CheckEmailAsync(string email, long userId);
-        Task<IResult> UploadProfileImageAsync(UploadProfileImageDto dto);
-        Task<IResult> GetUserProfileAsync(long id);
+        Task<IFinalResult> ChangePasswordAsync(ChangePasswordDto model);
+        Task<IFinalResult> CheckNationalIdAsync(string username, long userId);
+        Task<IFinalResult> CheckEmailAsync(string email, long userId);
+        Task<IFinalResult> UploadProfileImageAsync(UploadProfileImageDto dto);
+        Task<IFinalResult> GetUserProfileAsync(long id);
 
     }
 }

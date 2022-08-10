@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _roleService.GetRoleByIdAsync(id);
             return result;
@@ -41,7 +41,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(long id)
         {
             return await _roleService.GetByIdForEditAsync(id);
         }
@@ -53,7 +53,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppIdAsync/{appId}")]
-        public async Task<IResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(long appId)
         {
             var result = await _roleService.GetByAppIdAsync(appId);
             return result;
@@ -67,7 +67,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnassignedByAppIdAsync/{appId}/{userId}")]
-        public async Task<IResult> GetUnassignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetUnassignedByAppIdAsync(long appId, long userId)
         {
             var result = await _roleService.GetUnassignedByAppIdAsync(appId, userId);
             return result;
@@ -82,7 +82,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetAssignedByAppIdAsync/{appId}/{userId}")]
-        public async Task<IResult> GetAssignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetAssignedByAppIdAsync(long appId, long userId)
         {
             var result = await _roleService.GetAssignedByAppIdAsync(appId, userId);
             return result;
@@ -94,7 +94,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _roleService.GetAllAsync();
             return result;
@@ -119,7 +119,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> Post([FromBody] AddRoleDto dto)
+        public async Task<IFinalResult> Post([FromBody] AddRoleDto dto)
         {
             var result = await _roleService.AddRoleAsync(dto);
             return result;
@@ -132,7 +132,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddRoleDto model)
+        public async Task<IFinalResult> Update(AddRoleDto model)
         {
 
             return await _roleService.UpdateAsync(model);
@@ -144,7 +144,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IResult> Remove(long id)
+        public async Task<IFinalResult> Remove(long id)
         {
             return await _roleService.DeleteAsync(id);
         }
@@ -155,7 +155,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("DeleteSoft/{id}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _roleService.DeleteSoftAsync(id);
         }

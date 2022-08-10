@@ -20,7 +20,7 @@ namespace Service.Services.Base
         protected readonly IUnitOfWork<T> UnitOfWork;
         protected readonly IMapper Mapper;
         protected readonly IResponseResult ResponseResult;
-        protected IResult Result;
+        protected IFinalResult Result;
         protected IHttpContextAccessor HttpContextAccessor;
         protected IConfiguration Configuration;
         protected TokenClaimDto ClaimData { get; set; }
@@ -60,7 +60,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> GetByIdAsync(object id)
+        public virtual async Task<IFinalResult> GetByIdAsync(object id)
         {
             T query = await UnitOfWork.Repository.GetAsync(id);
             var data = Mapper.Map<T, TGetDto>(query);
@@ -71,7 +71,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> GetByIdForEditAsync(object id)
+        public virtual async Task<IFinalResult> GetByIdForEditAsync(object id)
         {
             var query = await UnitOfWork.Repository.GetAsync(id);
             var data = Mapper.Map<T, TDto>(query);
@@ -85,7 +85,7 @@ namespace Service.Services.Base
         /// <param name="disableTracking"></param>
         /// <returns></returns>
 
-        public virtual async Task<IResult> GetAllAsync(bool disableTracking = false)
+        public virtual async Task<IFinalResult> GetAllAsync(bool disableTracking = false)
         {
             var query = await UnitOfWork.Repository.GetAllAsync(disableTracking: disableTracking);
             var data = Mapper.Map<IEnumerable<T>, IEnumerable<TGetDto>>(query);
@@ -98,7 +98,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> AddAsync(TDto model)
+        public virtual async Task<IFinalResult> AddAsync(TDto model)
         {
 
             T entity = Mapper.Map<TDto, T>(model);
@@ -120,7 +120,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> AddListAsync(List<TDto> model)
+        public virtual async Task<IFinalResult> AddListAsync(List<TDto> model)
         {
 
             List<T> entities = Mapper.Map<List<TDto>, List<T>>(model);
@@ -141,7 +141,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> UpdateAsync(TDto model)
+        public virtual async Task<IFinalResult> UpdateAsync(TDto model)
         {
 
             T entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
@@ -163,7 +163,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> DeleteAsync(object id)
+        public virtual async Task<IFinalResult> DeleteAsync(object id)
         {
 
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
@@ -183,7 +183,7 @@ namespace Service.Services.Base
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual async Task<IResult> DeleteSoftAsync(object id)
+        public virtual async Task<IFinalResult> DeleteSoftAsync(object id)
         {
             var entityToDelete = await UnitOfWork.Repository.GetAsync(id);
             SetEntityModifiedBaseProperties(entityToDelete);

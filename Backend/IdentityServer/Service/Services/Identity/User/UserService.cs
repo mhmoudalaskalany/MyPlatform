@@ -51,7 +51,7 @@ namespace Service.Services.Identity.User
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetUserCountAsync()
+        public async Task<IFinalResult> GetUserCountAsync()
         {
             var users = await UnitOfWork.Repository.Count();
             return ResponseResult.PostResult(users, status: HttpStatusCode.OK,
@@ -62,7 +62,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override async Task<IResult> GetByIdAsync(object id)
+        public override async Task<IFinalResult> GetByIdAsync(object id)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(id),
                 include: src => src.Include(x => x.UserApps));
@@ -75,7 +75,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUserProfileAsync(long id)
+        public async Task<IFinalResult> GetUserProfileAsync(long id)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id,
                    include: src => src.Include(x => x.UserApps).ThenInclude(a => a.App));
@@ -95,7 +95,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(long appId)
         {
 
             var entity = await UnitOfWork.Repository
@@ -150,7 +150,7 @@ namespace Service.Services.Identity.User
         /// <param name="nationalId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IResult> CheckNationalIdAsync(string nationalId, long userId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, long userId)
         {
 
             if (userId != 0)
@@ -171,7 +171,7 @@ namespace Service.Services.Identity.User
         /// <param name="email"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IResult> CheckEmailAsync(string email, long userId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, long userId)
         {
 
             if (userId != 0)
@@ -192,7 +192,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<IResult> UploadProfileImageAsync(UploadProfileImageDto dto)
+        public async Task<IFinalResult> UploadProfileImageAsync(UploadProfileImageDto dto)
         {
             var entity = await _userManager.FindByIdAsync(dto.UserId.ToString());
 
@@ -230,7 +230,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<IResult> AddAsync(AddUserDto model)
+        public override async Task<IFinalResult> AddAsync(AddUserDto model)
         {
             model.SessionDuration = 30;         // session duration set to 30s
             var user = Mapper.Map<AddUserDto, Entities.Entities.Identity.User>(model);
@@ -261,7 +261,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<IResult> ChangePasswordAsync(ChangePasswordDto model)
+        public async Task<IFinalResult> ChangePasswordAsync(ChangePasswordDto model)
         {
             var user = await _userManager.FindByIdAsync(model.UserId.ToString());
             if (user != null)
@@ -325,7 +325,7 @@ namespace Service.Services.Identity.User
         /// <param name="userId"></param>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public async Task<IResult> DeleteByUserAppId(long userId, long appId)
+        public async Task<IFinalResult> DeleteByUserAppId(long userId, long appId)
         {
 
             var userApp =
@@ -407,7 +407,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="nationalId"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForNationalIdAtAddMode(string nationalId)
+        async Task<IFinalResult> CheckForNationalIdAtAddMode(string nationalId)
         {
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.NationalId == nationalId);
             if (data != null)
@@ -428,7 +428,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForEmailAtAddMode(string email)
+        async Task<IFinalResult> CheckForEmailAtAddMode(string email)
         {
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Email == email);
             if (data != null)
@@ -450,7 +450,7 @@ namespace Service.Services.Identity.User
         /// <param name="nationalId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForNationalIdAtEditMode(string nationalId, long userId)
+        async Task<IFinalResult> CheckForNationalIdAtEditMode(string nationalId, long userId)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == userId);
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.NationalId == nationalId);
@@ -484,7 +484,7 @@ namespace Service.Services.Identity.User
         /// <param name="email"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForEmailAtEditMode(string email, long userId)
+        async Task<IFinalResult> CheckForEmailAtEditMode(string email, long userId)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == userId);
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Email == email);

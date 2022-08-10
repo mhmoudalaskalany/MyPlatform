@@ -41,7 +41,7 @@ namespace Service.Services.Hr.FullEmployee
         /// Get Counts For Cards
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeesStatusCountAsync()
+        public async Task<IFinalResult> GetEmployeesStatusCountAsync()
         {
 
             var entities = (await UnitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().FindAsync(x => x.IsVaccinated)).ToList();
@@ -101,7 +101,7 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeVaccinationReportAsync(EmployeeVaccinationReportFilter parameters)
+        public async Task<IFinalResult> GetEmployeeVaccinationReportAsync(EmployeeVaccinationReportFilter parameters)
         {
 
             var predicate = await PredicateBuilderFunctionForVaccinationReport(parameters);
@@ -120,7 +120,7 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<IResult> AddException(AddFullEmployeeDto model)
+        public async Task<IFinalResult> AddException(AddFullEmployeeDto model)
         {
             var entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
 
@@ -141,7 +141,7 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public override async Task<IResult> AddAsync(AddFullEmployeeDto model)
+        public override async Task<IFinalResult> AddAsync(AddFullEmployeeDto model)
         {
             var fullEmployee = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == model.Id, include: src => src.Include(a => a.Attachment), disableTracking: false);
             if (fullEmployee.DoseStatus == (int)model.DoseStatus)
@@ -180,7 +180,7 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> DeleteCertificate(Guid id)
+        public async Task<IFinalResult> DeleteCertificate(Guid id)
         {
             var entityToUpdate = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id
                 , include: src => src.Include(a => a.Attachment), disableTracking: false);
@@ -210,7 +210,7 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> DeleteCertificateByAttachmentIdAsync(Guid id)
+        public async Task<IFinalResult> DeleteCertificateByAttachmentIdAsync(Guid id)
         {
             var entityToUpdate = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Attachment.FileId == id
                 , include: src => src.Include(a => a.Attachment), disableTracking: false);
@@ -243,7 +243,7 @@ namespace Service.Services.Hr.FullEmployee
         /// <param name="phone"></param>
         /// <param name="doesStatus"></param>
         /// <returns></returns>
-        public async Task<IResult> ConfirmPhoneNumber(string nationalId, string phone, DoseStatus doesStatus)
+        public async Task<IFinalResult> ConfirmPhoneNumber(string nationalId, string phone, DoseStatus doesStatus)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.CivilNumber == nationalId);
             if (entity == null)
@@ -276,7 +276,7 @@ namespace Service.Services.Hr.FullEmployee
         /// <param name="nationalId"></param>
         /// <param name="doesStatus"></param>
         /// <returns></returns>
-        public async Task<IResult> ConfirmOtp(string otp, string phone, string nationalId, DoseStatus doesStatus)
+        public async Task<IFinalResult> ConfirmOtp(string otp, string phone, string nationalId, DoseStatus doesStatus)
         {
             var otpRecord = OtpDictionary.FirstOrDefault(x => x.Key == phone);
             if (otpRecord.Value == null || otpRecord.Value != otp)
@@ -292,7 +292,7 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeDetailsByFileIdAsync(Guid fileId)
+        public async Task<IFinalResult> GetEmployeeDetailsByFileIdAsync(Guid fileId)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(
                 x => x.Attachment.FileId == fileId, include:
@@ -427,7 +427,7 @@ namespace Service.Services.Hr.FullEmployee
         /// <param name="phone"></param>
         /// <param name="doesStatus"></param>
         /// <returns></returns>
-        private async Task<IResult> GetByNationalIdAsync(string nationalId, string phone, DoseStatus doesStatus)
+        private async Task<IFinalResult> GetByNationalIdAsync(string nationalId, string phone, DoseStatus doesStatus)
         {
             var entity = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().FirstOrDefaultAsync(x => x.CivilNumber == nationalId);
             if (entity is { IsVaccinated: true } && entity.DoseStatus == (int)doesStatus)

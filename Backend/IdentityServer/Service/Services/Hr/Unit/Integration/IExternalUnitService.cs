@@ -14,7 +14,7 @@ namespace Service.Services.Hr.Unit.Integration
         /// </summary>
         /// <param name="childId"></param>
         /// <returns></returns>
-        Task<IResult> GetUnitParentAsync(long childId);
+        Task<IFinalResult> GetUnitParentAsync(long childId);
         /// <summary>
         /// Get All Units
         /// </summary>
@@ -27,7 +27,7 @@ namespace Service.Services.Hr.Unit.Integration
         /// </summary>
         /// <param name="unitIds"></param>
         /// <returns></returns>
-        Task<IResult> GetUnitsByIdsAsync(List<long?> unitIds);
+        Task<IFinalResult> GetUnitsByIdsAsync(List<long?> unitIds);
         /// <summary>
         /// Get All Departments
         /// </summary>

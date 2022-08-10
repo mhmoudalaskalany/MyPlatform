@@ -25,7 +25,7 @@ namespace Service.Services.Hr.Team
         }
 
 
-        public async Task<IResult> GetByIdAsync(long id)
+        public async Task<IFinalResult> GetByIdAsync(long id)
         {
             var team = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false,
                 include: src => src.Include(x => x.Unit));
@@ -34,14 +34,14 @@ namespace Service.Services.Hr.Team
         }
 
         #region Public Methods
-        public async Task<IResult> GetTeamsByUnitIdAsync(string unitId)
+        public async Task<IFinalResult> GetTeamsByUnitIdAsync(string unitId)
         {
             var entities = await UnitOfWork.Repository.FindAsync(x => x.UnitId == unitId);
             var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Team>, IEnumerable<TeamDto>>(entities);
             return Result = ResponseResult.PostResult(data, HttpStatusCode.OK);
         }
 
-        public async Task<IResult> GetEmployeesByTeamIdAsync(long teamId)
+        public async Task<IFinalResult> GetEmployeesByTeamIdAsync(long teamId)
         {
 
             var employeeTeam = await UnitOfWork.GetRepository<EmployeeTeam>().FindAsync(x => x.TeamId == teamId);
@@ -52,7 +52,7 @@ namespace Service.Services.Hr.Team
             return Result = ResponseResult.PostResult(data, HttpStatusCode.OK);
         }
 
-        public async Task<IResult> DeleteEmployeeTeamAsync(Guid employeeId, long teamId)
+        public async Task<IFinalResult> DeleteEmployeeTeamAsync(Guid employeeId, long teamId)
         {
 
             var employeeTeam = await UnitOfWork.GetRepository<EmployeeTeam>().FirstOrDefaultAsync(x => x.EmployeeId == employeeId && x.TeamId == teamId);
@@ -67,7 +67,7 @@ namespace Service.Services.Hr.Team
         }
 
 
-        public async Task<IResult> AddEmployeeTeamAsync(TeamEmployeeDto dto)
+        public async Task<IFinalResult> AddEmployeeTeamAsync(TeamEmployeeDto dto)
         {
             var employeeTeam = new EmployeeTeam
             {

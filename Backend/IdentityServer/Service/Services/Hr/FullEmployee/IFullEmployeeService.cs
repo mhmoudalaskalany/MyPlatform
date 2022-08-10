@@ -17,25 +17,25 @@ namespace Service.Services.Hr.FullEmployee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<IResult> DeleteCertificate(Guid id);
+        Task<IFinalResult> DeleteCertificate(Guid id);
         /// <summary>
         /// Delete By Attachment Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<IResult> DeleteCertificateByAttachmentIdAsync(Guid id);
+        Task<IFinalResult> DeleteCertificateByAttachmentIdAsync(Guid id);
         /// <summary>
         /// Get Employee Details By File Id
         /// </summary>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeDetailsByFileIdAsync(Guid fileId);
+        Task<IFinalResult> GetEmployeeDetailsByFileIdAsync(Guid fileId);
         /// <summary>
         /// 
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<IResult> AddException(AddFullEmployeeDto model);
+        Task<IFinalResult> AddException(AddFullEmployeeDto model);
         /// <summary>
         /// Get All Paged
         /// </summary>
@@ -53,14 +53,14 @@ namespace Service.Services.Hr.FullEmployee
         /// Get Status Count
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetEmployeesStatusCountAsync();
+        Task<IFinalResult> GetEmployeesStatusCountAsync();
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeVaccinationReportAsync(EmployeeVaccinationReportFilter parameters);
+        Task<IFinalResult> GetEmployeeVaccinationReportAsync(EmployeeVaccinationReportFilter parameters);
 
         /// <summary>
         /// Confirm Phone
@@ -69,7 +69,7 @@ namespace Service.Services.Hr.FullEmployee
         /// <param name="phone"></param>
         /// <param name="doesStatus"></param>
         /// <returns></returns>
-        Task<IResult> ConfirmPhoneNumber(string nationalId, string phone , DoseStatus doesStatus);
+        Task<IFinalResult> ConfirmPhoneNumber(string nationalId, string phone , DoseStatus doesStatus);
 
         /// <summary>
         /// Confirm Phone
@@ -79,6 +79,6 @@ namespace Service.Services.Hr.FullEmployee
         /// <param name="nationalId"></param>
         /// <param name="doesStatus"></param>
         /// <returns></returns>
-        Task<IResult> ConfirmOtp(string otp, string phone , string nationalId , DoseStatus doesStatus);
+        Task<IFinalResult> ConfirmOtp(string otp, string phone , string nationalId , DoseStatus doesStatus);
     }
 }

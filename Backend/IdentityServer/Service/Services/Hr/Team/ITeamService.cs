@@ -11,10 +11,10 @@ namespace Service.Services.Hr.Team
     public interface ITeamService : IBaseService<Entities.Entities.Hr.Team, AddTeamDto, TeamDto, long?>
     {
         Task<DataPaging> GetAllPagedAsync(BaseParam<TeamFilter> filter);
-        Task<IResult> GetTeamsByUnitIdAsync(string unitId);
-        Task<IResult> GetEmployeesByTeamIdAsync(long teamId);
-        Task<IResult> DeleteEmployeeTeamAsync(Guid employeeId, long teamId);
-        Task<IResult> AddEmployeeTeamAsync(TeamEmployeeDto dto);
-        Task<IResult> GetByIdAsync(long id);
+        Task<IFinalResult> GetTeamsByUnitIdAsync(string unitId);
+        Task<IFinalResult> GetEmployeesByTeamIdAsync(long teamId);
+        Task<IFinalResult> DeleteEmployeeTeamAsync(Guid employeeId, long teamId);
+        Task<IFinalResult> AddEmployeeTeamAsync(TeamEmployeeDto dto);
+        Task<IFinalResult> GetByIdAsync(long id);
     }
 }

@@ -9,8 +9,8 @@ namespace Service.Services.Identity.Page
 {
     public interface IPageService : IBaseService<Entities.Entities.Identity.Page, AddPageDto, PageDto , long?>
     {
-        Task<IResult> GetPagesCountAsync();
-        Task<IResult> GetByAppId(long appId);
+        Task<IFinalResult> GetPagesCountAsync();
+        Task<IFinalResult> GetByAppId(long appId);
         Task<DataPaging> GetAllPagedAsync(BaseParam<PageFilter> filter);
     }
 }

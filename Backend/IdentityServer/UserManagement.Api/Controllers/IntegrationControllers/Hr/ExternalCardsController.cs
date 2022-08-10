@@ -28,7 +28,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetCardDetailsByEmployeeId/{employeeId}")]
-        public async Task<IResult> GetCardDetailsByEmployeeIdAsync(Guid employeeId)
+        public async Task<IFinalResult> GetCardDetailsByEmployeeIdAsync(Guid employeeId)
         {
             var result = await _cardService.GetCardDetailsByEmployeeIdAsync(employeeId);
             return result;

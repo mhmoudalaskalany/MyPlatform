@@ -19,7 +19,7 @@ namespace Service.Services.Identity.App.Integration
 
         #region Public Methods
 
-        public async Task<IResult> GetLoggedUserAppsAsync()
+        public async Task<IFinalResult> GetLoggedUserAppsAsync()
         {
             var appIds = await UnitOfWork.GetRepository<Entities.Entities.Identity.UserApp>().FindSelectAsync(x => new
             {

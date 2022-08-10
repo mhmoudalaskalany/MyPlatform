@@ -41,7 +41,7 @@ namespace Service.Services.Hr.Employee
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeCountAsync()
+        public async Task<IFinalResult> GetEmployeeCountAsync()
         {
             var employees = await UnitOfWork.Repository.Count();
             return ResponseResult.PostResult(employees, status: HttpStatusCode.OK,
@@ -53,7 +53,7 @@ namespace Service.Services.Hr.Employee
         /// <param name="nationalId"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        public async Task<IResult> CheckNationalIdAsync(string nationalId, long employeeId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, long employeeId)
         {
 
             if (employeeId != 0)
@@ -75,7 +75,7 @@ namespace Service.Services.Hr.Employee
         /// <param name="email"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        public async Task<IResult> CheckEmailAsync(string email, long employeeId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, long employeeId)
         {
 
             if (employeeId != 0)
@@ -98,7 +98,7 @@ namespace Service.Services.Hr.Employee
         /// <param name="unitId"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUnitManagerAsync(long unitId, UnitType? unitType)
+        public async Task<IFinalResult> GetUnitManagerAsync(long unitId, UnitType? unitType)
         {
             Entities.Entities.Hr.Employee employee;
             // if user have a team id get the employee according to team if
@@ -121,7 +121,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByIdForViewAsync(long id)
+        public async Task<IFinalResult> GetByIdForViewAsync(long id)
         {
             var entity =
                 await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id, include: src => src.Include(s => s.Unit).ThenInclude(p => p.Parent).ThenInclude(p => p.Parent).ThenInclude(p => p.Parent));
@@ -133,7 +133,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="nationalId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeInfoAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoAsync(string nationalId)
         {
 
             var data = await _employeeRepository.GetEmployeeInfoAsync(nationalId);
@@ -147,7 +147,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="nationalId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeInfoNewViewAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoNewViewAsync(string nationalId)
         {
 
             var data = await _employeeRepository.GetEmployeeInfoFromNewViewAsync(nationalId);
@@ -161,7 +161,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="unitId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeIdsByUnitIdAsync(long unitId)
+        public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(long unitId)
         {
 
             var ids = new List<long> { unitId };
@@ -235,7 +235,7 @@ namespace Service.Services.Hr.Employee
 
         }
 
-        public override async Task<IResult> UpdateAsync(AddEmployeeDto model)
+        public override async Task<IFinalResult> UpdateAsync(AddEmployeeDto model)
         {
 
             var entityToUpdate = await UnitOfWork.Repository.GetAsync(model.Id);
@@ -265,7 +265,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<IResult> UpdateEmployeeUnit(EmployeeUnitDto dto)
+        public async Task<IFinalResult> UpdateEmployeeUnit(EmployeeUnitDto dto)
         {
             var entity = await UnitOfWork.Repository.GetAsync(dto.EmployeeNumber);
             entity.UnitId = dto.UnitId;
@@ -292,7 +292,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<IResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto)
+        public async Task<IFinalResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto)
         {
             var entity = await _unitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().GetAsync(dto.EmployeeId);
             entity.PhotoId = dto.NewPhotoId;
@@ -391,7 +391,7 @@ namespace Service.Services.Hr.Employee
         /// </summary>
         /// <param name="nationalId"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForNationalIdAtAddMode(string nationalId)
+        async Task<IFinalResult> CheckForNationalIdAtAddMode(string nationalId)
         {
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.NationalId == nationalId);
             if (data != null)
@@ -409,7 +409,7 @@ namespace Service.Services.Hr.Employee
          /// </summary>
          /// <param name="email"></param>
          /// <returns></returns>
-        async Task<IResult> CheckForEmailAtAddMode(string email)
+        async Task<IFinalResult> CheckForEmailAtAddMode(string email)
         {
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Email == email);
             if (data != null)
@@ -429,7 +429,7 @@ namespace Service.Services.Hr.Employee
         /// <param name="nationalId"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForNationalIdAtEditMode(string nationalId, long employeeId)
+        async Task<IFinalResult> CheckForNationalIdAtEditMode(string nationalId, long employeeId)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == employeeId);
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.NationalId == nationalId);
@@ -461,7 +461,7 @@ namespace Service.Services.Hr.Employee
         /// <param name="email"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        async Task<IResult> CheckForEmailAtEditMode(string email, long employeeId)
+        async Task<IFinalResult> CheckForEmailAtEditMode(string email, long employeeId)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == employeeId);
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Email == email);

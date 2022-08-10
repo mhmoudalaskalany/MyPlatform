@@ -30,7 +30,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _employeeService.GetByIdAsync(id);
             return result;
@@ -42,7 +42,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeInfoAsync/{nationalId}")]
-        public async Task<IResult> GetUserInfoAsync(string nationalId)
+        public async Task<IFinalResult> GetUserInfoAsync(string nationalId)
         {
             var result = await _employeeService.GetEmployeeInfoAsync(nationalId);
             return result;
@@ -55,7 +55,7 @@ namespace UserManagement.Api.Controllers.Hr
         [HttpGet]
         [AllowAnonymous]
         [Route("GetEmployeeInfoFromOracle/{nationalId}")]
-        public async Task<IResult> GetEmployeeInfoAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoAsync(string nationalId)
         {
             var result = await _employeeService.GetEmployeeInfoNewViewAsync(nationalId);
             return result;
@@ -66,7 +66,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeCount")]
-        public async Task<IResult> GetEmployeeCountAsync()
+        public async Task<IFinalResult> GetEmployeeCountAsync()
         {
             return await _employeeService.GetEmployeeCountAsync();
         }
@@ -77,7 +77,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEditAsync(long id)
+        public async Task<IFinalResult> GetEditAsync(long id)
         {
             return await _employeeService.GetByIdForEditAsync(id);
         }
@@ -89,7 +89,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetView/{id}")]
-        public async Task<IResult> GetViewAsync(long id)
+        public async Task<IFinalResult> GetViewAsync(long id)
         {
             return await _employeeService.GetByIdForViewAsync(id);
         }
@@ -101,7 +101,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("CheckNationalIdAsync/{nationalId}/{employeeId}")]
-        public async Task<IResult> CheckNationalIdAsync(string nationalId, long employeeId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, long employeeId)
         {
             var result = await _employeeService.CheckNationalIdAsync(nationalId, employeeId);
             return result;
@@ -115,7 +115,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("CheckEmailAsync/{email}/{employeeId}")]
-        public async Task<IResult> CheckEmailAsync(string email, long employeeId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, long employeeId)
         {
             var result = await _employeeService.CheckEmailAsync(email, employeeId);
             return result;
@@ -126,7 +126,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeIdsByUnitId/{unitId}")]
-        public async Task<IResult> GetEmployeeIdsByUnitIdAsync(long unitId)
+        public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(long unitId)
         {
             var result = await _employeeService.GetEmployeeIdsByUnitIdAsync(unitId);
             return result;
@@ -139,7 +139,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitManager/{unitId}/{unitType}")]
-        public async Task<IResult> GetUnitManagerAsync(long unitId ,  UnitType? unitType)
+        public async Task<IFinalResult> GetUnitManagerAsync(long unitId ,  UnitType? unitType)
         {
             var result = await _employeeService.GetUnitManagerAsync(unitId , unitType);
             return result;
@@ -151,7 +151,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _employeeService.GetAllAsync();
             return result;
@@ -189,7 +189,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> PostAsync([FromBody] AddEmployeeDto dto)
+        public async Task<IFinalResult> PostAsync([FromBody] AddEmployeeDto dto)
         {
             var result = await _employeeService.AddAsync(dto);
             return result;
@@ -203,7 +203,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddEmployeeDto model)
+        public async Task<IFinalResult> Update(AddEmployeeDto model)
         {
 
             return await _employeeService.UpdateAsync(model);
@@ -216,7 +216,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("UpdateEmployeeUnit")]
-        public async Task<IResult> UpdateEmployeeUnit(EmployeeUnitDto model)
+        public async Task<IFinalResult> UpdateEmployeeUnit(EmployeeUnitDto model)
         {
             return await _employeeService.UpdateEmployeeUnit(model);
         }
@@ -228,7 +228,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IResult> Remove(long id)
+        public async Task<IFinalResult> Remove(long id)
         {
             return await _employeeService.DeleteAsync(id);
         }

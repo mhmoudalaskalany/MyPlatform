@@ -26,7 +26,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByUserIdAsync/{userId}/{authenticationMethod}/{appCode}")]
-        public async Task<IResult> GetByUserIdAsync(long userId, string authenticationMethod, string appCode)
+        public async Task<IFinalResult> GetByUserIdAsync(long userId, string authenticationMethod, string appCode)
         {
             var result = await _userClaimService.GeyUserClaimsAsync(userId, authenticationMethod, appCode);
             return result;

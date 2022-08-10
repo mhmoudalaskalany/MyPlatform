@@ -15,20 +15,20 @@ namespace Service.Services.Validators.Services.Employee
         /// <param name="nationalId"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        Task<IResult> CheckNationalIdAsync(string nationalId, Guid employeeId);
+        Task<IFinalResult> CheckNationalIdAsync(string nationalId, Guid employeeId);
         /// <summary>
         /// Check Email
         /// </summary>
         /// <param name="email"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        Task<IResult> CheckEmailAsync(string email, Guid employeeId);
+        Task<IFinalResult> CheckEmailAsync(string email, Guid employeeId);
         /// <summary>
         /// Check File Number Existing
         /// </summary>
         /// <param name="fileNumber"></param>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        Task<IResult> CheckFileNumberAsync(string fileNumber, Guid employeeId);
+        Task<IFinalResult> CheckFileNumberAsync(string fileNumber, Guid employeeId);
     }
 }

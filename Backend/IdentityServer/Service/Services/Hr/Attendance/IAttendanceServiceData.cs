@@ -9,17 +9,17 @@ namespace Service.Services.Hr.Attendance
         /// Get Employees Count
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetEmployeeLeaveAsync(string employeeNumber);
+        Task<IFinalResult> GetEmployeeLeaveAsync(string employeeNumber);
         /// <summary>
         /// Get Mawred Leaves
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetMawredLeaveAsync();
+        Task<IFinalResult> GetMawredLeaveAsync();
         /// <summary>
         /// Insert Mawred Leaves
         /// </summary>
         /// <returns></returns>
-        Task<IResult> InsertMawredLeaveAsync();
+        Task<IFinalResult> InsertMawredLeaveAsync();
 
 
     }

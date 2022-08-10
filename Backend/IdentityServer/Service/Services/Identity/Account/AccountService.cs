@@ -51,7 +51,7 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<IResult> LoginAsync(LoginInputModel model)
+        public async Task<IFinalResult> LoginAsync(LoginInputModel model)
         {
             var user = ActiveDirectoryLogin(model);
             if (user == null) return new ResponseResult(HttpStatusCode.BadRequest);
@@ -128,7 +128,7 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<IResult> ResetPassword(ResetPasswordDto model)
+        public async Task<IFinalResult> ResetPassword(ResetPasswordDto model)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName.ToLower() == model.Username);
             if (user == null)
@@ -148,7 +148,7 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<IResult> CompleteResetPassword(CompleteResetPasswordDto model)
+        public async Task<IFinalResult> CompleteResetPassword(CompleteResetPasswordDto model)
         {
             var otp = OtpDictionary.FirstOrDefault(x => x.Value == model.Otp);
             if (otp.Value != model.Otp)

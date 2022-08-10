@@ -26,7 +26,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetLoggedUserApps")]
-        public async Task<IResult> GetLoggedUserAppsAsync()
+        public async Task<IFinalResult> GetLoggedUserAppsAsync()
         {
             var result = await _appService.GetLoggedUserAppsAsync();
             return result;

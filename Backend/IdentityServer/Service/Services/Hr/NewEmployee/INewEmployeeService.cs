@@ -16,7 +16,7 @@ namespace Service.Services.Hr.NewEmployee
         /// Get Employees Count
         /// </summary>
         /// <returns></returns>
-        Task<IResult> GetEmployeeCountAsync();
+        Task<IFinalResult> GetEmployeeCountAsync();
         /// <summary>
         /// Get Paged
         /// </summary>
@@ -41,38 +41,38 @@ namespace Service.Services.Hr.NewEmployee
         /// </summary>
         /// <param name="nationalId"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeInfoAsync(string nationalId);
+        Task<IFinalResult> GetEmployeeInfoAsync(string nationalId);
         /// <summary>
         /// Get Employee Info From Oracle
         /// </summary>
         /// <param name="nationalId"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeInfoNewViewAsync(string nationalId);
+        Task<IFinalResult> GetEmployeeInfoNewViewAsync(string nationalId);
 
         /// <summary>
         /// Get Employee Ids By Unit
         /// </summary>
         /// <param name="unitId"></param>
         /// <returns></returns>
-        Task<IResult> GetEmployeeIdsByUnitIdAsync(string unitId);
+        Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId);
         /// <summary>
         /// Get Unit Manager
         /// </summary>
         /// <param name="unitId"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        Task<IResult> GetUnitManagerAsync(string unitId, UnitType? unitType);
+        Task<IFinalResult> GetUnitManagerAsync(string unitId, UnitType? unitType);
         /// <summary>
         /// Get By Id For View
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<IResult> GetByIdForViewAsync(Guid id);
+        Task<IFinalResult> GetByIdForViewAsync(Guid id);
         /// <summary>
         /// Update Employee Image For Card (Update FullEmployee Entity For Now)
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        Task<IResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto);
+        Task<IFinalResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto);
     }
 }

@@ -31,7 +31,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(long id)
         {
             var result = await _teamService.GetByIdAsync(id);
             return result;
@@ -44,7 +44,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(long id)
         {
             return await _teamService.GetByIdForEditAsync(id);
         }
@@ -55,7 +55,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _teamService.GetAllAsync();
             return result;
@@ -67,7 +67,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetTeamsByUnitId/{unitId}")]
-        public async Task<IResult> GetTeamsByUnitIdAsync(string unitId)
+        public async Task<IFinalResult> GetTeamsByUnitIdAsync(string unitId)
         {
             var result = await _teamService.GetTeamsByUnitIdAsync(unitId);
             return result;
@@ -79,7 +79,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeesByTeamId/{teamId}")]
-        public async Task<IResult> GetEmployeesByTeamIdAsync(long teamId)
+        public async Task<IFinalResult> GetEmployeesByTeamIdAsync(long teamId)
         {
             var result = await _teamService.GetEmployeesByTeamIdAsync(teamId);
             return result;
@@ -105,7 +105,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> PostAsync([FromBody] AddTeamDto dto)
+        public async Task<IFinalResult> PostAsync([FromBody] AddTeamDto dto)
         {
             var result = await _teamService.AddAsync(dto);
             return result;
@@ -120,7 +120,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteEmployeeTeam/{employeeId}/{teamId}")]
-        public async Task<IResult> DeleteEmployeeTeamAsync( Guid employeeId , long teamId)
+        public async Task<IFinalResult> DeleteEmployeeTeamAsync( Guid employeeId , long teamId)
         {
             var result = await _teamService.DeleteEmployeeTeamAsync(employeeId , teamId);
             return result;
@@ -133,7 +133,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("AddEmployeeTeam")]
-        public async Task<IResult> AddEmployeeTeamAsync([FromBody] TeamEmployeeDto dto)
+        public async Task<IFinalResult> AddEmployeeTeamAsync([FromBody] TeamEmployeeDto dto)
         {
             var result = await _teamService.AddEmployeeTeamAsync(dto);
             return result;
@@ -147,7 +147,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> Update(AddTeamDto model)
+        public async Task<IFinalResult> Update(AddTeamDto model)
         {
 
             return await _teamService.UpdateAsync(model);
@@ -163,7 +163,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IResult> Remove(long id)
+        public async Task<IFinalResult> Remove(long id)
         {
             return await _teamService.DeleteAsync(id);
         }
@@ -174,7 +174,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(long id)
         {
             return await _teamService.DeleteSoftAsync(id);
         }

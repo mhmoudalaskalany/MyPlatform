@@ -41,7 +41,7 @@ namespace Service.Services.Identity.Role
 
         #region Public Methods
 
-        public async Task<IResult> GetRoleByIdAsync(long id)
+        public async Task<IFinalResult> GetRoleByIdAsync(long id)
         {
 
             var pagesList = new List<RolePagePermissionDto>();
@@ -108,7 +108,7 @@ namespace Service.Services.Identity.Role
 
         }
 
-        public async Task<IResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(long appId)
         {
 
             var entities = await UnitOfWork.Repository.FindAsync(r => r.AppId == appId);
@@ -117,7 +117,7 @@ namespace Service.Services.Identity.Role
                 message: HttpStatusCode.OK.ToString());
 
         }
-        public async Task<IResult> GetUnassignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetUnassignedByAppIdAsync(long appId, long userId)
         {
 
 
@@ -133,7 +133,7 @@ namespace Service.Services.Identity.Role
 
         }
 
-        public async Task<IResult> GetAssignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetAssignedByAppIdAsync(long appId, long userId)
         {
 
 
@@ -165,7 +165,7 @@ namespace Service.Services.Identity.Role
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public async Task<IResult> AddRoleAsync(AddRoleDto dto)
+        public async Task<IFinalResult> AddRoleAsync(AddRoleDto dto)
         {
 
             var newRole = Mapper.Map<AddRoleDto, Entities.Entities.Identity.Role>(dto);
@@ -186,7 +186,7 @@ namespace Service.Services.Identity.Role
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
-        public override async Task<IResult> UpdateAsync(AddRoleDto dto)
+        public override async Task<IFinalResult> UpdateAsync(AddRoleDto dto)
         {
 
             var role = await _roleManager.Roles.FirstOrDefaultAsync(r => r.Id == dto.Id && r.AppId == dto.AppId);

@@ -34,7 +34,7 @@ namespace Service.Services.Hr.Card
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByEmployeeIdAsync(Guid employeeId)
+        public async Task<IFinalResult> GetByEmployeeIdAsync(Guid employeeId)
         {
             var entities = await UnitOfWork.Repository.FindAsync(x => x.EmployeeId == employeeId);
             var data = Mapper.Map<List<CardDto>>(entities);

@@ -35,7 +35,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// 
         [HttpGet]
         [Route("Get/{id:guid}")]
-        public async Task<IResult> GetAsync(Guid id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _employeeService.GetByIdAsync(id);
             return result;
@@ -48,7 +48,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("ConfirmPhoneNumber/{nationalId}/{phone}/{doesStatus}")]
-        public async Task<IResult> ConfirmPhoneNumberAsync(string nationalId , string phone , DoseStatus doesStatus)
+        public async Task<IFinalResult> ConfirmPhoneNumberAsync(string nationalId , string phone , DoseStatus doesStatus)
         {
             var result = await _employeeService.ConfirmPhoneNumber(nationalId , phone , doesStatus);
             return result;
@@ -61,7 +61,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("ConfirmOtp/{otp}/{phone}/{nationalId}/{doesStatus}")]
-        public async Task<IResult> ConfirmOtpAsync(string otp , string phone , string nationalId , DoseStatus doesStatus)
+        public async Task<IFinalResult> ConfirmOtpAsync(string otp , string phone , string nationalId , DoseStatus doesStatus)
         {
             var result = await _employeeService.ConfirmOtp(otp , phone , nationalId , doesStatus);
             return result;
@@ -74,7 +74,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpGet]
         [Route("GetEmployeesStatusCount")]
-        public async Task<IResult> GetEmployeesStatusCountAsync()
+        public async Task<IFinalResult> GetEmployeesStatusCountAsync()
         {
             var result = await _employeeService.GetEmployeesStatusCountAsync();
             return result;
@@ -86,7 +86,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IResult> GetAllAsync()
+        public async Task<IFinalResult> GetAllAsync()
         {
             var result = await _employeeService.GetAllAsync();
             return result;
@@ -98,7 +98,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteCertificate/{id:guid}")]
-        public async Task<IResult> DeleteCertificateAsync(Guid id)
+        public async Task<IFinalResult> DeleteCertificateAsync(Guid id)
         {
             return await _employeeService.DeleteCertificate(id);
         }
@@ -110,7 +110,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetEmployeeDetailsByFileId/{fileId:guid}")]
-        public async Task<IResult> GetEmployeeDetailsByFileIdAsync(Guid fileId)
+        public async Task<IFinalResult> GetEmployeeDetailsByFileIdAsync(Guid fileId)
         {
             return await _employeeService.GetEmployeeDetailsByFileIdAsync(fileId);
         }
@@ -121,7 +121,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("DeleteCertificateByAttachmentId/{id:guid}")]
-        public async Task<IResult> DeleteCertificateByAttachmentIdAsync(Guid id)
+        public async Task<IFinalResult> DeleteCertificateByAttachmentIdAsync(Guid id)
         {
             return await _employeeService.DeleteCertificateByAttachmentIdAsync(id);
         }
@@ -131,7 +131,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("GetEmployeeVaccinationReport")]
-        public async Task<IResult> GetEmployeeVaccinationReportAsync([FromBody] EmployeeVaccinationReportFilter parameters)
+        public async Task<IFinalResult> GetEmployeeVaccinationReportAsync([FromBody] EmployeeVaccinationReportFilter parameters)
         {
             var result = await _employeeService.GetEmployeeVaccinationReportAsync(parameters);
             return result;
@@ -168,7 +168,7 @@ namespace UserManagement.Api.Controllers.Hr
         [AllowAnonymous]
         [HttpPost]
         [Route("Add")]
-        public async Task<IResult> AddAsync([FromBody] AddFullEmployeeDto dto)
+        public async Task<IFinalResult> AddAsync([FromBody] AddFullEmployeeDto dto)
         {
             var result = await _employeeService.AddAsync(dto);
             return result;
@@ -182,7 +182,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IResult> UpdateAsync(AddFullEmployeeDto model)
+        public async Task<IFinalResult> UpdateAsync(AddFullEmployeeDto model)
         {
             return await _employeeService.UpdateAsync(model);
         }
@@ -193,7 +193,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("UpdateEmployeeImage")]
-        public async Task<IResult> UpdateEmployeeImageAsync([FromBody] UpdateEmployeeImageDto dto)
+        public async Task<IFinalResult> UpdateEmployeeImageAsync([FromBody] UpdateEmployeeImageDto dto)
         {
             return await _currentEmployeeService.UpdateEmployeeImageAsync(dto);
         }
@@ -204,7 +204,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("AddException")]
-        public async Task<IResult> AddExceptionAsync(AddFullEmployeeDto model)
+        public async Task<IFinalResult> AddExceptionAsync(AddFullEmployeeDto model)
         {
 
             return await _employeeService.AddException(model);
@@ -216,7 +216,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete]
         [Route("Delete/{id:guid}")]
-        public async Task<IResult> DeleteAsync(Guid id)
+        public async Task<IFinalResult> DeleteAsync(Guid id)
         {
             return await _employeeService.DeleteAsync(id);
         }
@@ -228,7 +228,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpDelete]
         [Route("DeleteSoft/{id:guid}")]
-        public async Task<IResult> DeleteSoftAsync(Guid id)
+        public async Task<IFinalResult> DeleteSoftAsync(Guid id)
         {
             return await _employeeService.DeleteSoftAsync(id);
         }

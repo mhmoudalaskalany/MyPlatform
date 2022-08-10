@@ -29,7 +29,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetParent/{childId}")]
-        public async Task<IResult> GetUnitParentAsync(long childId)
+        public async Task<IFinalResult> GetUnitParentAsync(long childId)
         {
             var result = await _externalUnitService.GetUnitParentAsync(childId);
             return result;
@@ -54,7 +54,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("GetUnitsByIds")]
-        public async Task<IResult> GetUnitsByIdsAsync([FromBody] List<long?> unitIds)
+        public async Task<IFinalResult> GetUnitsByIdsAsync([FromBody] List<long?> unitIds)
         {
             return await _externalUnitService.GetUnitsByIdsAsync(unitIds);
         }

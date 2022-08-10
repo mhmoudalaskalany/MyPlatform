@@ -23,13 +23,13 @@ namespace Service.Services.Identity.Page
 
         #region Public Methods
 
-        public async Task<IResult> GetPagesCountAsync()
+        public async Task<IFinalResult> GetPagesCountAsync()
         {
             var pages = await UnitOfWork.Repository.Count();
             return ResponseResult.PostResult(pages, status: HttpStatusCode.OK,
                 message: HttpStatusCode.OK.ToString());
         }
-        public async Task<IResult> GetByAppId(long appId)
+        public async Task<IFinalResult> GetByAppId(long appId)
         {
 
             var predicate = PredicateBuilderFunction(appId);

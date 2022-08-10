@@ -13,7 +13,7 @@ namespace Service.Services.Hr.Card
         /// </summary>
         /// <param name="employeeId"></param>
         /// <returns></returns>
-        Task<IResult> GetByEmployeeIdAsync(Guid employeeId);
+        Task<IFinalResult> GetByEmployeeIdAsync(Guid employeeId);
         /// <summary>
         /// Add Card
         /// </summary>

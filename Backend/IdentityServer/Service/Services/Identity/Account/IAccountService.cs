@@ -17,7 +17,7 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<IResult> LoginAsync(LoginInputModel model);
+        Task<IFinalResult> LoginAsync(LoginInputModel model);
         /// <summary>
         /// Check If User First Login
         /// </summary>
@@ -35,13 +35,13 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<IResult> ResetPassword(ResetPasswordDto model);
+        Task<IFinalResult> ResetPassword(ResetPasswordDto model);
         /// <summary>
         /// Complete Reset Password
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        Task<IResult> CompleteResetPassword(CompleteResetPasswordDto model);
+        Task<IFinalResult> CompleteResetPassword(CompleteResetPasswordDto model);
         /// <summary>
         /// Cache User To Redis
         /// </summary>

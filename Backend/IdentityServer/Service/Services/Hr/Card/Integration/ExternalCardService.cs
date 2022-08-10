@@ -17,7 +17,7 @@ namespace Service.Services.Hr.Card.Integration
         }
 
         #region Public Methods
-        public async Task<IResult> GetCardDetailsByEmployeeIdAsync(Guid employeeId)
+        public async Task<IFinalResult> GetCardDetailsByEmployeeIdAsync(Guid employeeId)
         {
             var card = await UnitOfWork.Repository.LastOrDefaultAsync(x => x.EmployeeId == employeeId , orderByCriteria:Utilities.GetOrderByList("CreatedDate" , "asc"));
             var data = Mapper.Map<CardDto>(card);

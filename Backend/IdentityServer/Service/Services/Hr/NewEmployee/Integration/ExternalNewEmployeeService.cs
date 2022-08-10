@@ -32,7 +32,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public override async Task<IResult> GetByIdAsync(object id)
+        public override async Task<IFinalResult> GetByIdAsync(object id)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == (Guid)id, include: src=>src.Include(x=>x.Unit)
                 .ThenInclude(p => p.Parent)
@@ -65,7 +65,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="disableTracking"></param>
         /// <returns></returns>
-        public override async Task<IResult> GetAllAsync(bool disableTracking = false)
+        public override async Task<IFinalResult> GetAllAsync(bool disableTracking = false)
         {
             var entities = (await UnitOfWork.Repository.GetAllAsync()).ToList();
 
@@ -80,7 +80,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="appCode"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByAppCodeAsync(string appCode)
+        public async Task<IFinalResult> GetByAppCodeAsync(string appCode)
         {
             var appUsers = await UnitOfWork.GetRepository<Entities.Entities.Identity.UserApp>()
                 .FindAsync(x => x.App.Code == appCode);
@@ -97,7 +97,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
             return ResponseResult.PostResult(data, HttpStatusCode.OK);
 
         }
-        public async Task<IResult> GetManagerEmailByUnitIdAsync(string unitId)
+        public async Task<IFinalResult> GetManagerEmailByUnitIdAsync(string unitId)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.DepartmentCode == unitId && x.IsManager);
             var data = Mapper.Map<NewEmployeeDto>(entity);
@@ -110,7 +110,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeePhonesByIdsAsync(List<TicketSmsDto> dtos)
+        public async Task<IFinalResult> GetEmployeePhonesByIdsAsync(List<TicketSmsDto> dtos)
         {
             foreach (var dto in dtos)
             {
@@ -125,7 +125,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="dtos"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUnitManagersPhonesByUnitIdsAsync(List<TicketSmsDto> dtos)
+        public async Task<IFinalResult> GetUnitManagersPhonesByUnitIdsAsync(List<TicketSmsDto> dtos)
         {
             foreach (var dto in dtos)
             {
@@ -149,7 +149,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="unitId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeesByUnitOrTeamIdAsync(string unitId)
+        public async Task<IFinalResult> GetEmployeesByUnitOrTeamIdAsync(string unitId)
         {
             var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullUnit>().GetAsync(unitId);
             List<Entities.Entities.Hr.FullEmployee> entities;
@@ -188,7 +188,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="teamId"></param>
         /// <returns></returns>
-        public async Task<IResult> GetTeamManagerPhone(long teamId)
+        public async Task<IFinalResult> GetTeamManagerPhone(long teamId)
         {
             var teamManager =
                 await UnitOfWork.GetRepository<EmployeeTeam>().FirstOrDefaultAsync(t => t.TeamId == teamId && t.IsTeamManager);
@@ -204,7 +204,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="roleCode"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeesPhonesByRoleCodeAsync(string roleCode)
+        public async Task<IFinalResult> GetEmployeesPhonesByRoleCodeAsync(string roleCode)
         {
             var role = await UnitOfWork.GetRepository<Entities.Entities.Identity.Role>()
                 .FirstOrDefaultAsync(x => x.Code == roleCode);
@@ -222,7 +222,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
             return ResponseResult.PostResult(phones.Select(x => x.PhoneNumber).ToList(), HttpStatusCode.OK);
         }
 
-        public async Task<IResult> GetEmployeePhoneByIdAsync(string employeeId)
+        public async Task<IFinalResult> GetEmployeePhoneByIdAsync(string employeeId)
         {
             var employee = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(employeeId));
             return ResponseResult.PostResult(employee.Phone, HttpStatusCode.OK);
@@ -276,7 +276,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// </summary>
         /// <param name="roleCode"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByRoleCodeAsync(string roleCode)
+        public async Task<IFinalResult> GetByRoleCodeAsync(string roleCode)
         {
             var role = await UnitOfWork.GetRepository<Entities.Entities.Identity.Role>()
                 .FirstOrDefaultAsync(x => x.Code == roleCode);
@@ -306,7 +306,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// <param name="unitId"></param>
         /// <param name="option"></param>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeIdsByUnitIdAsync(string unitId, bool option)
+        public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId, bool option)
         {
 
             if (option == false)
@@ -334,7 +334,7 @@ namespace Service.Services.Hr.NewEmployee.Integration
         /// Get Murasalat Employees For Self Service
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetAllMurasalatAsync()
+        public async Task<IFinalResult> GetAllMurasalatAsync()
         {
             var entities = await UnitOfWork.Repository.GetAllAsync();
             return ResponseResult.PostResult(entities, HttpStatusCode.OK);

@@ -42,7 +42,7 @@ namespace Service.Services.Hr.NewEmployee
         /// 
         /// </summary>
         /// <returns></returns>
-        public async Task<IResult> GetEmployeeCountAsync()
+        public async Task<IFinalResult> GetEmployeeCountAsync()
         {
             var employees = await UnitOfWork.Repository.Count();
             return ResponseResult.PostResult(employees, status: HttpStatusCode.OK,
@@ -56,7 +56,7 @@ namespace Service.Services.Hr.NewEmployee
         /// <param name="unitId"></param>
         /// <param name="unitType"></param>
         /// <returns></returns>
-        public async Task<IResult> GetUnitManagerAsync(string unitId, UnitType? unitType)
+        public async Task<IFinalResult> GetUnitManagerAsync(string unitId, UnitType? unitType)
         {
             Entities.Entities.Hr.FullEmployee employee;
             // if user have a team id get the employee according to team if
@@ -81,7 +81,7 @@ namespace Service.Services.Hr.NewEmployee
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IResult> GetByIdForViewAsync(Guid id)
+        public async Task<IFinalResult> GetByIdForViewAsync(Guid id)
         {
             var entity =
                 await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id,
@@ -97,7 +97,7 @@ namespace Service.Services.Hr.NewEmployee
             return new ResponseResult(data, HttpStatusCode.OK);
         }
 
-        public async Task<IResult> GetEmployeeInfoAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoAsync(string nationalId)
         {
 
             var data = await _employeeRepository.GetEmployeeInfoAsync(nationalId);
@@ -105,7 +105,7 @@ namespace Service.Services.Hr.NewEmployee
                 message: HttpStatusCode.OK.ToString());
         }
 
-        public async Task<IResult> GetEmployeeInfoNewViewAsync(string nationalId)
+        public async Task<IFinalResult> GetEmployeeInfoNewViewAsync(string nationalId)
         {
 
             var data = await _employeeRepository.GetEmployeeInfoFromNewViewAsync(nationalId);
@@ -115,7 +115,7 @@ namespace Service.Services.Hr.NewEmployee
 
         }
 
-        public async Task<IResult> GetEmployeeIdsByUnitIdAsync(string unitId)
+        public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId)
         {
 
             var ids = new List<string> { unitId };
@@ -201,7 +201,7 @@ namespace Service.Services.Hr.NewEmployee
 
 
 
-        public async Task<IResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto)
+        public async Task<IFinalResult> UpdateEmployeeImageAsync(UpdateEmployeeImageDto dto)
         {
             var entity = await _unitOfWork.GetRepository<Entities.Entities.Hr.FullEmployee>().GetAsync(dto.EmployeeId);
             entity.PhotoId = dto.NewPhotoId;
@@ -220,7 +220,7 @@ namespace Service.Services.Hr.NewEmployee
         }
 
 
-        public override async Task<IResult> AddAsync(AddMurasalatEmployeeDto model)
+        public override async Task<IFinalResult> AddAsync(AddMurasalatEmployeeDto model)
         {
             var entity = Mapper.Map<AddMurasalatEmployeeDto, Entities.Entities.Hr.FullEmployee>(model);
             var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.FullUnit>().GetAsync(model.UnitId);

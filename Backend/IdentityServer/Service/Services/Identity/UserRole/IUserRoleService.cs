@@ -7,9 +7,9 @@ namespace Service.Services.Identity.UserRole
 {
     public interface IUserRoleService : IBaseService<Entities.Entities.Identity.UserRole, AddUserRoleDto, UserRoleDto, long?>
     {
-        Task<IResult> GetByUserIdAsync(long userId, long appId);
-        Task<IResult> DeleteUserRoleAsync(AddUserRoleDto dto);
-        Task<IResult> AddMultipleRolesAsync(AddMultipleRolesDto model);
+        Task<IFinalResult> GetByUserIdAsync(long userId, long appId);
+        Task<IFinalResult> DeleteUserRoleAsync(AddUserRoleDto dto);
+        Task<IFinalResult> AddMultipleRolesAsync(AddMultipleRolesDto model);
     }
 
 }
