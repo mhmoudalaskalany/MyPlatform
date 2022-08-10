@@ -17,14 +17,14 @@ namespace UserManagement.Api.Controllers.Hr
     /// <summary>
     ///  Employees Controller
     /// </summary>
-    public class NewEmployeesController : BaseController
+    public class EmployeesController : BaseController
     {
         private readonly IEmployeeService _employeeService;
         private readonly IEmployeeValidationService _employeeValidationService;
         /// <summary>
         /// Constructor
         /// </summary>
-        public NewEmployeesController(IEmployeeService employeeService, IEmployeeValidationService employeeValidationService)
+        public EmployeesController(IEmployeeService employeeService, IEmployeeValidationService employeeValidationService)
         {
             _employeeService = employeeService;
             _employeeValidationService = employeeValidationService;

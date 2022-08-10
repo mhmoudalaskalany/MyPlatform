@@ -15,13 +15,13 @@ namespace UserManagement.Api.Controllers.Hr
     /// <summary>
     /// Units Controller
     /// </summary>
-    public class NewUnitsController : BaseController
+    public class UnitsController : BaseController
     {
         private readonly INewUnitService _unitService;
         /// <summary>
         /// Constructor
         /// </summary>
-        public NewUnitsController(INewUnitService unitService)
+        public UnitsController(INewUnitService unitService)
         {
             _unitService = unitService;
         }

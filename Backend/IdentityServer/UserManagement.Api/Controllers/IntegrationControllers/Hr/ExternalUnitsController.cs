@@ -11,13 +11,13 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
     /// <summary>
     /// External Units Controller Used By Other Services
     /// </summary>
-    public class ExternalNewUnitsController : BaseController
+    public class ExternalUnitsController : BaseController
     {
         private readonly IExternalNewUnitService _externalUnitService;
         /// <summary>
         /// constructor
         /// </summary>
-        public ExternalNewUnitsController(IExternalNewUnitService externalUnitService)
+        public ExternalUnitsController(IExternalNewUnitService externalUnitService)
         {
             _externalUnitService = externalUnitService;
         }

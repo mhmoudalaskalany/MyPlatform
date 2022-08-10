@@ -15,13 +15,13 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
     /// <summary>
     /// External Employees Controller Used By Other Services
     /// </summary>
-    public class ExternalNewEmployeesController : BaseController
+    public class ExternalEmployeesController : BaseController
     {
         private readonly IExternalEmployeeService _externalEmployeeService;
         /// <summary>
         /// constructor
         /// </summary>
-        public ExternalNewEmployeesController(IExternalEmployeeService externalEmployeeService)
+        public ExternalEmployeesController(IExternalEmployeeService externalEmployeeService)
         {
             _externalEmployeeService = externalEmployeeService;
         }
