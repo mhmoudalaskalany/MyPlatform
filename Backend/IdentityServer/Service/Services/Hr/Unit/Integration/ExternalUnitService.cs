@@ -12,7 +12,7 @@ using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.NewUnit.Integration
+namespace Service.Services.Hr.Unit.Integration
 {
     public class ExternalUnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>, IExternalUnitService
     {

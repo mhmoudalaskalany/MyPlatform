@@ -130,11 +130,10 @@ namespace Service.Services.Identity.User
 
                     if (user.PersonId != null)
                     {
-                        var employee = await _employeeUnitOfWork.GetRepository<FullEmployee>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(user.PersonId), include:
-                            src => src.Include(u => u.Unit).Include(t=>t.EmployeeTeams));
-                        claims.Add(new Claim("UnitId", !string.IsNullOrEmpty(employee?.Unit?.Id) ? employee.Unit?.Id : ""));
+                        var employee = await _employeeUnitOfWork.GetRepository<Employee>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(user.PersonId), include:
+                            src => src.Include(u => u.Unit));
+                        claims.Add(new Claim("UnitId", !string.IsNullOrEmpty(employee?.Unit?.Id.ToString()) ? employee.Unit?.Id.ToString() : ""));
                         claims.Add(new Claim("UnitType", !string.IsNullOrEmpty(employee?.Unit?.UnitType.ToString()) ? employee.Unit?.UnitType.ToString() : ""));
-                        claims.Add(new Claim("TeamId", !string.IsNullOrEmpty(employee?.EmployeeTeams?.FirstOrDefault()?.TeamId.ToString()) ? employee.EmployeeTeams?.FirstOrDefault()?.TeamId.ToString() : ""));
                     }
 
                 }

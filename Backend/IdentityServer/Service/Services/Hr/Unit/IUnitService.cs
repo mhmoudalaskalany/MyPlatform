@@ -7,7 +7,7 @@ using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.NewUnit
+namespace Service.Services.Hr.Unit
 {
     public interface IUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>
     {

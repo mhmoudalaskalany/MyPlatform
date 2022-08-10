@@ -6,7 +6,7 @@ using Domain.DTO.Base;
 using Domain.DTO.Hr.Unit;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.NewUnit.Integration
+namespace Service.Services.Hr.Unit.Integration
 {
     public interface IExternalUnitService : IBaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto , Guid>
     {

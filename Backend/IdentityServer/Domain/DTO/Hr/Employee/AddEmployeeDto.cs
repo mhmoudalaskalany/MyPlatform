@@ -15,10 +15,8 @@ namespace Domain.DTO.Hr.Employee
         public string NationalId { get; set; }
         public string Email { get; set; }
         public Guid? UnitId { get; set; }
-        public Guid? EmployeeTypeId { get; set; }
         public Guid? ManagerId { get; set; }
         public bool IsManager { get; set; }
-        public bool? IsGovernmental { get; set; }
         public Gender? Gender { get; set; }
         public MaritalStatus? MaritalStatus { get; set; }
         public Guid? NationalityId { get; set; }

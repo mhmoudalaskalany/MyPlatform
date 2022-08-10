@@ -49,11 +49,9 @@ namespace Data.Context.Identity
         #region Hr Entities
         
         public virtual DbSet<Nationality> Nationalities { get; set; }
-        public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<Unit> FullUnits { get; set; }
-        public virtual DbSet<EmployeeTeam> EmployeeTeams { get; set; }
 
         #endregion
 
@@ -78,7 +76,6 @@ namespace Data.Context.Identity
             modelBuilder.ApplyConfiguration(new RolePermissionConfig());
             modelBuilder.ApplyConfiguration(new PageConfig());
             modelBuilder.ApplyConfiguration(new PagePermissionConfig());
-            modelBuilder.ApplyConfiguration(new EmployeeTeamConfig());
 
             #endregion
 

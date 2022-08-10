@@ -12,7 +12,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.Nationality
 {
-    public class NationalityService : BaseService<Entities.Entities.Hr.Nationality, AddNationalityDto, NationalityDto, long?>, INationalityService
+    public class NationalityService : BaseService<Entities.Entities.Hr.Nationality, AddNationalityDto, NationalityDto, Guid?>, INationalityService
     {
         public NationalityService(IServiceBaseParameter<Entities.Entities.Hr.Nationality> parameters) : base(parameters)
         {

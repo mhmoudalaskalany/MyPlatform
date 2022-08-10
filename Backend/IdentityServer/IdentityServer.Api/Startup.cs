@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using AuthServer.Extensions;
 using Domain.Exceptions;
+using IdentityServer.Api.Extensions;
 using Service.DependencyExtension;
 
 namespace AuthServer

@@ -18,6 +18,5 @@ namespace Entities.Entities.Hr
         public UnitType? UnitType { get; set; }
         public virtual ICollection<Unit> Children { get; set; } = new Collection<Unit>();
         public virtual ICollection<Employee> Employees { get; set; } = new Collection<Employee>();
-        public virtual ICollection<Team> Teams { get; set; } = new Collection<Team>();
     }
 }

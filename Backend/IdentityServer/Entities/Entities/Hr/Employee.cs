@@ -26,15 +26,11 @@ namespace Entities.Entities.Hr
         public bool? Retired { get; set; }
         public Guid? NationalityId { get; set; }
         public virtual Nationality Nationality { get; set; }
-        public Guid? EmployeeTypeId { get; set; }
-        public virtual EmployeeType EmployeeType { get; set; }
         public Guid? ManagerId { get; set; }
         public virtual Employee Manager { get; set; }
         public virtual ICollection<Employee> ManagerEmployees { get; set; } = new Collection<Employee>();
         public Guid UnitId { get; set; }
         public virtual Unit Unit { get; set; }
-        public Guid? TeamId { get; set; }
-        public virtual Team Team { get; set; }
         public Guid? PhotoId { get; set; }
 
     }

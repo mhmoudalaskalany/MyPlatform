@@ -2,13 +2,11 @@
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
-using Domain.DTO.Hr.FullEmployee;
-using Domain.DTO.Hr.FullEmployee.Parameters;
+using Domain.DTO.Hr.Employee;
+using Domain.DTO.Hr.Employee.Parameters;
 using Entities.Enum;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.Hr.Employee;
-using Service.Services.Hr.NewEmployee;
 using Service.Services.Validators.Services.Employee;
 using UserManagement.Api.Controllers.Base;
 
@@ -40,31 +38,7 @@ namespace UserManagement.Api.Controllers.Hr
             var result = await _employeeService.GetByIdAsync(id);
             return result;
         }
-        /// <summary>
-        /// Get Employee Info From Oracle DB
-        /// </summary>
-        /// <param name="nationalId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("GetEmployeeInfo/{nationalId}")]
-        public async Task<IFinalResult> GetEmployeeInfoAsync(string nationalId)
-        {
-            var result = await _employeeService.GetEmployeeInfoAsync(nationalId);
-            return result;
-        }
-        /// <summary>
-        /// Get Employee Info From Oracle DB
-        /// </summary>
-        /// <param name="nationalId"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("GetEmployeeInfoFromOracle/{nationalId}")]
-        public async Task<IFinalResult> GetEmployeeInfoFromOracleAsync(string nationalId)
-        {
-            var result = await _employeeService.GetEmployeeInfoNewViewAsync(nationalId);
-            return result;
-        }
+  
         /// <summary>
         /// 
         /// </summary>
@@ -153,17 +127,7 @@ namespace UserManagement.Api.Controllers.Hr
             return result;
         }
 
-        /// <summary>
-        /// Update Employee Image
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <returns></returns>
-        [HttpPut]
-        [Route("UpdateEmployeeImage")]
-        public async Task<IFinalResult> UpdateEmployeeImageAsync([FromBody] UpdateEmployeeImageDto dto)
-        {
-            return await _employeeService.UpdateEmployeeImageAsync(dto);
-        }
+    
 
 
         /// <summary>
@@ -198,7 +162,7 @@ namespace UserManagement.Api.Controllers.Hr
         [HttpPost]
         [Route("GetPaged")]
         //[Authorize(policy: Permission.Permissions.View)]
-        public async Task<DataPaging> GetPaged([FromBody] BaseParam<NewEmployeeFilter> filter)
+        public async Task<DataPaging> GetPaged([FromBody] BaseParam<EmployeeFilter> filter)
         {
             return await _employeeService.GetAllPagedAsync(filter);
         }
@@ -234,7 +198,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("Add")]
-        public async Task<IFinalResult> PostAsync([FromBody] AddMurasalatEmployeeDto dto)
+        public async Task<IFinalResult> PostAsync([FromBody] AddEmployeeDto dto)
         {
             var result = await _employeeService.AddAsync(dto);
             return result;
@@ -248,7 +212,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpPut]
         [Route("Update")]
-        public async Task<IFinalResult> Update(AddMurasalatEmployeeDto model)
+        public async Task<IFinalResult> Update(AddEmployeeDto model)
         {
             return await _employeeService.UpdateAsync(model);
         }

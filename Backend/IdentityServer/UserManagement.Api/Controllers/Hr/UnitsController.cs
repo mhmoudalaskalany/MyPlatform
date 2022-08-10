@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Unit;
@@ -6,7 +7,7 @@ using Domain.DTO.Hr.Unit.Parameters;
 using Entities.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Service.Services.Hr.NewUnit;
+using Service.Services.Hr.Unit;
 using UserManagement.Api.Controllers.Base;
 
 namespace UserManagement.Api.Controllers.Hr
@@ -66,7 +67,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnitOrTeam/{id}/{unitType}")]
-        public async Task<IFinalResult> GetUnitOrTeamAsync(string id , UnitType unitType)
+        public async Task<IFinalResult> GetUnitOrTeamAsync(Guid id , UnitType unitType)
         {
             var result = await _unitService.GetUnitOrTeamAsync(id , unitType);
             return result;
@@ -103,7 +104,7 @@ namespace UserManagement.Api.Controllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetSectionsByEmployeeSectionId/{sectionId}")]
-        public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(string sectionId)
+        public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(Guid sectionId)
         {
             var result = await _unitService.GetSectionsByEmployeeSectionIdAsync(sectionId);
             return result;

@@ -24,7 +24,6 @@ namespace Domain.DTO.Hr.Employee
         public bool IsManager { get; set; }
         public bool IsRetired { get; set; }
         public bool IsTeamManager { get; set; }
-        public Guid? TeamId { get; set; }
         public EmployeeDto Manager { get; set; }
         public UnitDto Unit { get; set; }
         public MaritalStatus? MaritalStatus { get; set; }

@@ -1,22 +1,16 @@
 ﻿using System.Reflection;
 using AuthServer.Config;
+using AuthServer.Extensions;
 using AutoMapper;
 using Data.Context.Identity;
 using Data.DataInitializer;
-using Data.Repository.ActiveDirectory;
-using Data.Repository.Employee;
-using Data.Repository.User;
 using Data.UnitOfWork;
-using Domain.Abstraction.ActiveDirectory;
-using Domain.Abstraction.Repository.Employee;
-using Domain.Abstraction.Repository.User;
 using Domain.Abstraction.UnitOfWork;
 using Domain.Extensions;
 using Entities.Entities.Identity;
 using IdentityServer4.Services;
 using Integration.FileRepository;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +21,7 @@ using Service.Services.Identity.User;
 using Service.Services.Identity.UserApp;
 using Service.Services.Validators.Base;
 
-namespace AuthServer.Extensions
+namespace IdentityServer.Api.Extensions
 {
     /// <summary>
     /// Dependency Extensions
@@ -45,7 +39,6 @@ namespace AuthServer.Extensions
         {
             services.RegisterDbContext(configuration);
             services.RegisterCores();
-            services.RegisterRepository();
             services.ConfigureNonBreakingSameSiteCookies();
             services.RegisterIdentity();
             services.ConfigureIIsOptions();
@@ -130,10 +123,10 @@ namespace AuthServer.Extensions
 
                 })
                 .AddProfileService<IdentityClaimsProfileService>()
-                .AddInMemoryApiScopes(Config.Config.GetApiScopes())
-                .AddInMemoryIdentityResources(Config.Config.GetIdentityResources())
-                .AddInMemoryApiResources(Config.Config.GetApiResources())
-                .AddInMemoryClients(Config.Config.GetClients(env,configuration))
+                .AddInMemoryApiScopes(AuthServer.Config.Config.GetApiScopes())
+                .AddInMemoryIdentityResources(AuthServer.Config.Config.GetIdentityResources())
+                .AddInMemoryApiResources(AuthServer.Config.Config.GetApiResources())
+                .AddInMemoryClients(AuthServer.Config.Config.GetClients(env,configuration))
                 .AddAspNetIdentity<User>()
                 .GetIdentityServerCertificate(configuration["Certificates:Signing"],
                 configuration["Certificates:Password"] , configuration);
@@ -156,17 +149,7 @@ namespace AuthServer.Extensions
             services.AddAutoMapper(typeof(MappingService));
 
         }
-        /// <summary>
-        /// Register Custom Repositories
-        /// </summary>
-        /// <param name="services"></param>
-
-        private static void RegisterRepository(this IServiceCollection services)
-        {
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IActiveDirectoryRepository, ActiveDirectoryRepository>();
-        }
+      
         /// <summary>
         /// register Integration Repositories
         /// </summary>

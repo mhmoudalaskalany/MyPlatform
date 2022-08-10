@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
-using Domain.Abstraction.UnitOfWork;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Unit;
@@ -14,14 +13,12 @@ using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.NewUnit
+namespace Service.Services.Hr.Unit
 {
     public class UnitService : BaseService<Entities.Entities.Hr.Unit, AddUnitDto, UnitDto, Guid>, IUnitService
     {
-        private readonly IUnitOfWork<Entities.Entities.Hr.Team> _teamUnitOfWork;
-        public UnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters, IUnitOfWork<Entities.Entities.Hr.Team> teamUnitOfWork) : base(parameters)
+        public UnitService(IServiceBaseParameter<Entities.Entities.Hr.Unit> parameters) : base(parameters)
         {
-            _teamUnitOfWork = teamUnitOfWork;
         }
 
         #region Public Methods
@@ -155,18 +152,8 @@ namespace Service.Services.Hr.NewUnit
 
         public async Task<IFinalResult> GetSectionsByEmployeeSectionIdAsync(Guid sectionId)
         {
-
-
             var query = await UnitOfWork.Repository.FindAsync(await SectionsPredicateBuilderFunction(sectionId));
-            // get teams under the section and return it as unit dto to be show in in the drop down so manager can select it
-            var teams = await _teamUnitOfWork.Repository.FindAsync(TeamsPredicateBuilderFunction(sectionId));
-            var teamsDtos = Mapper.Map<IEnumerable<Entities.Entities.Hr.Team>, List<UnitDto>>(teams);
-            teamsDtos.ForEach(e =>
-            {
-                e.UnitType = UnitType.Team;
-            });
             var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Unit>, List<UnitDto>>(query);
-            data.AddRange(teamsDtos);
             return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
                 message: HttpStatusCode.OK.ToString());
         }
@@ -179,17 +166,11 @@ namespace Service.Services.Hr.NewUnit
         /// <returns></returns>
         public async Task<IFinalResult> GetUnitOrTeamAsync(Guid id, UnitType unitType)
         {
-            dynamic unit;
-            if (unitType == UnitType.Team)
-            {
-                unit = await _teamUnitOfWork.Repository.GetAsync(id);
-            }
-            else
-            {
-                unit = await UnitOfWork.Repository.GetAsync(id);
-            }
 
-            var data = Mapper.Map<dynamic, UnitDto>(unit);
+            var unit = await UnitOfWork.Repository.GetAsync(id);
+
+
+            var data = Mapper.Map<Entities.Entities.Hr.Unit, UnitDto>(unit);
 
             return ResponseResult.PostResult(data, HttpStatusCode.OK);
         }
@@ -322,20 +303,7 @@ namespace Service.Services.Hr.NewUnit
 
             return predicate;
         }
-        /// <summary>
-        /// Teams Predicate
-        /// </summary>
-        /// <param name="sectionId"></param>
-        /// <returns></returns>
-        Expression<Func<Entities.Entities.Hr.Team, bool>> TeamsPredicateBuilderFunction(Guid sectionId)
-        {
-            var predicate = PredicateBuilder.New<Entities.Entities.Hr.Team>(x => x.UnitId == sectionId);
-            if (!string.IsNullOrEmpty(ClaimData.TeamId))
-            {
-                predicate = predicate.And(x => x.Id != Guid.Parse(ClaimData.TeamId));
-            }
-            return predicate;
-        }
+   
 
         #endregion
 

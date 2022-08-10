@@ -124,7 +124,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         [HttpPost]
         [AllowAnonymous]
         [Route("GetTeamManagerPhone")]
-        public async Task<IFinalResult> GetTeamManagerPhoneAsync([FromBody] long teamId)
+        public async Task<IFinalResult> GetTeamManagerPhoneAsync([FromBody] Guid teamId)
         {
             var result = await _externalEmployeeService.GetTeamManagerPhone(teamId);
             return result;

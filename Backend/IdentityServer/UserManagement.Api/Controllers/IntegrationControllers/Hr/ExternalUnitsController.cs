@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Microsoft.AspNetCore.Mvc;
-using Service.Services.Hr.NewUnit.Integration;
+using Service.Services.Hr.Unit.Integration;
 using UserManagement.Api.Controllers.Base;
 
 namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
