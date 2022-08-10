@@ -116,19 +116,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
             var result = await _externalEmployeeService.GetUnitManagersPhonesByUnitIdsAsync(dtos);
             return result;
         }
-        /// <summary>
-        /// Get Unit Managers Phones Numbers Using List Of Unit Or Team Ids ( Used In Omsgd Services )
-        /// </summary>
-        /// <param name="teamId"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [AllowAnonymous]
-        [Route("GetTeamManagerPhone")]
-        public async Task<IFinalResult> GetTeamManagerPhoneAsync([FromBody] Guid teamId)
-        {
-            var result = await _externalEmployeeService.GetTeamManagerPhone(teamId);
-            return result;
-        }
+        
 
         /// <summary>
         /// Get Employees By UnitId Or Team Id ( used For Omsgd Services )

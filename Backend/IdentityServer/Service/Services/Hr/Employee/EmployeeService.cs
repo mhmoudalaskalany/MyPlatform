@@ -10,7 +10,6 @@ using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
 using Domain.DTO.Hr.Employee.Parameters;
 using Domain.Helper.HttpClient;
-using Entities.Entities.Hr;
 using Entities.Enum;
 using Integration.FileRepository;
 using LinqKit;
@@ -26,7 +25,7 @@ namespace Service.Services.Hr.Employee
         private readonly IFileRepository _fileRepository;
         private readonly IUnitOfWork<Entities.Entities.Hr.Unit> _unitOfWork;
 
-        public EmployeeService(IServiceBaseParameter<Entities.Entities.Hr.Employee> parameters,  IUnitOfWork<Entities.Entities.Hr.Unit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
+        public EmployeeService(IServiceBaseParameter<Entities.Entities.Hr.Employee> parameters, IUnitOfWork<Entities.Entities.Hr.Unit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
         {
             _unitOfWork = unitOfWork;
             _fileRepository = fileRepository;
@@ -55,19 +54,9 @@ namespace Service.Services.Hr.Employee
         public async Task<IFinalResult> GetUnitManagerAsync(string unitId, UnitType? unitType)
         {
             Entities.Entities.Hr.Employee employee;
-            // if user have a team id get the employee according to team if
-            if (unitType == UnitType.Team)
-            {
-                var team = await UnitOfWork.GetRepository<EmployeeTeam>()
-                    .FirstOrDefaultAsync(x => x.TeamId == Guid.Parse(unitId) && x.IsTeamManager);
-                employee =
-                    await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == team.EmployeeId);
-            }
-            else
-            {
-                employee =
-                    await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.UnitId == Guid.Parse(unitId) && x.IsManager == true);
-            }
+
+            employee =
+                await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.UnitId == Guid.Parse(unitId) && x.IsManager == true);
 
             var data = Mapper.Map<Entities.Entities.Hr.Employee, EmployeeDto>(employee);
             return new ResponseResult(data, HttpStatusCode.OK);
@@ -93,13 +82,13 @@ namespace Service.Services.Hr.Employee
             return new ResponseResult(data, HttpStatusCode.OK);
         }
 
-        
+
         public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId)
         {
 
             var ids = new List<Guid> { Guid.Parse(unitId) };
 
-            var unit = await _unitOfWork.Repository.FirstOrDefaultAsync(x => x.Id ==Guid.Parse(unitId));
+            var unit = await _unitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == Guid.Parse(unitId));
             //  ,include: src => src.Include(sb => sb.SubUnits));
             await GetChildren(unit, ids);
             var employees = await UnitOfWork.Repository.FindAsync(x => ids.Contains(x.UnitId));
@@ -180,7 +169,7 @@ namespace Service.Services.Hr.Employee
 
 
 
-      
+
 
 
         public override async Task<IFinalResult> AddAsync(AddEmployeeDto model)
@@ -189,7 +178,7 @@ namespace Service.Services.Hr.Employee
             entity.Id = Guid.NewGuid();
             UnitOfWork.Repository.Add(entity);
             await UnitOfWork.SaveChanges();
-            return ResponseResult.PostResult(true, HttpStatusCode.Created,null , "AddSuccess");
+            return ResponseResult.PostResult(true, HttpStatusCode.Created, null, "AddSuccess");
 
         }
 

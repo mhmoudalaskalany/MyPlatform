@@ -8,7 +8,6 @@ using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Hr.Employee;
 using Domain.DTO.Integration.ItHelpDesk.Ticket;
-using Entities.Entities.Hr;
 using Entities.Enum;
 using LinqKit;
 using Microsoft.EntityFrameworkCore;
@@ -152,52 +151,20 @@ namespace Service.Services.Hr.Employee.Integration
         {
             var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().GetAsync(unitId);
             List<Entities.Entities.Hr.Employee> entities;
-            if (!string.IsNullOrEmpty(ClaimData.TeamId))
-            {
-                var team = await UnitOfWork.GetRepository<EmployeeTeam>()
-                    .FindAsync(x => x.TeamId == Guid.Parse(ClaimData.TeamId) && x.IsTeamManager == false);
 
-                var empIds = team.Select(x => x.EmployeeId).ToList();
+            
+            
 
-                entities = (await UnitOfWork.Repository.FindAsync(x =>
-                    empIds.Contains(x.Id))).ToList();
-            }
-            else
-            {
-                // get unit teams and exclude all employees in these teams from response
-                var unitTeams = await UnitOfWork.GetRepository<Entities.Entities.Hr.Team>().FindAsync(x => x.UnitId == Guid.Parse(unitId));
+            entities = (await UnitOfWork.Repository.FindAsync(x => x.UnitId == Guid.Parse(unitId))).ToList();
 
-                var teamIds = unitTeams.Select(x => x.Id).ToList();
+            var hos = await GetHeadOfSections(unit);
 
-                var teamEmployees = await UnitOfWork.GetRepository<EmployeeTeam>().FindAsync(x => teamIds.Contains(x.TeamId));
+            entities.AddRange(hos);
 
-                var excludedEmployeeIds = teamEmployees.Select(x => x.EmployeeId).ToList();
-
-                entities = (await UnitOfWork.Repository.FindAsync(x => x.UnitId == Guid.Parse(unitId) && !excludedEmployeeIds.Contains(x.Id))).ToList();
-
-                var hos = await GetHeadOfSections(unit);
-
-                entities.AddRange(hos);
-            }
             var data = Mapper.Map<IEnumerable<Entities.Entities.Hr.Employee>, IEnumerable<EmployeeDto>>(entities);
             return new ResponseResult(data, HttpStatusCode.OK);
         }
-        /// <summary>
-        /// Get Team Manager Phone
-        /// </summary>
-        /// <param name="teamId"></param>
-        /// <returns></returns>
-        public async Task<IFinalResult> GetTeamManagerPhone(Guid teamId)
-        {
-            var teamManager =
-                await UnitOfWork.GetRepository<EmployeeTeam>().FirstOrDefaultAsync(t => t.TeamId ==  teamId && t.IsTeamManager);
-
-            var manager = await UnitOfWork.Repository.GetAsync(teamManager.EmployeeId);
-
-            var data = Mapper.Map<Entities.Entities.Hr.Employee, EmployeeDto>(manager);
-
-            return new ResponseResult(data.PhoneNumber, HttpStatusCode.OK, null, "Data Retrieved Successfully");
-        }
+       
         /// <summary>
         /// Get Employees Phones By Role Code (Used By Legal Affairs)
         /// </summary>
@@ -317,7 +284,7 @@ namespace Service.Services.Hr.Employee.Integration
                     message: HttpStatusCode.OK.ToString());
             }
 
-            var ids = new List<Guid> { Guid.Parse(unitId)};
+            var ids = new List<Guid> { Guid.Parse(unitId) };
 
             var unit = await UnitOfWork.GetRepository<Entities.Entities.Hr.Unit>().FirstOrDefaultAsync(x => x.Id == Guid.Parse(unitId));
             //   , include: src => src.Include(sb => sb.SubUnits)

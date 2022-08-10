@@ -44,12 +44,6 @@ namespace Service.Services.Hr.Employee.Integration
 
         Task<IFinalResult> GetEmployeesByUnitOrTeamIdAsync(string unitId);
         /// <summary>
-        /// Get the team manager phone Id
-        /// </summary>
-        /// <param name="teamId"></param>
-        /// <returns></returns>
-        Task<IFinalResult> GetTeamManagerPhone(Guid teamId);
-        /// <summary>
         /// Get Employees Phones By Role Code (Used By Legal Affairs)
         /// </summary>
         /// <param name="roleCode"></param>

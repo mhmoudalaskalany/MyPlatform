@@ -10,7 +10,6 @@ namespace Service.Mapping
             MapUnit();
             MapEmployee();
             MapNationality();
-            MapTeam();
 
             #endregion
 

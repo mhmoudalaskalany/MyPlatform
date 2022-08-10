@@ -13,9 +13,6 @@ namespace Service.Mapping
 
             CreateMap<Unit, UnitDto>();
 
-
-            CreateMap<Team, UnitDto>();
-
             CreateMap<dynamic, UnitDto>();
         }
     }
