@@ -1,0 +1,390 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IdentityServer.Api</name>
+    </assembly>
+    <members>
+        <member name="T:AuthServer.Config.Config">
+            <summary>
+            Identity Server Config Class
+            </summary>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetClients(System.String,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Get Clients According To Environment
+            </summary>
+            <param name="env"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetIdentityResources">
+            <summary>
+            Get Identity Resources
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetApiScopes">
+            <summary>
+            Define Api Scopes To be Used In Api Resources
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetApiResources">
+            <summary>
+            Get Api Resources
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetDevClients(System.String)">
+            <summary>
+            Get Clients Development
+            </summary>
+            <param name="devHost"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetProdClients(System.String)">
+            <summary>
+            Get Clients Production For Same Port
+            </summary>
+            <param name="devHost"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetStageClients(System.String)">
+            <summary>
+            Get Clients Production For Different Ports
+            </summary>
+            <param name="devHost"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Config.Config.GetIdentityServerCertificate(Microsoft.Extensions.DependencyInjection.IIdentityServerBuilder,System.String,System.String,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Get Certificate
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:AuthServer.Controllers.Base.BaseController">
+            <summary>
+            Base Controller
+            </summary>
+        </member>
+        <member name="M:AuthServer.Controllers.Base.BaseController.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="T:AuthServer.Extensions.ConfigureExtension">
+            <summary>
+            Pipeline Extensions
+            </summary>
+        </member>
+        <member name="M:AuthServer.Extensions.ConfigureExtension.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            General Configuration Method
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.Extensions.ConfigureExtension.ConfigureCors(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Configure Cors
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:AuthServer.Extensions.ConfigureExtension.CreateDatabase(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Create Database From Migration
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:AuthServer.Extensions.ConfigureExtension.SwaggerConfig(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            User Swagger
+            </summary>
+            <param name="app"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="T:AuthServer.Extensions.HttpResponseExtensions">
+            <summary>
+            Http Response Extensions
+            </summary>
+        </member>
+        <member name="M:AuthServer.Extensions.HttpResponseExtensions.AddApplicationError(Microsoft.AspNetCore.Http.HttpResponse,System.String)">
+            <summary>
+            Add Error
+            </summary>
+            <param name="response"></param>
+            <param name="message"></param>
+        </member>
+        <member name="F:AuthServer.Extensions.SameSiteCookiesServiceCollectionExtensions.Unspecified">
+            <summary>
+            -1 defines the unspecified value, which tells ASPNET Core to NOT
+            send the SameSite attribute. With ASPNET Core 3.1 the
+            <seealso cref="T:Microsoft.AspNetCore.Http.SameSiteMode" /> enum will have a definition for
+            Unspecified.
+            </summary>
+        </member>
+        <member name="M:AuthServer.Extensions.SameSiteCookiesServiceCollectionExtensions.ConfigureNonBreakingSameSiteCookies(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures a cookie policy to properly set the SameSite attribute
+            for Browsers that handle unknown values as Strict. Ensure that you
+            add the <seealso cref="T:Microsoft.AspNetCore.CookiePolicy.CookiePolicyMiddleware" />
+            into the pipeline before sending any cookies!
+            </summary>
+            <remarks>
+            Minimum ASPNET Core Version required for this code:
+              - 2.1.14
+              - 2.2.8
+              - 3.0.1
+              - 3.1.0-preview1
+            Starting with version 80 of Chrome (to be released in February 2020)
+            cookies with NO SameSite attribute are treated as SameSite=Lax.
+            In order to always get the cookies send they need to be set to
+            SameSite=None. But since the current standard only defines Lax and
+            Strict as valid values there are some browsers that treat invalid
+            values as SameSite=Strict. We therefore need to check the browser
+            and either send SameSite=None or prevent the sending of SameSite=None.
+            Relevant links:
+            - https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-4.1
+            - https://tools.ietf.org/html/draft-west-cookie-incrementalism-00
+            - https://www.chromium.org/updates/same-site
+            - https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
+            - https://bugs.webkit.org/show_bug.cgi?id=198181
+            </remarks>
+            <param name="services">The service collection to register <see cref="T:Microsoft.AspNetCore.Builder.CookiePolicyOptions" /> into.</param>
+            <returns>The modified <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection" />.</returns>
+        </member>
+        <member name="M:AuthServer.Extensions.SameSiteCookiesServiceCollectionExtensions.DisallowsSameSiteNone(System.String)">
+            <summary>
+            Checks if the UserAgent is known to interpret an unknown value as Strict.
+            For those the <see cref="P:Microsoft.AspNetCore.Http.CookieOptions.SameSite" /> property should be
+            set to <see cref="F:AuthServer.Extensions.SameSiteCookiesServiceCollectionExtensions.Unspecified" />.
+            </summary>
+            <remarks>
+            This code is taken from Microsoft:
+            https://devblogs.microsoft.com/aspnet/upcoming-samesite-cookie-changes-in-asp-net-and-asp-net-core/
+            </remarks>
+            <param name="userAgent">The user agent string to check.</param>
+            <returns>Whether the specified user agent (browser) accepts SameSite=None or not.</returns>
+        </member>
+        <member name="T:AuthServer.Program">
+            <summary>
+            Kick Off
+            </summary>
+        </member>
+        <member name="P:AuthServer.Program.Configuration">
+            <summary>
+            Configuration Properties
+            </summary>
+        </member>
+        <member name="M:AuthServer.Program.Main(System.String[])">
+            <summary>
+            Entry Point
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:AuthServer.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Build Web Host
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AuthServer.WebHostBuilderExtensions.UseHttpSysOrIisIntegration(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            For Self Hosting
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:AuthServer.Startup">
+            <summary>
+            Start Up
+            </summary>
+        </member>
+        <member name="P:AuthServer.Startup.Configuration">
+            <summary>
+            Public Property for configuration
+            </summary>
+        </member>
+        <member name="P:AuthServer.Startup.Environment">
+            <summary>
+            Public Property for environment
+            </summary>
+        </member>
+        <member name="M:AuthServer.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration"></param>
+            <param name="environment"></param>
+        </member>
+        <member name="M:AuthServer.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure Services
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:AuthServer.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configure Pipeline
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+        <member name="T:IdentityServer.Api.Controllers.AccountsController">
+            <summary>
+            Accounts Controller
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.#ctor(IdentityServer4.Services.IIdentityServerInteractionService,Microsoft.AspNetCore.Identity.UserManager{Entities.Entities.Identity.User},IdentityServer4.Services.IEventService,Microsoft.AspNetCore.Identity.SignInManager{Entities.Entities.Identity.User},Service.Services.Identity.Account.IAccountService,Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Authentication.IAuthenticationSchemeProvider,IdentityServer4.Stores.IClientStore)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="interaction"></param>
+            <param name="userManager"></param>
+            <param name="events"></param>
+            <param name="signInManager"></param>
+            <param name="accountService"></param>
+            <param name="configuration"></param>
+            <param name="schemeProvider"></param>
+            <param name="clientStore"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.Login(System.String)">
+            <summary>
+            Entry point into the login workflow
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.Login(Domain.DTO.Identity.User.LoginInputModel)">
+            <summary>
+            Handle post-back from username/password login
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.ExternalLogin(System.String,System.String)">
+            <summary>
+            initiate roundtrip to external authentication provider
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.ExternalLoginCallback">
+            <summary>
+            Post processing of external authentication
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.Logout(System.String)">
+            <summary>
+            Logout
+            </summary>
+            <param name="logoutId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.ChangePassword">
+            <summary>
+            Change Password View
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.ChangePassword(Domain.DTO.Identity.User.ChangePasswordDto)">
+            <summary>
+            Change Password Submit
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.ResetPassword">
+            <summary>
+            Reset Password View
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.ResetPassword(Domain.DTO.Identity.User.ResetPasswordDto)">
+            <summary>
+            Reset Password Submit
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.AccountsController.CompleteResetPassword(Domain.DTO.Identity.User.CompleteResetPasswordDto)">
+            <summary>
+            Reset Password Submit
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer.Api.Controllers.HomeController">
+            <summary>
+            Home Controller
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.HomeController.#ctor(IdentityServer4.Services.IIdentityServerInteractionService,Microsoft.Extensions.Logging.ILogger{IdentityServer.Api.Controllers.HomeController})">
+            <summary>
+            Constructor
+            </summary>
+            <param name="interaction"></param>
+            <param name="logger"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.HomeController.Index">
+            <summary>
+            Index
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Controllers.HomeController.Error(System.String)">
+            <summary>
+            Error Page
+            </summary>
+            <param name="errorId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IdentityServer.Api.Extensions.ConfigureServiceExtension">
+            <summary>
+            Dependency Extensions
+            </summary>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Register Extensions
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.RegisterDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add DbContext
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.ConfigureIIsOptions(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configure IIS Options For Windows Authentication
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            register auto-mapper
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.RegisterIntegrationRepositories(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            register Integration Repositories
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.RegisterValidators(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Business Validators
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:IdentityServer.Api.Extensions.ConfigureServiceExtension.RegisterCores(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Register Main Core
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>

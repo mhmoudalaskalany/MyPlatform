@@ -7,7 +7,7 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile></DocumentationFile>
+		<DocumentationFile>IdentityServer.Api.xml</DocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup>
 		<PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
@@ -51,6 +51,9 @@
 		</None>
 		<None Update="Certificates\IdentityServerCert.pfx">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="IdentityServer.Api.xml">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
 
