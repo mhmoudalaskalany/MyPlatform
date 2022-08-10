@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{87F72534-8C84-4CD5-8867-5AFEF7B11476}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Api", "IdentityServer\IdentityServer.Api.csproj", "{01EE9189-D38B-4BCC-9DD6-4CCF0E723C08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer.Api", "IdentityServer.Api\IdentityServer.Api.csproj", "{01EE9189-D38B-4BCC-9DD6-4CCF0E723C08}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement.Api", "UserManagement.Api\UserManagement.Api.csproj", "{28EAF10C-5E61-4B82-AB96-CEC66F069098}"
 EndProject
