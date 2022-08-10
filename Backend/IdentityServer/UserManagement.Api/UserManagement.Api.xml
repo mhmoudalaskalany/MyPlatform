@@ -57,151 +57,20 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.BudgetsController">
-            <summary>
-            Budgets Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.#ctor(Service.Services.Hr.Budget.IBudgetService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.GetEdit(System.Int64)">
-            <summary>
-            Get By Id For Edit
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.GetPaged(Domain.DTO.Base.BaseParam{Domain.DTO.Hr.Budget.Parameters.BudgetFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.PostAsync(Domain.DTO.Hr.Budget.AddBudgetDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.Update(Domain.DTO.Hr.Budget.AddBudgetDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.Remove(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.BudgetsController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.CardReportsController">
-            <summary>
-            Cards Report Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardReportsController.#ctor(Service.Services.Hr.Card.Reports.ICardReportService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardReportsController.GetGeneralReportAsync(Domain.DTO.Hr.Card.GeneralReportFilter)">
-            <summary>
-            Get General Report
-            /// </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.CardsController">
-            <summary>
-            Cards Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardsController.#ctor(Service.Services.Hr.Card.ICardService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardsController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardsController.GetByEmployeeIdAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardsController.AddCardAsync(Domain.DTO.Hr.Card.AddCardDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.CardsController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
         <member name="T:UserManagement.Api.Controllers.Hr.EmployeesController">
             <summary>
              Employees Controller
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.#ctor(Service.Services.Hr.Employee.IEmployeeService)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.#ctor(Service.Services.Hr.Employee.IEmployeeService,Service.Services.Validators.Services.Employee.IEmployeeValidationService)">
             <summary>
             Constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetAsync(System.Guid)">
             <summary>
             Get By Id 
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetUserInfoAsync(System.String)">
-            <summary>
-            Get Employee Info From Oracle DB
-            </summary>
-            <param name="nationalId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetEmployeeInfoAsync(System.String)">
-            <summary>
-            Get Employee Info From Oracle DB
-            </summary>
-            <param name="nationalId"></param>
             <returns></returns>
         </member>
         <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetEmployeeCountAsync">
@@ -210,21 +79,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetEditAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetEditAsync(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetViewAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetViewAsync(System.Guid)">
             <summary>
             Get By Id For View
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.CheckNationalIdAsync(System.String,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.CheckNationalIdAsync(System.String,System.Guid)">
             <summary>
             Check If National Id Is Available Or Not
             </summary>
@@ -232,7 +101,15 @@
             <param name="employeeId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.CheckEmailAsync(System.String,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.CheckFileNumberAsync(System.String,System.Guid)">
+            <summary>
+            Check If File Number Is Available Or Not
+            </summary>
+            <param name="fileNumber"></param>
+            <param name="employeeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.CheckEmailAsync(System.String,System.Guid)">
             <summary>
             Check If Email Is Available Or Not
             </summary>
@@ -240,13 +117,13 @@
             <param name="employeeId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetEmployeeIdsByUnitIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetEmployeeIdsByUnitIdAsync(System.String)">
             <summary>
             Get employee Ids by Unit Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetUnitManagerAsync(System.Int64,System.Nullable{Entities.Enum.UnitType})">
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetUnitManagerAsync(System.String,System.Nullable{Entities.Enum.UnitType})">
             <summary>
             Get employee Ids by Unit Id 
             </summary>
@@ -267,7 +144,14 @@
         </member>
         <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetDropDown(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
             <summary>
-            
+            For Search
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.GetDropDownForHrAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get Drop Down For Vaccination And Hr Systems
             </summary>
             <param name="filter"></param>
             <returns></returns>
@@ -284,410 +168,6 @@
             Update  
             </summary>
             <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.UpdateEmployeeUnit(Domain.DTO.Hr.Employee.EmployeeUnitDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.EmployeesController.Remove(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.FullEmployeesController">
-            <summary>
-            Full Employees Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.#ctor(Service.Services.Hr.FullEmployee.IFullEmployeeService,Service.Services.Hr.Employee.IEmployeeService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-            
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.ConfirmPhoneNumberAsync(System.String,System.String,Entities.Enum.DoseStatus)">
-            <summary>
-            Get By NationalId 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.ConfirmOtpAsync(System.String,System.String,System.String,Entities.Enum.DoseStatus)">
-            <summary>
-            Get By NationalId 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetEmployeesStatusCountAsync">
-             <summary>
-            GetLawsuitStatusCount
-             /// </summary>
-             <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.DeleteCertificateAsync(System.Guid)">
-            <summary>
-            Delete  
-            </summary>
-            <param name="id">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetEmployeeDetailsByFileIdAsync(System.Guid)">
-            <summary>
-            Get Employee Details By File Id
-            </summary>
-            <param name="fileId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.DeleteCertificateByAttachmentIdAsync(System.Guid)">
-            <summary>
-            Delete By Attachment Id  
-            </summary>
-            <param name="id">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetEmployeeVaccinationReportAsync(Domain.DTO.Hr.FullEmployee.Parameters.EmployeeVaccinationReportFilter)">
-            <summary>
-            Get Unit Tasks 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetPagedAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Get All Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.GetDropDownAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Get All Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.AddAsync(Domain.DTO.Hr.FullEmployee.AddFullEmployeeDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.UpdateAsync(Domain.DTO.Hr.FullEmployee.AddFullEmployeeDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.UpdateEmployeeImageAsync(Domain.DTO.Hr.FullEmployee.UpdateEmployeeImageDto)">
-            <summary>
-            Update Employee Image
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.AddExceptionAsync(Domain.DTO.Hr.FullEmployee.AddFullEmployeeDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.DeleteAsync(System.Guid)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullEmployeesController.DeleteSoftAsync(System.Guid)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.FullUnitsController">
-            <summary>
-            Units Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.#ctor(Service.Services.Hr.FullUnit.IFullUnitService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.GetAsync(System.String)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-            
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.GetUnitsCountAsync">
-            <summary>
-            Get Count For Dashboard 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.TransformAsync">
-            <summary>
-            Transform Name To Full Name
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.GetPaged(Domain.DTO.Base.BaseParam{Domain.DTO.Hr.FullUnit.Parameters.FullUnitFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.GetDropDownAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Get All Data paged For Drop Down
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.AddAsync(Domain.DTO.Hr.FullUnit.AddFullUnitDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.UpdateAsync(Domain.DTO.Hr.FullUnit.AddFullUnitDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.DeleteAsync(System.String)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.FullUnitsController.DeleteSoftAsync(System.String)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.GeneralController">
-            <summary>
-            General Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GeneralController.#ctor(Service.Services.Hr.General.IGeneralService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GeneralController.SendSmsFromExcelAsync">
-            <summary>
-            Send SMS From Excel
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.GradesController">
-            <summary>
-            Grades Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.#ctor(Service.Services.Hr.Grade.IGradeService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.GetEdit(System.Int64)">
-            <summary>
-            Get By Id For Edit
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.GetPaged(Domain.DTO.Base.BaseParam{Domain.DTO.Hr.Grade.Parameters.GradeFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.PostAsync(Domain.DTO.Hr.Grade.AddGradeDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.Update(Domain.DTO.Hr.Grade.AddGradeDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.Remove(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.GradesController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.LeavesController">
-            <summary>
-             Leaves Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.LeavesController.#ctor(Service.Services.Hr.Attendance.IAttendanceServiceData)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.LeavesController.GetEmployeeLeaveAsync(System.String)">
-            <summary>
-            Get Employee Leave From Oracle DB
-            </summary>
-            <param name="employeeNumber"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.LeavesController.GetMawredLeaveAsync">
-            <summary>
-            Get Mawred Leave From Oracle DB
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.LeavesController.InsertMawredLeaveAsync">
-            <summary>
-            Get Mawred Leave From Oracle DB
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController">
-            <summary>
-            Full Employees Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController.#ctor(Service.Services.Hr.MurasalatEmployee.IMurasalatEmployeeServiceData)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController.GetFromViewAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController.GetAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController.GetNonDuplicateAllAsync">
-            <summary>
-            Get All No Duplication 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatEmployeesController.UpdateNonDuplicateAllAsync">
-            <summary>
-            Get All No Duplication 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.MurasalatUnitsController">
-            <summary>
-            Murasalat Units Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatUnitsController.#ctor(Service.Services.Hr.MurasalatUnit.IMurasalatUnitServiceData)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatUnitsController.GetFromViewAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatUnitsController.GetAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatUnitsController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatUnitsController.GetNonDuplicateAllAsync">
-            <summary>
-            Get All No Duplication 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.MurasalatUnitsController.UpdateNonDuplicateAllAsync">
-            <summary>
-            Get All No Duplication 
-            </summary>
             <returns></returns>
         </member>
         <member name="T:UserManagement.Api.Controllers.Hr.NationalitiesController">
@@ -754,333 +234,6 @@
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.NewEmployeesController">
-            <summary>
-             Employees Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.#ctor(Service.Services.Hr.NewEmployee.INewEmployeeService,Service.Services.Validators.Services.Employee.IEmployeeValidationService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetEmployeeInfoAsync(System.String)">
-            <summary>
-            Get Employee Info From Oracle DB
-            </summary>
-            <param name="nationalId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetEmployeeInfoFromOracleAsync(System.String)">
-            <summary>
-            Get Employee Info From Oracle DB
-            </summary>
-            <param name="nationalId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetEmployeeCountAsync">
-            <summary>
-            
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetEditAsync(System.Guid)">
-            <summary>
-            Get By Id For Edit
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetViewAsync(System.Guid)">
-            <summary>
-            Get By Id For View
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.CheckNationalIdAsync(System.String,System.Guid)">
-            <summary>
-            Check If National Id Is Available Or Not
-            </summary>
-            <param name="nationalId"></param>
-            <param name="employeeId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.CheckFileNumberAsync(System.String,System.Guid)">
-            <summary>
-            Check If File Number Is Available Or Not
-            </summary>
-            <param name="fileNumber"></param>
-            <param name="employeeId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.CheckEmailAsync(System.String,System.Guid)">
-            <summary>
-            Check If Email Is Available Or Not
-            </summary>
-            <param name="email"></param>
-            <param name="employeeId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetEmployeeIdsByUnitIdAsync(System.String)">
-            <summary>
-            Get employee Ids by Unit Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.UpdateEmployeeImageAsync(Domain.DTO.Hr.FullEmployee.UpdateEmployeeImageDto)">
-            <summary>
-            Update Employee Image
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetUnitManagerAsync(System.String,System.Nullable{Entities.Enum.UnitType})">
-            <summary>
-            Get employee Ids by Unit Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetPaged(Domain.DTO.Base.BaseParam{Domain.DTO.Hr.FullEmployee.Parameters.NewEmployeeFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetDropDown(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            For Search
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.GetDropDownForHrAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Get Drop Down For Vaccination And Hr Systems
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.PostAsync(Domain.DTO.Hr.FullEmployee.AddMurasalatEmployeeDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewEmployeesController.Update(Domain.DTO.Hr.FullEmployee.AddMurasalatEmployeeDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.NewUnitsController">
-            <summary>
-            Units Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.#ctor(Service.Services.Hr.NewUnit.INewUnitService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetUnitsCountAsync">
-            <summary>
-            Get Count For Dashboard 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.TransformAsync">
-            <summary>
-            Transform Name To Full Name
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetUnitOrTeamAsync(System.String,Entities.Enum.UnitType)">
-            <summary>
-            Get Unit Or Team By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetEdit(System.Int64)">
-            <summary>
-            Get By Id For Edit
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetUnitsWithChildren">
-            <summary>
-            Get Unit With Children 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetSectionsByEmployeeSectionIdAsync(System.String)">
-            <summary>
-            Get Sections In Department
-            And Teams of Logged In Section Manager ( The Teams Under That Section )
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetPaged(Domain.DTO.Base.BaseParam{Domain.DTO.Hr.Unit.Parameters.UnitFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.GetDropDown(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.PostAsync(Domain.DTO.Hr.FullUnit.AddFullUnitDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.Update(Domain.DTO.Hr.FullUnit.AddFullUnitDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.Remove(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.NewUnitsController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.Hr.TeamsController">
-            <summary>
-            Teams Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.#ctor(Service.Services.Hr.Team.ITeamService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.GetAsync(System.Int64)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.GetEdit(System.Int64)">
-            <summary>
-            Get By Id For Edit
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.GetAllAsync">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.GetTeamsByUnitIdAsync(System.String)">
-            <summary>
-            Get All 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.GetEmployeesByTeamIdAsync(System.Int64)">
-            <summary>
-            Get Team Users 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.GetPaged(Domain.DTO.Base.BaseParam{Domain.DTO.Hr.Team.Parameters.TeamFilter})">
-            <summary>
-            GetAll Data paged
-            </summary>
-            <param name="filter">Filter responsible for search and sort</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.PostAsync(Domain.DTO.Hr.Team.AddTeamDto)">
-            <summary>
-            Add 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.DeleteEmployeeTeamAsync(System.Guid,System.Int64)">
-            <summary>
-            Delete Employee Team 
-            </summary>
-            <param name="employeeId"></param>
-            <param name="teamId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.AddEmployeeTeamAsync(Domain.DTO.Hr.Team.TeamEmployeeDto)">
-            <summary>
-            Delete Employee Team 
-            </summary>
-            <param name="dto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.Update(Domain.DTO.Hr.Team.AddTeamDto)">
-            <summary>
-            Update  
-            </summary>
-            <param name="model">Object content</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.Remove(System.Int64)">
-            <summary>
-            Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.TeamsController.DeleteSoftAsync(System.Int64)">
-            <summary>
-            Soft Remove  by id
-            </summary>
-            <param name="id">PK</param>
-            <returns></returns>
-        </member>
         <member name="T:UserManagement.Api.Controllers.Hr.UnitsController">
             <summary>
             Units Controller
@@ -1109,7 +262,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.UnitsController.GetUnitOrTeamAsync(System.Int64,Entities.Enum.UnitType)">
+        <member name="M:UserManagement.Api.Controllers.Hr.UnitsController.GetUnitOrTeamAsync(System.Guid,Entities.Enum.UnitType)">
             <summary>
             Get Unit Or Team By Id 
             </summary>
@@ -1128,7 +281,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Hr.UnitsController.GetSectionsByEmployeeSectionIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Hr.UnitsController.GetSectionsByEmployeeSectionIdAsync(System.Guid)">
             <summary>
             Get Sections In Department
             And Teams of Logged In Section Manager ( The Teams Under That Section )
@@ -1786,22 +939,6 @@
             <param name="appId"></param>
             <returns></returns>
         </member>
-        <member name="T:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalCardsController">
-            <summary>
-            Cards Controller
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalCardsController.#ctor(Service.Services.Hr.Card.Integration.IExternalCardService)">
-            <summary>
-            Constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalCardsController.GetCardDetailsByEmployeeIdAsync(System.Guid)">
-            <summary>
-            Get By Id 
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController">
             <summary>
             External Employees Controller Used By Other Services
@@ -1812,38 +949,36 @@
             constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetAsync(System.Guid)">
             <summary>
             Get Employees By Id ( used For Omsgd Services )
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetByIdAsync(System.Int64)">
-            <summary>
-            Get Employees By Id ( used For Stock )
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetAllAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetAllAsync">
             <summary>
             Get All ( used For Self Services )
             </summary>
-            <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeeIdsByUnitIdAsync(System.Int64,System.Boolean)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetAllMurasalatAsync">
+            <summary>
+            Get All ( used For Self Services )
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeeIdsByUnitIdAsync(System.String,System.Boolean)">
             <summary>
             Get employee Ids by Unit Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.UpdateEmployeeFromServices(Domain.DTO.Integration.ItHelpDesk.Employee.UpdateEmployeeFromServicesDto)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetByAppCodeAsync(System.String)">
             <summary>
-            Update  Employee (Unit , Phone , IPPhone ) ( Used From Omsgd Services ) 
+            Get Employees By App Code ( used For Stock )
             </summary>
-            <param name="model">Object content</param>
+            <param name="appCode"></param>
             <returns></returns>
         </member>
         <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeePhonesByIdsAsync(System.Collections.Generic.List{Domain.DTO.Integration.ItHelpDesk.Ticket.TicketSmsDto})">
@@ -1860,11 +995,11 @@
             <param name="dtos"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetTeamManagerPhoneAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeesByUnitIdAsync(System.String)">
             <summary>
-            Get Unit Managers Phones Numbers Using List Of Unit Or Team Ids ( Used In Omsgd Services )
+            Get Employees By UnitId Or Team Id ( used For Omsgd Services )
             </summary>
-            <param name="teamId"></param>
+            <param name="unitId"></param>
             <returns></returns>
         </member>
         <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeesPhonesByRoleCodeAsync(System.String)">
@@ -1874,14 +1009,14 @@
             <param name="roleCode"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetUnitManagerEmail(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetUnitManagerEmail(System.String)">
             <summary>
             Get Manager Email by unit id( used For OMSGD Projects)
             </summary>
             <param name="unitId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeePhoneByIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetEmployeePhoneByIdAsync(System.String)">
             <summary>
             Get Employee Phone By Id( used For Legal Affairs)
             </summary>
@@ -1895,153 +1030,9 @@
             <param name="roleCode"></param>
             <returns></returns>
         </member>
-        <member name="T:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController">
-            <summary>
-            External Employees Controller Used By Other Services
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.#ctor(Service.Services.Hr.NewEmployee.Integration.IExternalNewEmployeeService)">
-            <summary>
-            constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetAsync(System.Guid)">
-            <summary>
-            Get Employees By Id ( used For Omsgd Services )
-            </summary>
-            <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetAllAsync">
-            <summary>
-            Get All ( used For Self Services )
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetAllMurasalatAsync">
-            <summary>
-            Get All ( used For Self Services )
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetEmployeeIdsByUnitIdAsync(System.String,System.Boolean)">
-            <summary>
-            Get employee Ids by Unit Id 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetByAppCodeAsync(System.String)">
-            <summary>
-            Get Employees By App Code ( used For Stock )
-            </summary>
-            <param name="appCode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetEmployeePhonesByIdsAsync(System.Collections.Generic.List{Domain.DTO.Integration.ItHelpDesk.Ticket.TicketSmsDto})">
-            <summary>
-            Get Employee Phone Numbers Using List Of Ids ( Used In Omsgd Services )
-            </summary>
-            <param name="dtos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetUnitManagersPhonesByUnitIdsAsync(System.Collections.Generic.List{Domain.DTO.Integration.ItHelpDesk.Ticket.TicketSmsDto})">
-            <summary>
-            Get Unit Managers Phones Numbers Using List Of Unit Or Team Ids ( Used In Omsgd Services )
-            </summary>
-            <param name="dtos"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetTeamManagerPhoneAsync(System.Int64)">
-            <summary>
-            Get Unit Managers Phones Numbers Using List Of Unit Or Team Ids ( Used In Omsgd Services )
-            </summary>
-            <param name="teamId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetEmployeesByUnitIdAsync(System.String)">
-            <summary>
-            Get Employees By UnitId Or Team Id ( used For Omsgd Services )
-            </summary>
-            <param name="unitId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetEmployeesPhonesByRoleCodeAsync(System.String)">
-            <summary>
-            Get Employees Phones By Role Code( used For Legal Affairs)
-            </summary>
-            <param name="roleCode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetUnitManagerEmail(System.String)">
-            <summary>
-            Get Manager Email by unit id( used For OMSGD Projects)
-            </summary>
-            <param name="unitId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetEmployeePhoneByIdAsync(System.String)">
-            <summary>
-            Get Employee Phone By Id( used For Legal Affairs)
-            </summary>
-            <param name="employeeId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetByRoleCodeAsync(System.String)">
-            <summary>
-            Get Employees  By Role Code( used For Legal Affairs)
-            </summary>
-            <param name="roleCode"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewEmployeesController.GetDropDown(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalEmployeesController.GetDropDown(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
             <summary>
             For Search
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="T:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController">
-            <summary>
-            External Units Controller Used By Other Services
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController.#ctor(Service.Services.Hr.NewUnit.Integration.IExternalNewUnitService)">
-            <summary>
-            constructor
-            </summary>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController.GetUnitParentAsync(System.String)">
-            <summary>
-            Get Unit Parent
-            Used In Stock Management
-            </summary>
-            <param name="childId"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController.GetDropDownForDepartmentAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Get (Departments )Drop Down Paged
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController.GetDropDownAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Get Drop Down Paged
-            </summary>
-            <param name="filter"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController.GetUnitsByIdsAsync(System.Collections.Generic.List{System.String})">
-            <summary>
-            Get Units By Ids (Used In Stock)
-            </summary>
-            <param name="unitIds"></param>
-            <returns></returns>
-        </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalNewUnitsController.GetDropDownForEdit(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
-            <summary>
-            Ge All Units
             </summary>
             <param name="filter"></param>
             <returns></returns>
@@ -2056,7 +1047,7 @@
             constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetUnitParentAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetUnitParentAsync(System.Guid)">
             <summary>
             Get Unit Parent
             Used In Stock Management
@@ -2064,14 +1055,21 @@
             <param name="childId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetDropDown(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetDropDownForDepartmentAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
             <summary>
             Get (Departments )Drop Down Paged
             </summary>
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetUnitsByIdsAsync(System.Collections.Generic.List{System.Nullable{System.Int64}})">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetDropDownAsync(Domain.DTO.Base.BaseParam{Domain.DTO.Base.SearchCriteriaFilter})">
+            <summary>
+            Get Drop Down Paged
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Hr.ExternalUnitsController.GetUnitsByIdsAsync(System.Collections.Generic.List{System.Guid})">
             <summary>
             Get Units By Ids (Used In Stock)
             </summary>
@@ -2181,18 +1179,6 @@
         <member name="M:UserManagement.Api.Extensions.ConfigureServiceExtension.RegisterAutoMapper(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             register auto-mapper
-            </summary>
-            <param name="services"></param>
-        </member>
-        <member name="M:UserManagement.Api.Extensions.ConfigureServiceExtension.RegisterService(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Register Custom Services
-            </summary>
-            <param name="services"></param>
-        </member>
-        <member name="M:UserManagement.Api.Extensions.ConfigureServiceExtension.RegisterRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Register Custom Repositories
             </summary>
             <param name="services"></param>
         </member>

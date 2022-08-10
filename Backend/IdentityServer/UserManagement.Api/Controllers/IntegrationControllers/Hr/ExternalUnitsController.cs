@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
@@ -29,7 +30,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpGet]
         [Route("GetParent/{childId}")]
-        public async Task<IFinalResult> GetUnitParentAsync(string childId)
+        public async Task<IFinalResult> GetUnitParentAsync(Guid childId)
         {
             var result = await _externalUnitService.GetUnitParentAsync(childId);
             return result;
@@ -66,7 +67,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Hr
         /// <returns></returns>
         [HttpPost]
         [Route("GetUnitsByIds")]
-        public async Task<IFinalResult> GetUnitsByIdsAsync([FromBody] List<string> unitIds)
+        public async Task<IFinalResult> GetUnitsByIdsAsync([FromBody] List<Guid> unitIds)
         {
             return await _externalUnitService.GetUnitsByIdsAsync(unitIds);
         }
