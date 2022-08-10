@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.Core;
 using Domain.DTO.Identity.App;
 
 namespace Domain.DTO.Identity.User
 {
-    public class UserDto :IPrimaryKeyField<long?>
+    public class UserDto :IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string UserTypeId { get; set; }

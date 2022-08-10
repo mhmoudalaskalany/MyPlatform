@@ -16,7 +16,7 @@ namespace Data.Configurations.Identity
             builder.Property(e => e.EmailConfirmed).HasDefaultValue(0);
             builder.Property(e => e.PhoneNumberConfirmed).HasDefaultValue(0);
             builder.Property(e => e.TwoFactorEnabled).HasDefaultValue(0);
-            
+
         }
     }
 }

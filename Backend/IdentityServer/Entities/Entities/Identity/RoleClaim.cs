@@ -3,12 +3,12 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Entities.Entities.Identity
 {
-    public class RoleClaim : IdentityRoleClaim<long>
+    public class RoleClaim : IdentityRoleClaim<Guid>
     {
-        public long? CreatedById { get; set; }
+        public Guid? CreatedById { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public DateTime? ModifiedDate { get; set; } = DateTime.Now;
-        public long? ModifiedById { get; set; }
+        public Guid? ModifiedById { get; set; }
         public bool? IsDeleted { get; set; } = false;
     }
 }

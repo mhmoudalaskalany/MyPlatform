@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services.Identity.Role.Integration;
@@ -27,7 +28,7 @@ namespace UserManagement.Api.Controllers.IntegrationControllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppId/{appId}")]
-        public async Task<IFinalResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid appId)
         {
             var result = await _externalRoleService.GetByAppIdAsync(appId);
             return result;

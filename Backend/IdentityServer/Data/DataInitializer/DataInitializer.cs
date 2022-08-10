@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Entities.Entities.Identity;
 
 namespace Data.DataInitializer
@@ -13,28 +14,28 @@ namespace Data.DataInitializer
             {
                 new Permission
                 {
-                    Id = 1,
+                    Id = Guid.NewGuid(),
                     NameEn = "Add",
                     NameAr = "اضافة",
                     Code = "Add"
                 },
                 new Permission
                 {
-                    Id = 2,
+                    Id = Guid.NewGuid(),
                     NameEn = "Edit",
                     NameAr = "تعديل",
                     Code = "Edit"
                 },
                 new Permission
                 {
-                    Id = 3,
+                    Id = Guid.NewGuid(),
                     NameEn = "View",
                     NameAr = "عرض",
                     Code = "View"
                 },
                 new Permission
                 {
-                    Id = 4,
+                    Id = Guid.NewGuid(),
                     NameEn = "Delete",
                     NameAr = "حذف",
                     Code = "Delete"

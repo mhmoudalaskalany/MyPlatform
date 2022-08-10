@@ -1,6 +1,6 @@
 ﻿namespace Domain.Core
 {
-    public interface IPrimaryKeyField<TPrimaryKey>
+    public interface IEntityDto<TPrimaryKey>
     {
         TPrimaryKey Id { get; set; }
     }

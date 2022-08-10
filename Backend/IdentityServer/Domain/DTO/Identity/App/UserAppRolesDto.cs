@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Domain.DTO.Identity.App
 {
     public class UserAppRolesDto
     {
-        public long UserId { get; set; }
-        public List<long> AppIds { get; set; }
+        public Guid UserId { get; set; }
+        public List<Guid> AppIds { get; set; } = new List<Guid>();
     }
 }

@@ -14,7 +14,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Identity.UserApp
 {
-    public class UserAppService : BaseService<Entities.Entities.Identity.UserApp, AddUserAppDto, UserAppDto, long?>, IUserAppService
+    public class UserAppService : BaseService<Entities.Entities.Identity.UserApp, AddUserAppDto, UserAppDto, Guid?>, IUserAppService
     {
         private readonly IUnitOfWork<Entities.Entities.Identity.App> _appUnitOfWork;
         public UserAppService(IServiceBaseParameter<Entities.Entities.Identity.UserApp> businessBaseParameter, IUnitOfWork<Entities.Entities.Identity.App> appUnitOfWork) : base(
@@ -30,7 +30,7 @@ namespace Service.Services.Identity.UserApp
         /// <param name="ids"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public virtual async Task<bool> AddAppListAsync(List<long> ids, long userId)
+        public virtual async Task<bool> AddAppListAsync(List<Guid> ids, Guid userId)
         {
 
             var dtoList = new List<AddUserAppDto>();
@@ -54,7 +54,7 @@ namespace Service.Services.Identity.UserApp
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetUserApps(long userId)
+        public async Task<IFinalResult> GetUserApps(Guid userId)
         {
 
             var predicate = PredicateBuilderFunction(userId);
@@ -117,7 +117,7 @@ namespace Service.Services.Identity.UserApp
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Identity.UserApp, bool>> PredicateBuilderFunction(long userId)
+        static Expression<Func<Entities.Entities.Identity.UserApp, bool>> PredicateBuilderFunction(Guid userId)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.UserApp>(true);
             if (!string.IsNullOrWhiteSpace(userId.ToString()))

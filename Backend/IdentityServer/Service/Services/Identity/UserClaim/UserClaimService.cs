@@ -32,7 +32,7 @@ namespace Service.Services.Identity.UserClaim
 
         #region Public Methods
 
-        public async Task<IFinalResult> GeyUserClaimsAsync(long userId, string authMethod, string appCode)
+        public async Task<IFinalResult> GeyUserClaimsAsync(Guid userId, string authMethod, string appCode)
         {
             try
             {
@@ -94,31 +94,17 @@ namespace Service.Services.Identity.UserClaim
             {
                 claimDto.AppCode = "PORTAL";
                 claimDto.AppName = "Portal";
-                claimDto.AppId = 2;
+                claimDto.AppId = Guid.NewGuid();
                 claimDto.RoleName = "Portal User";
                 claimDto.RoleNameAr = "مستخدم بوابة";
-                claimDto.RoleId = 2;
+                claimDto.RoleId = Guid.NewGuid();
                 claimDto.Permissions.Add("Permission.Applications.View");
-                claimDtos.Add(claimDto);
-            }
-            else if (appCode == "IPPHONE")
-            {
-                claimDto.AppCode = "IPPHONE";
-                claimDto.AppName = "IPPhone";
-                claimDto.AppId = 7;
-                claimDto.RoleName = "Portal User";
-                claimDto.RoleNameAr = "مستخدم بوابة";
-                claimDto.RoleId = 2;
-                claimDto.Permissions.Add("Permission.Employees.View");
-                claimDto.Permissions.Add("Permission.Employees.Add");
-                claimDto.Permissions.Add("Permission.Employees.Edit");
-                claimDto.Permissions.Add("Permission.Employees.Delete");
                 claimDtos.Add(claimDto);
             }
             return claimDtos;
         }
 
-        static Expression<Func<Entities.Entities.Identity.UserRole, bool>> PredicateBuilderFunction(long userId, bool isDeleted, string appCode)
+        static Expression<Func<Entities.Entities.Identity.UserRole, bool>> PredicateBuilderFunction(Guid userId, bool isDeleted, string appCode)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.UserRole>(true);
             if (!string.IsNullOrWhiteSpace(userId.ToString()))

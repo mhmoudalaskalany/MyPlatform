@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Identity.UserApp;
@@ -28,7 +29,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByIdAsync")]
-        public async Task<IFinalResult> GetByIdAsync(long id)
+        public async Task<IFinalResult> GetByIdAsync(Guid id)
         {
             return await _userAppService.GetByIdAsync(id);
         }
@@ -40,7 +41,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IFinalResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(Guid id)
         {
             return await _userAppService.GetByIdForEditAsync(id);
         }
@@ -52,7 +53,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByUserIdAsync/{id}")]
-        public async Task<IFinalResult> GetByUserIdAsync(long id)
+        public async Task<IFinalResult> GetByUserIdAsync(Guid id)
         {
             return await _userAppService.GetUserApps(id);
         }

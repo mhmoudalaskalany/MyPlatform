@@ -19,7 +19,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Identity.Role
 {
-    public class RoleService : BaseService<Entities.Entities.Identity.Role, AddRoleDto, RoleDto, long?>, IRoleService
+    public class RoleService : BaseService<Entities.Entities.Identity.Role, AddRoleDto, RoleDto, Guid?>, IRoleService
     {
         private readonly RoleManager<Entities.Entities.Identity.Role> _roleManager;
         private readonly IUnitOfWork<Entities.Entities.Identity.Page> _pageUnitOfWork;
@@ -41,7 +41,7 @@ namespace Service.Services.Identity.Role
 
         #region Public Methods
 
-        public async Task<IFinalResult> GetRoleByIdAsync(long id)
+        public async Task<IFinalResult> GetRoleByIdAsync(Guid id)
         {
 
             var pagesList = new List<RolePagePermissionDto>();
@@ -108,7 +108,7 @@ namespace Service.Services.Identity.Role
 
         }
 
-        public async Task<IFinalResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid appId)
         {
 
             var entities = await UnitOfWork.Repository.FindAsync(r => r.AppId == appId);
@@ -117,7 +117,7 @@ namespace Service.Services.Identity.Role
                 message: HttpStatusCode.OK.ToString());
 
         }
-        public async Task<IFinalResult> GetUnassignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetUnassignedByAppIdAsync(Guid appId, Guid userId)
         {
 
 
@@ -133,7 +133,7 @@ namespace Service.Services.Identity.Role
 
         }
 
-        public async Task<IFinalResult> GetAssignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetAssignedByAppIdAsync(Guid appId, Guid userId)
         {
 
 
@@ -284,7 +284,7 @@ namespace Service.Services.Identity.Role
         /// <param name="pageIds"></param>
         /// <param name="appId"></param>
         /// <returns></returns>
-        async Task<List<RolePagePermissionDto>> GetRemainingPages(List<RolePagePermissionDto> pagesList, List<long> pageIds, long? appId)
+        async Task<List<RolePagePermissionDto>> GetRemainingPages(List<RolePagePermissionDto> pagesList, List<Guid> pageIds, Guid? appId)
         {
             var unSelectedPages = await _pageUnitOfWork.Repository
                 .FindAsync(x => x.AppId == appId && !pageIds.Contains(x.Id),
@@ -342,7 +342,7 @@ namespace Service.Services.Identity.Role
                 predicate = predicate.And(b => b.App.NameEn.ToLower().Contains(filter.AppNameEn.ToLower()));
             }
 
-            if (filter?.AppId != 0 && filter?.AppId != null)
+            if (filter?.AppId != null)
             {
                 predicate = predicate.And(b => b.AppId == filter.AppId);
             }
@@ -354,7 +354,7 @@ namespace Service.Services.Identity.Role
         /// </summary>
         /// <param name="pageId"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Identity.Page, bool>> PredicateBuilderFunction(long pageId)
+        static Expression<Func<Entities.Entities.Identity.Page, bool>> PredicateBuilderFunction(Guid pageId)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.Page>(true);
             if (!string.IsNullOrWhiteSpace(pageId.ToString()))

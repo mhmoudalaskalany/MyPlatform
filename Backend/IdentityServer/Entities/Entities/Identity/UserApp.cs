@@ -1,12 +1,13 @@
-﻿using Entities.Entities.Base;
+﻿using System;
+using Entities.Entities.Base;
 
 namespace Entities.Entities.Identity
 {
     public class UserApp : BaseEntity
     {
-        public long UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
-        public long AppId { get; set; }
+        public Guid AppId { get; set; }
         public App App { get; set; }
     }
 }

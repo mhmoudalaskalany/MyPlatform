@@ -1,10 +1,11 @@
-﻿using Domain.Core;
+﻿using System;
+using Domain.Core;
 
 namespace Domain.DTO.Identity.Permission
 {
-    public class AddPermissionDto : IPrimaryKeyField<long?>
+    public class AddPermissionDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public string Code { get; set; }

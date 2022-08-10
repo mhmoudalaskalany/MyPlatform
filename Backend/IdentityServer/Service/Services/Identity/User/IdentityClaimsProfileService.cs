@@ -160,7 +160,7 @@ namespace Service.Services.Identity.User
             try
             {
                 // get all user roles and include app with each role
-                var userRolePredicate = PredicateBuilderFunction(long.Parse(userId), false, clientId);
+                var userRolePredicate = PredicateBuilderFunction(Guid.Parse(userId), false, clientId);
                 var userRoles = await _userRoleUnitOfWork.Repository.FindAsync(userRolePredicate,
                     include: source => source.Include(x => x.App));
                 //var dic = new Dictionary<string, Dictionary<string, List<string>>>();
@@ -212,10 +212,10 @@ namespace Service.Services.Identity.User
             {
                 claimDto.AppCode = "PORTAL";
                 claimDto.AppName = "Portal";
-                claimDto.AppId = 2;
+                claimDto.AppId = Guid.NewGuid();
                 claimDto.RoleName = "Portal User";
                 claimDto.RoleNameAr = "مستخدم بوابة";
-                claimDto.RoleId = 2;
+                claimDto.RoleId = Guid.NewGuid();
                 claimDto.Permissions.Add("Permission.PORTAL-APPLICATIONS.View");
                 claimDtos.Add(claimDto);
             }
@@ -223,10 +223,10 @@ namespace Service.Services.Identity.User
             {
                 claimDto.AppCode = "IPPHONE";
                 claimDto.AppName = "IPPhone";
-                claimDto.AppId = 7;
+                claimDto.AppId = Guid.NewGuid();
                 claimDto.RoleName = "Portal User";
                 claimDto.RoleNameAr = "مستخدم بوابة";
-                claimDto.RoleId = 2;
+                claimDto.RoleId = Guid.NewGuid();
                 claimDto.Permissions.Add("Permission.IPPHONE-EMPLOYEE.View");
                 claimDto.Permissions.Add("Permission.IPPHONE-EMPLOYEE.Add");
                 claimDto.Permissions.Add("Permission.IPPHONE-EMPLOYEE.Edit");
@@ -244,7 +244,7 @@ namespace Service.Services.Identity.User
         /// <param name="isDeleted"></param>
         /// <param name="clientId"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Identity.UserRole, bool>> PredicateBuilderFunction(long userId, bool isDeleted, string clientId)
+        static Expression<Func<Entities.Entities.Identity.UserRole, bool>> PredicateBuilderFunction(Guid userId, bool isDeleted, string clientId)
         {
             try
             {

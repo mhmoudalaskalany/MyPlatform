@@ -1,10 +1,11 @@
-﻿using Domain.Core;
+﻿using System;
+using Domain.Core;
 
 namespace Domain.DTO.Identity.Role
 {
-    public class RoleDto : IPrimaryKeyField<long?>
+    public class RoleDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public string AppNameEn { get; set; }

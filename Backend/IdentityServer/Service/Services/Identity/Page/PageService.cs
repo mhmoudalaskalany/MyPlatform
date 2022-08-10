@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Threading.Tasks;
@@ -14,7 +13,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Identity.Page
 {
-    public class PageService : BaseService<Entities.Entities.Identity.Page, AddPageDto, PageDto, long?>, IPageService
+    public class PageService : BaseService<Entities.Entities.Identity.Page, AddPageDto, PageDto, Guid?>, IPageService
     {
         public PageService(IServiceBaseParameter<Entities.Entities.Identity.Page> parameters) : base(parameters)
         {
@@ -29,7 +28,7 @@ namespace Service.Services.Identity.Page
             return ResponseResult.PostResult(pages, status: HttpStatusCode.OK,
                 message: HttpStatusCode.OK.ToString());
         }
-        public async Task<IFinalResult> GetByAppId(long appId)
+        public async Task<IFinalResult> GetByAppId(Guid appId)
         {
 
             var predicate = PredicateBuilderFunction(appId);
@@ -86,7 +85,7 @@ namespace Service.Services.Identity.Page
             return predicate;
         }
 
-        static Expression<Func<Entities.Entities.Identity.Page, bool>> PredicateBuilderFunction(long appId)
+        static Expression<Func<Entities.Entities.Identity.Page, bool>> PredicateBuilderFunction(Guid appId)
         {
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.Page>(true);
             if (!string.IsNullOrWhiteSpace(appId.ToString()))

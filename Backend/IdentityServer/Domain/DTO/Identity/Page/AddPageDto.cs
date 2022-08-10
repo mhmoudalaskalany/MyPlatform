@@ -1,11 +1,12 @@
-﻿using Domain.Core;
+﻿using System;
+using Domain.Core;
 
 namespace Domain.DTO.Identity.Page
 {
-    public class AddPageDto : IPrimaryKeyField<long?>
+    public class AddPageDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
-        public long AppId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid AppId { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public string Url { get; set; }

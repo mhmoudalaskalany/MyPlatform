@@ -8,6 +8,7 @@ namespace Data.Configurations.Identity
     {
         public void Configure(EntityTypeBuilder<UserRole> builder)
         {
+            builder.ToTable("UserRoles");
         }
     }
 }

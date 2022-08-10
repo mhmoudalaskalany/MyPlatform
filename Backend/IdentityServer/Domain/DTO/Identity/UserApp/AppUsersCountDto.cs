@@ -1,8 +1,10 @@
-﻿namespace Domain.DTO.Identity.UserApp
+﻿using System;
+
+namespace Domain.DTO.Identity.UserApp
 {
     public class AppUsersCountDto
     {
-        public long AppId { get; set; }
+        public Guid AppId { get; set; }
         public long Count { get; set; }
     }
 }

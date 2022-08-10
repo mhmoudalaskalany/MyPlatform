@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Data.Configurations.Identity
 {
-    public class UserLoginConfig : IEntityTypeConfiguration<UserLogin>
+    public class UserTokenConfig : IEntityTypeConfiguration<UserToken>
     {
-        public void Configure(EntityTypeBuilder<UserLogin> builder)
+        public void Configure(EntityTypeBuilder<UserToken> builder)
         {
             builder.Property(e => e.LoginProvider).HasMaxLength(255);
-            builder.ToTable("UserLogins");
+            builder.ToTable("UserTokens");
         }
     }
 }

@@ -1,11 +1,12 @@
-﻿using Domain.Core;
+﻿using System;
+using Domain.Core;
 
 namespace Domain.DTO.Identity.UserApp
 {
-    public class AddUserAppDto : IPrimaryKeyField<long?>
+    public class AddUserAppDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
-        public long UserId { get; set; }
-        public long AppId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid AppId { get; set; }
     }
 }

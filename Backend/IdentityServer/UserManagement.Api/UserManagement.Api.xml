@@ -369,26 +369,26 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetAsync(System.Guid)">
             <summary>
             Get By Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetByUserIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetByUserIdAsync(System.Guid)">
             <summary>
             Get By User Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetByUserAppIdAsync(System.Int64,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.GetByUserAppIdAsync(System.Guid,System.Guid)">
             <summary>
             Get By User And App Id 
             </summary>
@@ -441,14 +441,14 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.Remove(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.Remove(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.DeleteSoftAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.AppsController.DeleteSoftAsync(System.Guid)">
             <summary>
             Remove  by id
             </summary>
@@ -471,20 +471,20 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.GetAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.GetAsync(System.Guid)">
             <summary>
             Get By Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.GetByAppIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.GetByAppIdAsync(System.Guid)">
             <summary>
             Get By App Id 
             </summary>
@@ -517,14 +517,14 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.Remove(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.Remove(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.DeleteSoftAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PagesController.DeleteSoftAsync(System.Guid)">
             <summary>
             Soft Remove  by id
             </summary>
@@ -541,13 +541,13 @@
             Constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.GetAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.GetAsync(System.Guid)">
             <summary>
             Get By Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
@@ -581,14 +581,14 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.Remove(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.Remove(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.DeleteSoftAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.PermissionsController.DeleteSoftAsync(System.Guid)">
             <summary>
             Soft Remove  by id
             </summary>
@@ -605,27 +605,27 @@
             Constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetAsync(System.Guid)">
             <summary>
             Get By Id 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetByAppIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetByAppIdAsync(System.Guid)">
             <summary>
             Get By App Id
             </summary>
             <param name="appId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetUnassignedByAppIdAsync(System.Int64,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetUnassignedByAppIdAsync(System.Guid,System.Guid)">
             <summary>
             Get Unassigned By App Id And User Id
             </summary>
@@ -633,7 +633,7 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetAssignedByAppIdAsync(System.Int64,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.GetAssignedByAppIdAsync(System.Guid,System.Guid)">
             <summary>
             Get Assigned By App Id And User Id
             </summary>
@@ -668,14 +668,14 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.Remove(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.Remove(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.DeleteSoftAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.RolesController.DeleteSoftAsync(System.Guid)">
             <summary>
             Soft Remove  by id
             </summary>
@@ -692,21 +692,21 @@
             Constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserAppsController.GetByIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserAppsController.GetByIdAsync(System.Guid)">
             <summary>
             Get User Apps By  Id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserAppsController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserAppsController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserAppsController.GetByUserIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserAppsController.GetByUserIdAsync(System.Guid)">
             <summary>
             Get User Apps By User Id
             </summary>
@@ -730,7 +730,7 @@
             Constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserClaimsController.GetByUserIdAsync(System.Int64,System.String,System.String)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserClaimsController.GetByUserIdAsync(System.Guid,System.String,System.String)">
             <summary>
             Get By User Id 
             </summary>
@@ -746,21 +746,21 @@
             Constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.GetByIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.GetByIdAsync(System.Guid)">
             <summary>
             Get By User Id
             </summary>
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.GetByUserIdAsync(System.Int64,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.GetByUserIdAsync(System.Guid,System.Guid)">
             <summary>
             Get By User Id For Other Systems
             </summary>
@@ -795,7 +795,7 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.Remove(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UserRolesController.Remove(System.Guid)">
             <summary>
             Remove  by id
             </summary>
@@ -826,21 +826,21 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.GetEdit(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.GetEdit(System.Guid)">
             <summary>
             Get By Id For Edit
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.GetByAppIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.GetByAppIdAsync(System.Guid)">
             <summary>
             Get By App Id
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.GetProfileAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.GetProfileAsync(System.Guid)">
             <summary>
             Get Logged In User Profile
             </summary>
@@ -859,7 +859,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.CheckNationalIdAsync(System.String,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.CheckNationalIdAsync(System.String,System.Guid)">
             <summary>
             Check If National Id Is Available Or Not
             </summary>
@@ -867,7 +867,7 @@
             <param name="userId"></param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.CheckEmailAsync(System.String,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.CheckEmailAsync(System.String,System.Guid)">
             <summary>
             Check If Email Is Available Or Not
             </summary>
@@ -917,21 +917,21 @@
             <param name="model">Object content</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.Remove(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.Remove(System.Guid)">
             <summary>
             Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.DeleteSoftAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.DeleteSoftAsync(System.Guid)">
             <summary>
             Soft Remove  by id
             </summary>
             <param name="id">PK</param>
             <returns></returns>
         </member>
-        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.RemoveByUserAppId(System.Int64,System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.Identity.UsersController.RemoveByUserAppId(System.Guid,System.Guid)">
             <summary>
             Remove  by id
             </summary>
@@ -1109,7 +1109,7 @@
             constructor
             </summary>
         </member>
-        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Identity.ExternalRolesController.GetByAppIdAsync(System.Int64)">
+        <member name="M:UserManagement.Api.Controllers.IntegrationControllers.Identity.ExternalRolesController.GetByAppIdAsync(System.Guid)">
             <summary>
             Get By App Id
             </summary>

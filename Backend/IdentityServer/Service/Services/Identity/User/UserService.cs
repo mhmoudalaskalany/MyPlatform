@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace Service.Services.Identity.User
 {
-    public class UserService : BaseService<Entities.Entities.Identity.User, AddUserDto, UserDto, long?>, IUserService
+    public class UserService : BaseService<Entities.Entities.Identity.User, AddUserDto, UserDto, Guid?>, IUserService
     {
         private readonly UserManager<Entities.Entities.Identity.User> _userManager;
         private readonly IConfiguration _configuration;
@@ -64,7 +64,7 @@ namespace Service.Services.Identity.User
         /// <returns></returns>
         public override async Task<IFinalResult> GetByIdAsync(object id)
         {
-            var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == Convert.ToInt64(id),
+            var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == Guid.Parse(id.ToString()),
                 include: src => src.Include(x => x.UserApps));
             var data = Mapper.Map<Entities.Entities.Identity.User, AddUserDto>(entity);
             return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
@@ -75,7 +75,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetUserProfileAsync(long id)
+        public async Task<IFinalResult> GetUserProfileAsync(Guid id)
         {
             var entity = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == id,
                    include: src => src.Include(x => x.UserApps).ThenInclude(a => a.App));
@@ -95,7 +95,7 @@ namespace Service.Services.Identity.User
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid appId)
         {
 
             var entity = await UnitOfWork.Repository
@@ -135,9 +135,9 @@ namespace Service.Services.Identity.User
             var limit = filter.PageSize;
             var offset = ((--filter.PageNumber) * filter.PageSize);
             var query = await UnitOfWork.Repository.FindPagedWithOrderAsync(predicate: PredicateBuilderFunction(filter.Filter), skip: offset, take: limit, filter.OrderByValue, include: src => src.Include(u => u.UserApps));
-            if (filter.Filter.AppId != 0)
+            if (filter.Filter.AppId != null)
             {
-                query.Item2 = query.Item2.Where(x => x.UserApps.Select(userApp => userApp.AppId).Contains(filter.Filter.AppId));
+                query.Item2 = query.Item2.Where(x => x.UserApps.Select(userApp => userApp.AppId).Contains(filter.Filter.AppId.Value));
             }
             var data = Mapper.Map<IEnumerable<Entities.Entities.Identity.User>, IEnumerable<UserDto>>(query.Item2);
             return new DataPaging(++filter.PageNumber, filter.PageSize, query.Item1, ResponseResult.PostResult(data, status: HttpStatusCode.OK, message: HttpStatusCode.OK.ToString()));
@@ -150,10 +150,10 @@ namespace Service.Services.Identity.User
         /// <param name="nationalId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, long userId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, Guid? userId)
         {
 
-            if (userId != 0)
+            if (userId != null)
             {
                 Result = await CheckForNationalIdAtEditMode(nationalId, userId);
             }
@@ -171,10 +171,10 @@ namespace Service.Services.Identity.User
         /// <param name="email"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> CheckEmailAsync(string email, long userId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, Guid? userId)
         {
 
-            if (userId != 0)
+            if (userId != null)
             {
                 Result = await CheckForEmailAtEditMode(email, userId);
             }
@@ -325,7 +325,7 @@ namespace Service.Services.Identity.User
         /// <param name="userId"></param>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> DeleteByUserAppId(long userId, long appId)
+        public async Task<IFinalResult> DeleteByUserAppId(Guid userId, Guid appId)
         {
 
             var userApp =
@@ -392,7 +392,7 @@ namespace Service.Services.Identity.User
                     {
                         UserId = user.Id,
                         RoleId = portalRole.Id,
-                        AppId = (long)portalRole.AppId
+                        AppId = portalRole.AppId.Value
                     };
                     _userRoleUnitOfWork.Repository.Add(userRole);
                 }
@@ -450,7 +450,7 @@ namespace Service.Services.Identity.User
         /// <param name="nationalId"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        async Task<IFinalResult> CheckForNationalIdAtEditMode(string nationalId, long userId)
+        async Task<IFinalResult> CheckForNationalIdAtEditMode(string nationalId, Guid? userId)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == userId);
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.NationalId == nationalId);
@@ -484,7 +484,7 @@ namespace Service.Services.Identity.User
         /// <param name="email"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        async Task<IFinalResult> CheckForEmailAtEditMode(string email, long userId)
+        async Task<IFinalResult> CheckForEmailAtEditMode(string email, Guid? userId)
         {
             var user = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Id == userId);
             var data = await UnitOfWork.Repository.FirstOrDefaultAsync(x => x.Email == email);
@@ -522,9 +522,9 @@ namespace Service.Services.Identity.User
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.User>(x => !x.IsDeleted);
 
 
-            if (filter.AppId != 0)
+            if (filter.AppId != null)
             {
-                predicate = predicate.And(b => b.UserApps.Select(a => a.AppId).Contains(filter.AppId));
+                predicate = predicate.And(b => b.UserApps.Select(a => a.AppId).Contains(filter.AppId.Value));
             }
 
             if (!string.IsNullOrWhiteSpace(filter.UserName))
@@ -556,9 +556,9 @@ namespace Service.Services.Identity.User
                 predicate = predicate.Or(b => b.NationalId.Contains(filter.SearchCriteria));
                 predicate = predicate.Or(b => b.UserName.ToLower().Contains(filter.SearchCriteria.ToLower()));
             }
-            if (filter.AppId != 0)
+            if (filter.AppId != null)
             {
-                predicate = predicate.And(x => !x.UserApps.Select(userApp => userApp.AppId).Contains(filter.AppId));
+                predicate = predicate.And(x => !x.UserApps.Select(userApp => userApp.AppId).Contains(filter.AppId.Value));
             }
             return predicate;
         }

@@ -4,7 +4,7 @@ using Entities.Enum;
 
 namespace Domain.DTO.Hr.Unit
 {
-    public class AddUnitDto : IPrimaryKeyField<Guid>
+    public class AddUnitDto : IEntityDto<Guid>
     {
         public Guid Id { get; set; }
         public string NameEn { get; set; }

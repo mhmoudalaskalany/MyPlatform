@@ -50,13 +50,6 @@ namespace Service.Mapping
                     
                 });
 
-
-            CreateMap<ActiveDirectoryUserDto, User>()
-                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.LogonName))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-                .ForMember(dest => dest.PhoneNumber, opt => opt.MapFrom(src => src.Mobile))
-                .ForMember(dest => dest.NationalId, opt => opt.MapFrom(src => src.LogonName))
-                .ForMember(dest => dest.FullNameEn, opt => opt.MapFrom(src => src.DisplayName));
         }
     }
 }

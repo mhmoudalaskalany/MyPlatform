@@ -1,9 +1,10 @@
-﻿
+﻿using System;
+
 namespace Domain.DTO.Identity.User.Parameters
 {
     public class UserSearchCriteriaFilter
     {
         public string SearchCriteria { get; set; }
-        public long AppId { get; set; }
+        public Guid? AppId { get; set; }
     }
 }

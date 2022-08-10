@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Identity.App;
 using Service.Services.Base;
 
 namespace Service.Services.Identity.App.Integration
 {
-    public interface IExternalAppService : IBaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, long?>
+    public interface IExternalAppService : IBaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, Guid?>
     {
         Task<IFinalResult> GetLoggedUserAppsAsync();
     }

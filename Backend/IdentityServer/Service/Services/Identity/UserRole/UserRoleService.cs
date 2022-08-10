@@ -15,7 +15,7 @@ using Service.Services.Identity.Role;
 
 namespace Service.Services.Identity.UserRole
 {
-    public class UserRoleService : BaseService<Entities.Entities.Identity.UserRole, AddUserRoleDto, UserRoleDto, long?>, IUserRoleService
+    public class UserRoleService : BaseService<Entities.Entities.Identity.UserRole, AddUserRoleDto, UserRoleDto, Guid?>, IUserRoleService
     {
         private readonly IUnitOfWork<Entities.Entities.Identity.Role> _roleUnitOfWork;
         private readonly IUnitOfWork<Entities.Entities.Identity.App> _appUnitOfWork;
@@ -40,7 +40,7 @@ namespace Service.Services.Identity.UserRole
         public override async Task<IFinalResult> GetByIdAsync(object id)
         {
 
-            var userRoles = await UnitOfWork.Repository.FindAsync(x => x.UserId == Convert.ToInt64(id)
+            var userRoles = await UnitOfWork.Repository.FindAsync(x => x.UserId == Guid.Parse(id.ToString())
                                                                        && (x.IsDeleted != false || x.IsDeleted != null), include: src => src.Include(e => e.App));
 
             var data = Mapper.Map<IEnumerable<Entities.Entities.Identity.UserRole>, IEnumerable<UserRoleDto>>(userRoles);
@@ -64,7 +64,7 @@ namespace Service.Services.Identity.UserRole
         /// <param name="userId"></param>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public async Task<IFinalResult> GetByUserIdAsync(long userId, long appId)
+        public async Task<IFinalResult> GetByUserIdAsync(Guid userId, Guid appId)
         {
 
             var userRole =
@@ -204,7 +204,7 @@ namespace Service.Services.Identity.UserRole
         /// <param name="model"></param>
         /// <param name="portalRoleId"></param>
         /// <returns></returns>
-        static Expression<Func<Entities.Entities.Identity.UserRole, bool>> PredicateBuilderFunction(AddUserRoleDto model, long portalRoleId)
+        static Expression<Func<Entities.Entities.Identity.UserRole, bool>> PredicateBuilderFunction(AddUserRoleDto model, Guid portalRoleId)
         {
 
             var predicate = PredicateBuilder.New<Entities.Entities.Identity.UserRole>(true);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Identity.App.Integration
 {
-    public class ExternalAppService : BaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, long?>, IExternalAppService
+    public class ExternalAppService : BaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, Guid?>, IExternalAppService
     {
        
         public ExternalAppService(IServiceBaseParameter<Entities.Entities.Identity.App> businessBaseParameter) : base(
@@ -24,7 +25,7 @@ namespace Service.Services.Identity.App.Integration
             var appIds = await UnitOfWork.GetRepository<Entities.Entities.Identity.UserApp>().FindSelectAsync(x => new
             {
                 x.AppId
-            }, x => x.UserId == long.Parse(ClaimData.UserId));
+            }, x => x.UserId == Guid.Parse(ClaimData.UserId));
             var apps = await UnitOfWork.Repository.FindAsync(x => appIds.Select(a => a.AppId).Contains(x.Id));
             var data = Mapper.Map<IEnumerable<Entities.Entities.Identity.App>, List<AppDto>>(apps);
             return ResponseResult.PostResult(data, status: HttpStatusCode.OK,

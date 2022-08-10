@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Identity.UserRole;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{userId}")]
-        public async Task<IFinalResult> GetByIdAsync(long userId)
+        public async Task<IFinalResult> GetByIdAsync(Guid userId)
         {
             var result = await _userRoleService.GetByIdAsync(userId);
             return result;
@@ -41,7 +42,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IFinalResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(Guid id)
         {
             return await _userRoleService.GetByIdForEditAsync(id);
         }
@@ -55,7 +56,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByUserIdAsync/{userId}/{appId}")]
-        public async Task<IFinalResult> GetByUserIdAsync(long userId, long appId)
+        public async Task<IFinalResult> GetByUserIdAsync(Guid userId, Guid appId)
         {
             var result = await _userRoleService.GetByUserIdAsync(userId, appId);
             return result;
@@ -118,7 +119,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete]
         [Route("Delete/{id}")]
-        public async Task<IFinalResult> Remove(long id)
+        public async Task<IFinalResult> Remove(Guid id)
         {
             return await _userRoleService.DeleteAsync(id);
         }

@@ -5,7 +5,7 @@ using Domain.DTO.Identity.Role;
 
 namespace Domain.DTO.Hr.Employee
 {
-    public class EmployeeProfileDto : IPrimaryKeyField<Guid?>
+    public class EmployeeProfileDto : IEntityDto<Guid?>
     {
         public Guid? Id { get; set; }
         public string FileNumber { get; set; }

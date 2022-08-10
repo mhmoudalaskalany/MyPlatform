@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.Core;
 
 namespace Domain.DTO.Identity.RoleClaim
 {
-    public class RolePagePermissionDto : IPrimaryKeyField<long?>
+    public class RolePagePermissionDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public ICollection<PermissionPageDto> PagePermissions { get; set; } = new List<PermissionPageDto>();
@@ -13,9 +14,9 @@ namespace Domain.DTO.Identity.RoleClaim
 
     }
 
-    public class PermissionPageDto : IPrimaryKeyField<long?>
+    public class PermissionPageDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
+        public Guid? Id { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public bool? IsSelected { get; set; } = false;

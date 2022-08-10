@@ -4,7 +4,7 @@ using Entities.Enum;
 
 namespace Domain.DTO.Hr.Employee
 {
-    public class AddEmployeeDto : IPrimaryKeyField<Guid?>
+    public class AddEmployeeDto : IEntityDto<Guid?>
     {
         public Guid? Id { get; set; }
         public string FileNumber { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Identity.Role;
@@ -28,7 +29,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IFinalResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _roleService.GetRoleByIdAsync(id);
             return result;
@@ -41,7 +42,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IFinalResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(Guid id)
         {
             return await _roleService.GetByIdForEditAsync(id);
         }
@@ -53,7 +54,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppIdAsync/{appId}")]
-        public async Task<IFinalResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid appId)
         {
             var result = await _roleService.GetByAppIdAsync(appId);
             return result;
@@ -67,7 +68,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetUnassignedByAppIdAsync/{appId}/{userId}")]
-        public async Task<IFinalResult> GetUnassignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetUnassignedByAppIdAsync(Guid appId, Guid userId)
         {
             var result = await _roleService.GetUnassignedByAppIdAsync(appId, userId);
             return result;
@@ -82,7 +83,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetAssignedByAppIdAsync/{appId}/{userId}")]
-        public async Task<IFinalResult> GetAssignedByAppIdAsync(long appId, long userId)
+        public async Task<IFinalResult> GetAssignedByAppIdAsync(Guid appId, Guid userId)
         {
             var result = await _roleService.GetAssignedByAppIdAsync(appId, userId);
             return result;
@@ -144,7 +145,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IFinalResult> Remove(long id)
+        public async Task<IFinalResult> Remove(Guid id)
         {
             return await _roleService.DeleteAsync(id);
         }
@@ -155,7 +156,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("DeleteSoft/{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(Guid id)
         {
             return await _roleService.DeleteSoftAsync(id);
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Data.Configurations.Hr;
@@ -18,7 +19,7 @@ namespace Data.Context.Identity
     public class IdentityServerDbContext : IdentityDbContext<
         User,
         Role,
-        long,
+        Guid,
         UserClaim,
         UserRole,
         UserLogin,
@@ -76,6 +77,8 @@ namespace Data.Context.Identity
             modelBuilder.ApplyConfiguration(new RolePermissionConfig());
             modelBuilder.ApplyConfiguration(new PageConfig());
             modelBuilder.ApplyConfiguration(new PagePermissionConfig());
+            modelBuilder.ApplyConfiguration(new UserTokenConfig());
+
 
             #endregion
 

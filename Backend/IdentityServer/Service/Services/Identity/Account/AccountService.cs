@@ -48,7 +48,7 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task AddLoginHistory(long userId)
+        public async Task AddLoginHistory(Guid userId)
         {
             var record = new LoginHistory()
             {

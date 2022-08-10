@@ -2,7 +2,7 @@
 
 namespace Domain.DTO.Common.TemplateForm
 {
-    public class AddTemplateFormDto : IPrimaryKeyField<long?>
+    public class AddTemplateFormDto : IEntityDto<long?>
     {
         public long? Id { get; set; }
     }

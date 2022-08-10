@@ -296,11 +296,6 @@ namespace Service.Services.Hr.Unit
             var predicate = PredicateBuilder.New<Entities.Entities.Hr.Unit>(true);
             var departmentOfTheSection = await UnitOfWork.Repository.GetAsync(sectionId);
             predicate = predicate.And(x => x.ParentId == departmentOfTheSection.ParentId);
-            if (string.IsNullOrEmpty(ClaimData.TeamId))
-            {
-                predicate = predicate.And(x => x.Id != sectionId);
-            }
-
             return predicate;
         }
    

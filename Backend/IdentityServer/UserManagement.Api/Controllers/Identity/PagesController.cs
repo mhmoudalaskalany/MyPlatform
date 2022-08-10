@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Identity.Page;
@@ -39,7 +40,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Get/{id}")]
-        public async Task<IFinalResult> GetAsync(long id)
+        public async Task<IFinalResult> GetAsync(Guid id)
         {
             var result = await _pageService.GetByIdAsync(id);
             return result;
@@ -52,7 +53,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IFinalResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(Guid id)
         {
             return await _pageService.GetByIdForEditAsync(id);
         }
@@ -63,7 +64,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppId/{appId}")]
-        public async Task<IFinalResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid appId)
         {
             var result = await _pageService.GetByAppId(appId);
             return result;
@@ -127,7 +128,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IFinalResult> Remove(long id)
+        public async Task<IFinalResult> Remove(Guid id)
         {
             return await _pageService.DeleteAsync(id);
         }
@@ -138,7 +139,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("DeleteSoft/{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(Guid id)
         {
             return await _pageService.DeleteSoftAsync(id);
         }

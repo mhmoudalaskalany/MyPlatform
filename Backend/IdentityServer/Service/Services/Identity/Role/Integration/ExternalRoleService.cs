@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Domain.Core;
@@ -7,13 +8,13 @@ using Service.Services.Base;
 
 namespace Service.Services.Identity.Role.Integration
 {
-    public class ExternalRoleService : BaseService<Entities.Entities.Identity.Role, AddRoleDto, RoleDto , long?>, IExternalRoleService
+    public class ExternalRoleService : BaseService<Entities.Entities.Identity.Role, AddRoleDto, RoleDto , Guid?>, IExternalRoleService
     {
         public ExternalRoleService(IServiceBaseParameter<Entities.Entities.Identity.Role> parameters) : base(parameters)
         {
 
         }
-        public async Task<IFinalResult> GetByAppIdAsync(long appId)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid appId)
         {
 
             var entities = await UnitOfWork.Repository.FindAsync(r => r.AppId == appId);

@@ -13,7 +13,7 @@ namespace Service.Services.Base
 {
     public class BaseService<T, TDto, TGetDto, TKeyDto> : IBaseService<T, TDto, TGetDto, TKeyDto>
         where T : class
-        where TDto : IPrimaryKeyField<TKeyDto>
+        where TDto : IEntityDto<TKeyDto>
     {
         #region Properties
 
@@ -40,7 +40,6 @@ namespace Service.Services.Base
             ClaimData = new TokenClaimDto()
             {
                 UserId = claims?.FindFirst(t => t.Type == "UserId")?.Value,
-                TeamId = claims?.FindFirst(t => t.Type == "TeamId")?.Value,
                 UnitId = claims?.FindFirst(t => t.Type == "UnitId")?.Value,
                 Email = claims?.FindFirst(t => t.Type == "Email")?.Value,
                 EmployeeId = claims?.FindFirst(t => t.Type == "EmployeeId")?.Value,

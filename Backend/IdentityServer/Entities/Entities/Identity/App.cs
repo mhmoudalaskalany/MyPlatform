@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Entities.Entities.Base;
 
@@ -6,7 +7,7 @@ namespace Entities.Entities.Identity
 {
     public class App : BaseEntity
     {
-        public long Id { get; set; }
+        public Guid Id { get; set; }
         public string NameEn { get; set; }
         public string NameAr { get; set; }
         public string AppUrl { get; set; }

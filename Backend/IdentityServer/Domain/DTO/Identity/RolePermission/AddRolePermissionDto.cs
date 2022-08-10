@@ -1,11 +1,12 @@
-﻿using Domain.Core;
+﻿using System;
+using Domain.Core;
 
 namespace Domain.DTO.Identity.RolePermission
 {
-    class AddRolePermissionDto : IPrimaryKeyField<long?>
+    class AddRolePermissionDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
-        public long RoleId { get; set; }
-        public long PagePermissionId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid RoleId { get; set; }
+        public Guid PagePermissionId { get; set; }
     }
 }

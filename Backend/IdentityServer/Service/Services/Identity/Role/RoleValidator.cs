@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,7 @@ namespace Service.Services.Identity.Role
             TRole role)
         {
             // means its update so pass this validation
-            if (role.Id != 0)
+            if (role.Id != Guid.Empty)
             {
                 return IdentityResult.Success;
             }

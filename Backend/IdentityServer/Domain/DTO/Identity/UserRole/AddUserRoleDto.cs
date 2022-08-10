@@ -1,14 +1,14 @@
-﻿using Domain.Core;
-using System.Collections.Generic;
+﻿using System;
+using Domain.Core;
 
 namespace Domain.DTO.Identity.UserRole
 {
-    public class AddUserRoleDto : IPrimaryKeyField<long?>
+    public class AddUserRoleDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
-        public long UserId { get; set; }
-        public long? RoleId { get; set; }
-        public long? AppId { get; set; }
+        public Guid? Id { get; set; }
+        public Guid UserId { get; set; }
+        public Guid? RoleId { get; set; }
+        public Guid? AppId { get; set; }
 
     }
 }

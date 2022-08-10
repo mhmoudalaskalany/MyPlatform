@@ -14,7 +14,7 @@ using Service.Services.Base;
 
 namespace Service.Services.Identity.App
 {
-    public class AppService : BaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, long?>, IAppService
+    public class AppService : BaseService<Entities.Entities.Identity.App, AddAppDto, AppDto, Guid?>, IAppService
     {
         private readonly IUnitOfWork<Entities.Entities.Identity.UserApp> _userAppsUnitOfWork;
         public AppService(IServiceBaseParameter<Entities.Entities.Identity.App> businessBaseParameter, IUnitOfWork<Entities.Entities.Identity.UserApp> userAppsUnitOfWork) : base(
@@ -43,7 +43,7 @@ namespace Service.Services.Identity.App
 
         }
 
-        public async Task<IFinalResult> GetByUserIdAsync(long userId)
+        public async Task<IFinalResult> GetByUserIdAsync(Guid userId)
         {
 
             var userApps = await UnitOfWork.Repository
@@ -82,7 +82,7 @@ namespace Service.Services.Identity.App
 
         }
         // user this to get only the user app on the sub system that request user apps and system is not user management
-        public async Task<IFinalResult> GetByUserAppIdAsync(long userId, long appId)
+        public async Task<IFinalResult> GetByUserAppIdAsync(Guid userId, Guid appId)
         {
 
             var userApps = await UnitOfWork.Repository.FindAsync(app =>

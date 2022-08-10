@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Base;
 using Domain.DTO.Identity.User;
@@ -42,7 +43,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetEdit/{id}")]
-        public async Task<IFinalResult> GetEdit(long id)
+        public async Task<IFinalResult> GetEdit(Guid id)
         {
             return await _userService.GetByIdForEditAsync(id);
         }
@@ -55,7 +56,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetByAppIdAsync/{id}")]
-        public async Task<IFinalResult> GetByAppIdAsync(long id)
+        public async Task<IFinalResult> GetByAppIdAsync(Guid id)
         {
             var result = await _userService.GetByAppIdAsync(id);
             return result;
@@ -69,7 +70,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetProfileAsync/{id}")]
-        public async Task<IFinalResult> GetProfileAsync(long id)
+        public async Task<IFinalResult> GetProfileAsync(Guid id)
         {
             var result = await _userService.GetUserProfileAsync(id);
             return result;
@@ -105,7 +106,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("CheckNationalId/{nationalId}/{userId}")]
-        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, long userId)
+        public async Task<IFinalResult> CheckNationalIdAsync(string nationalId, Guid userId)
         {
             var result = await _userService.CheckNationalIdAsync(nationalId, userId);
             return result;
@@ -119,7 +120,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("CheckEmail/{email}/{userId}")]
-        public async Task<IFinalResult> CheckEmailAsync(string email, long userId)
+        public async Task<IFinalResult> CheckEmailAsync(string email, Guid userId)
         {
             var result = await _userService.CheckEmailAsync(email, userId);
             return result;
@@ -208,7 +209,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("Delete/{id}")]
-        public async Task<IFinalResult> Remove(long id)
+        public async Task<IFinalResult> Remove(Guid id)
         {
             return await _userService.DeleteAsync(id);
         }
@@ -219,7 +220,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <param name="id">PK</param>
         /// <returns></returns>
         [HttpDelete("DeleteSoft/{id}")]
-        public async Task<IFinalResult> DeleteSoftAsync(long id)
+        public async Task<IFinalResult> DeleteSoftAsync(Guid id)
         {
             return await _userService.DeleteSoftAsync(id);
         }
@@ -232,7 +233,7 @@ namespace UserManagement.Api.Controllers.Identity
         /// <returns></returns>
         [HttpDelete()]
         [Route("DeleteByUserAppId/{id}/{appId}")]
-        public async Task<IFinalResult> RemoveByUserAppId(long id, long appId)
+        public async Task<IFinalResult> RemoveByUserAppId(Guid id, Guid appId)
         {
             return await _userService.DeleteByUserAppId(id, appId);
         }

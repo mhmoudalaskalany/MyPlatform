@@ -3,7 +3,7 @@ using Domain.Core;
 
 namespace Domain.DTO.Hr.Nationality
 {
-    public class NationalityDto : IPrimaryKeyField<Guid?>
+    public class NationalityDto : IEntityDto<Guid?>
     {
         public Guid? Id { get; set; }
         public string NameEn { get; set; }

@@ -10,6 +10,7 @@ namespace Data.Configurations.Identity
         {
             builder.Property(e => e.Id)
                 .ValueGeneratedOnAdd();
+            builder.ToTable("RoleClaims");
 
         }
     }

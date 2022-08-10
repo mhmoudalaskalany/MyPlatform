@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Domain.Core;
 using Domain.DTO.Identity.User;
 
@@ -11,7 +12,7 @@ namespace Service.Services.Identity.Account
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        Task AddLoginHistory(long userId);
+        Task AddLoginHistory(Guid userId);
         /// <summary>
         /// Check If User First Login
         /// </summary>

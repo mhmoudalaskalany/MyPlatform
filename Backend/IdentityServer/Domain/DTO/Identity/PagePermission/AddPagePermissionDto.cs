@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Domain.Core;
 
 namespace Domain.DTO.Identity.PagePermission
 {
-    public class AddPagePermissionDto : IPrimaryKeyField<long?>
+    public class AddPagePermissionDto : IEntityDto<Guid?>
     {
-        public long? Id { get; set; }
-        public long PageId { get; set; }
-        public ICollection<long> PermissionIds { get; set; }
+        public Guid? Id { get; set; }
+        public Guid PageId { get; set; }
+        public ICollection<Guid> PermissionIds { get; set; } = new Collection<Guid>();
 
     }
 }
