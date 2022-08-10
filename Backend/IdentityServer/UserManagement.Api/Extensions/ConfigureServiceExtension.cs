@@ -1,22 +1,8 @@
 ﻿using System.Reflection;
 using AutoMapper;
 using Data.Context.Identity;
-using Data.Context.Murasalat;
-using Data.Context.Oracle;
 using Data.DataInitializer;
-using Data.Repository.ActiveDirectory;
-using Data.Repository.Attendance;
-using Data.Repository.Employee;
-using Data.Repository.MurasalatEmployee;
-using Data.Repository.MurasalatUnit;
-using Data.Repository.User;
 using Data.UnitOfWork;
-using Domain.Abstraction.ActiveDirectory;
-using Domain.Abstraction.Repository.Attendance;
-using Domain.Abstraction.Repository.Employee;
-using Domain.Abstraction.Repository.MurasalatEmployee;
-using Domain.Abstraction.Repository.MurasalatUnit;
-using Domain.Abstraction.Repository.User;
 using Domain.Abstraction.UnitOfWork;
 using Domain.Extensions;
 using Entities.Entities.Identity;
@@ -31,9 +17,6 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using NetCore.AutoRegisterDi;
 using Service.Mapping;
 using Service.Services.Base;
-using Service.Services.Hr.Attendance;
-using Service.Services.Hr.MurasalatEmployee;
-using Service.Services.Hr.MurasalatUnit;
 using Service.Services.Identity.UserApp;
 using Service.Services.Validators.Base;
 using UserManagement.Api.Authorization.Handlers;
@@ -47,8 +30,6 @@ namespace UserManagement.Api.Extensions
     public static class ConfigureServiceExtension
     {
         private const string ConnectionStringName = "Default";
-        private const string MurasalatConnection = "Murasalat";
-        private const string OracleConnection = "NewOracleConnection";
         /// <summary>
         /// Register Extensions
         /// </summary>
@@ -60,8 +41,6 @@ namespace UserManagement.Api.Extensions
             services.RegisterDbContext(configuration);
             services.RegisterIdentity();
             services.RegisterCores();
-            services.RegisterRepository();
-            services.RegisterService();
             services.RegisterAutoMapper();
             services.RegisterCommonServices(configuration);
             services.RegisterIntegrationRepositories();
@@ -83,15 +62,6 @@ namespace UserManagement.Api.Extensions
             {
                 options.UseSqlServer(configuration.GetConnectionString(ConnectionStringName));
             });
-            services.AddDbContext<MurasalatDbContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString(MurasalatConnection));
-            });
-            services.AddDbContext<OracleDbContext>(options =>
-            {
-                options.UseOracle(configuration.GetConnectionString(OracleConnection));
-            });
-
             services.AddScoped<DbContext, IdentityServerDbContext>();
             services.AddSingleton<IDataInitializer, DataInitializer>();
         }
@@ -168,32 +138,8 @@ namespace UserManagement.Api.Extensions
             services.AddAutoMapper(typeof(MappingService));
 
         }
-        /// <summary>
-        /// Register Custom Services
-        /// </summary>
-        /// <param name="services"></param>
-
-        private static void RegisterService(this IServiceCollection services)
-        {
-            services.AddScoped<IMurasalatEmployeeServiceData, MurasalatEmployeeServiceData>();
-            services.AddScoped<IAttendanceServiceData, AttendanceServiceData>();
-            services.AddScoped<IMurasalatUnitServiceData, MurasalatUnitServiceData>();
-        }
-
-        /// <summary>
-        /// Register Custom Repositories
-        /// </summary>
-        /// <param name="services"></param>
-
-        private static void RegisterRepository(this IServiceCollection services)
-        {
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
-            services.AddScoped<IActiveDirectoryRepository, ActiveDirectoryRepository>();
-            services.AddScoped<IMurasalatEmployeeRepository, MurasalatEmployeeRepository>();
-            services.AddScoped<IMurasalatUnitRepository, MurasalatUnitRepository>();
-        }
+        
+        
         /// <summary>
         /// register Integration Repositories
         /// </summary>

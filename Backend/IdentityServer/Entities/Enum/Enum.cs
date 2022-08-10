@@ -44,9 +44,4 @@
         BlobStorage
     }
 
-    public enum CardType
-    {
-        Plain = 1,
-        Word
-    }
 }
