@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace AuthServer.Controllers
+namespace IdentityServer.Api.Controllers
 {
     /// <summary>
     /// Home Controller

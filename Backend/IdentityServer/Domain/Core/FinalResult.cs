@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Domain.Core
 {
-    public class Result : IFinalResult
+    public class FinalResult : IFinalResult
     {
         public object Data { get; set; }
         public HttpStatusCode Status { get; set; }

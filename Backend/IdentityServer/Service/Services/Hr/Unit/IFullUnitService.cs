@@ -5,7 +5,7 @@ using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.FullUnit.Parameters;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.FullUnit
+namespace Service.Services.Hr.Unit
 {
     public interface IFullUnitService : IBaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>
     {

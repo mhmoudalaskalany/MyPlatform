@@ -22,16 +22,14 @@ using Service.Services.Base;
 
 namespace Service.Services.Hr.NewEmployee
 {
-    public class NewEmployeeService : BaseService<Entities.Entities.Hr.FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, INewEmployeeService
+    public class NewEmployeeService : BaseService<FullEmployee, AddMurasalatEmployeeDto, MurasalatEmployeeDto, Guid?>, INewEmployeeService
     {
         private readonly MicroServicesUrls _urls;
-        private readonly IEmployeeRepository _employeeRepository;
         private readonly IFileRepository _fileRepository;
         private readonly IUnitOfWork<Entities.Entities.Hr.FullUnit> _unitOfWork;
 
-        public NewEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters, IEmployeeRepository employeeRepository, IUnitOfWork<Entities.Entities.Hr.FullUnit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
+        public NewEmployeeService(IServiceBaseParameter<Entities.Entities.Hr.FullEmployee> parameters,  IUnitOfWork<Entities.Entities.Hr.FullUnit> unitOfWork, IFileRepository fileRepository, MicroServicesUrls urls) : base(parameters)
         {
-            _employeeRepository = employeeRepository;
             _unitOfWork = unitOfWork;
             _fileRepository = fileRepository;
             _urls = urls;
@@ -97,24 +95,7 @@ namespace Service.Services.Hr.NewEmployee
             return new ResponseResult(data, HttpStatusCode.OK);
         }
 
-        public async Task<IFinalResult> GetEmployeeInfoAsync(string nationalId)
-        {
-
-            var data = await _employeeRepository.GetEmployeeInfoAsync(nationalId);
-            return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
-                message: HttpStatusCode.OK.ToString());
-        }
-
-        public async Task<IFinalResult> GetEmployeeInfoNewViewAsync(string nationalId)
-        {
-
-            var data = await _employeeRepository.GetEmployeeInfoFromNewViewAsync(nationalId);
-            return ResponseResult.PostResult(data, status: HttpStatusCode.OK,
-                message: HttpStatusCode.OK.ToString());
-
-
-        }
-
+        
         public async Task<IFinalResult> GetEmployeeIdsByUnitIdAsync(string unitId)
         {
 

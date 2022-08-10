@@ -20,7 +20,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Service.Services.Identity.Account;
 
-namespace AuthServer.Controllers
+namespace IdentityServer.Api.Controllers
 {
     /// <summary>
     /// Accounts Controller

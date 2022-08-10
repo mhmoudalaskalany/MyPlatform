@@ -5,7 +5,7 @@ using Domain.DTO.Hr.FullUnit;
 using Domain.DTO.Hr.FullUnit.Parameters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Service.Services.Hr.FullUnit;
+using Service.Services.Hr.Unit;
 using UserManagement.Api.Controllers.Base;
 
 namespace UserManagement.Api.Controllers.Hr

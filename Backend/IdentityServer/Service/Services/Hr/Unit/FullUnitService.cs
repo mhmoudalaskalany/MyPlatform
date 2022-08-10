@@ -13,7 +13,7 @@ using LinqKit;
 using Microsoft.EntityFrameworkCore;
 using Service.Services.Base;
 
-namespace Service.Services.Hr.FullUnit
+namespace Service.Services.Hr.Unit
 {
     public class FullUnitService : BaseService<Entities.Entities.Hr.FullUnit, AddFullUnitDto, FullUnitDto, string>, IFullUnitService
     {

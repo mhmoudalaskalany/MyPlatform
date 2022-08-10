@@ -95,7 +95,7 @@ namespace Domain.Exceptions
                             {
                                 var table = dbException.Message.Split("table");
                                 var column = table[1].Split("column");
-                                var error = new Result
+                                var error = new FinalResult
                                 {
                                     Status = HttpStatusCode.BadRequest,
                                     Message = $"Wrong Foreign Key (Id) For Entity {column[0]}"
@@ -107,7 +107,7 @@ namespace Domain.Exceptions
                         default:
                             {
 
-                                var error = new Result
+                                var error = new FinalResult
                                 {
                                     Status = HttpStatusCode.BadRequest,
                                     Message = dbException.Message

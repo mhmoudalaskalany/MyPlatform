@@ -3,7 +3,7 @@ using System.Net;
 
 namespace Domain.Core
 {
-    public class ResponseResult : Result, IResponseResult
+    public class ResponseResult : FinalResult, IResponseResult
     {
         public ResponseResult(object result = null, HttpStatusCode status = HttpStatusCode.BadRequest, Exception exception = null, string message = null)
         {

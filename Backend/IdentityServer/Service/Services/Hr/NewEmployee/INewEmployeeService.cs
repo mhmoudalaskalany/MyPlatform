@@ -36,18 +36,6 @@ namespace Service.Services.Hr.NewEmployee
         /// <param name="filter"></param>
         /// <returns></returns>
         Task<DataPaging> GetDropDownForHrAsync(BaseParam<SearchCriteriaFilter> filter);
-        /// <summary>
-        /// Get Employee Info From Oracle
-        /// </summary>
-        /// <param name="nationalId"></param>
-        /// <returns></returns>
-        Task<IFinalResult> GetEmployeeInfoAsync(string nationalId);
-        /// <summary>
-        /// Get Employee Info From Oracle
-        /// </summary>
-        /// <param name="nationalId"></param>
-        /// <returns></returns>
-        Task<IFinalResult> GetEmployeeInfoNewViewAsync(string nationalId);
 
         /// <summary>
         /// Get Employee Ids By Unit

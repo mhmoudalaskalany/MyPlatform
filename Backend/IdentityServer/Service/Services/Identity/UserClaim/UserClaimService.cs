@@ -75,7 +75,7 @@ namespace Service.Services.Identity.UserClaim
             }
             catch (Exception e)
             {
-                var result = new Result {Message = e.InnerException != null ? e.InnerException.Message : e.Message};
+                var result = new FinalResult {Message = e.InnerException != null ? e.InnerException.Message : e.Message};
                 result = new ResponseResult(null, status: HttpStatusCode.InternalServerError, exception: e,
                     message: result.Message);
                 return result;
