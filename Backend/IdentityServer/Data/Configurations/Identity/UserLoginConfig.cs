@@ -8,7 +8,6 @@ namespace Data.Configurations.Identity
     {
         public void Configure(EntityTypeBuilder<UserLogin> builder)
         {
-            builder.HasKey(e => new {e.UserId , e.CreatedDate});
             builder.Property(e => e.LoginProvider).HasMaxLength(255);
         }
     }

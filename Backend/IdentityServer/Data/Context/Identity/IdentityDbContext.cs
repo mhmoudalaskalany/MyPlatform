@@ -67,6 +67,7 @@ namespace Data.Context.Identity
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             #region IdentityConfiguration
             modelBuilder.ApplyConfiguration(new UserConfig());
             modelBuilder.ApplyConfiguration(new AppConfig());
@@ -91,7 +92,7 @@ namespace Data.Context.Identity
 
 
             
-            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<IdentityRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRoles");
