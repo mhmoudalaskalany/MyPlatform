@@ -1,0 +1,83 @@
+<div class="page-wrapper d-flex flex-column h-100" >
+    <div class="d-flex align-items-center justify-content-between">
+        <h3 class="m-0 font-28">{{ 'Pages.Budgets.Title' | translate }}</h3>
+
+        <a [routerLink]="[ 'add' ]" >
+            <button class="main-btn align-self-center font-14 main border-radius-2 py-1 px-2 mt-2 mt-sm-0" type="button"
+                mat-flat-button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-plus m-inline-end-1 font-18"></i>
+
+                    <span class="p-inline-end-1">{{ 'Actions.Add' | translate }}</span>
+                </div>
+            </button>
+        </a>
+    </div>
+
+    <div class="row" *ngIf="budgets.length > 0">
+        <ng-container *ngFor="let budget of budgets">
+            <div class="col-md-3 mt-2 mb-2">
+                <mat-card>
+                    <div class="d-flex flex-column  align-items-center">
+                        <div class="details">
+                            <h4> {{ 'Fields.Name' | translate }} : {{ Localize.checkLang() ? budget?.nameEn : budget?.nameAr
+                                }}</h4>
+                            <h4> {{ 'Fields.BudgetNumber' | translate }} : {{ budget?.budgetNumber }} </h4>
+                            <h4> {{ 'Fields.BudgetYear' | translate }} : {{ budget?.budgetYear }}</h4>
+                            <h4> {{ 'Fields.Amount' | translate }} : {{ budget?.amount }}</h4>
+    
+                        </div>
+                        <div class="actions">
+                             
+                            <!-- *ngIf="permissions.indexOf('Permission.'+ componentName+ '.View') > -1" -->
+                            <span>
+                                
+                                    <span>
+                                        <i (click)="openViewModal(budget)" class='bx bxs-show text-gradient-success font-28'></i>
+                                    </span>
+                               
+                            </span>
+    
+    
+                            <!-- *ngIf="permissions.indexOf('Permission.'+ componentName+ '.Delete') > -1" -->
+                            <span>
+    
+                                <span>
+                                    <i (click)="openDeleteModal(budget?.id)"
+                                        class='bx bxs-trash text-gradient-danger font-28'></i>
+                                </span>
+    
+                            </span>
+                            <!--  <span *ngIf="permissions.indexOf('Permission.'+ componentName+ '.Edit') > -1">
+                                <a [routerLink]="['/main/lawsuit/' + lawsuit?.id]">
+                                    <span>
+                                        <i class='bx bxs-edit text-gradient-primary font-28'></i>
+                                    </span>
+                                </a>
+                            </span>
+                            <span>
+                                <a [routerLink]="['/main/lawsuit/process/' + lawsuit.id]">
+                                    <span>
+                                        <i class='bx bxs-send text-gradient-warning font-28'></i>
+                                    </span>
+                                </a>
+                            </span> -->
+    
+                        </div>
+                    </div>
+    
+    
+                </mat-card>
+            </div>
+        </ng-container>
+    
+    
+    </div>
+
+  
+</div>
+
+
+
+
+<router-outlet></router-outlet>

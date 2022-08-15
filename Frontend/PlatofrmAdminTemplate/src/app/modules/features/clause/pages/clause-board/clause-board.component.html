@@ -1,0 +1,64 @@
+<div class="page-wrapper d-flex flex-column h-100">
+    <div class="d-flex align-items-center justify-content-between">
+        <h3 class="m-0 font-28">{{ 'Pages.Budgets.Title' | translate }}</h3>
+
+        <a [routerLink]="[ 'add' ]">
+            <button class="main-btn align-self-center font-14 main border-radius-2 py-1 px-2 mt-2 mt-sm-0" type="button"
+                mat-flat-button>
+                <div class="d-flex align-items-center">
+                    <i class="bx bx-plus m-inline-end-1 font-18"></i>
+
+                    <span class="p-inline-end-1">{{ 'Actions.Add' | translate }}</span>
+                </div>
+            </button>
+        </a>
+    </div>
+
+    <div class="mat-card">
+        <ng-container>
+            <div class="card-body">
+                <div class="row justify-content-center w-100 mt-4">
+                    <div class="col-lg-8 col-xl-5">
+                      <div class="event-form-wrapper">
+                        <form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="submit()">
+                          <app-dropdown [formGroup]="form" [options]="budgets" controlName="budgetId"
+                            [placeholder]="'Fields.SelectBudget' | translate" >
+                          </app-dropdown>
+          
+                          <div class="mt-3">
+                            <mat-form-field appearance="fill">
+                                <mat-label>Month and Year</mat-label>
+                                <input matInput [matDatepicker]="dp" [formControl]="form.controls['year']">
+                                <mat-hint>YYYY</mat-hint>
+                                <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                                <mat-datepicker #dp
+                                                startView="multi-year"
+                                                (monthSelected)="setMonthAndYear($event, dp)"
+                                                panelClass="example-month-picker">
+                                </mat-datepicker>
+                              </mat-form-field>>
+                          </div>
+                          
+          
+                          <div class="d-flex justify-content-end align-items-center mt-4">
+                            <button class="main-btn main font-14 text-white px-4 m-inline-start-3 mb-2" type="submit"
+                              mat-flat-button [disabled]="form.invalid">
+                              {{ 'Action.Search' | translate }}
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+          
+                    </div>
+                  </div>
+            </div>
+        </ng-container>
+    </div>
+
+
+</div>
+
+
+
+
+<router-outlet></router-outlet>
