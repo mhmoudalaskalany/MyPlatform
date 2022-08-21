@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Shell } from 'base/components/shell';
 import { Observable, map } from 'rxjs';
 import { ApResponse } from 'shared/interfaces/response/response';
 import { AlertService } from '../alert/alert.service';
 import { ConfigService } from '../config/config.service';
+import { TranslationService } from '../translation/translation.service';
 import { HttpServiceBaseService } from './HttpServiceBaseService';
+import { HttpStatus } from './HttpStatus';
 import { UrlConfig } from './UrlConfig';
 
 @Injectable({
@@ -13,8 +16,10 @@ import { UrlConfig } from './UrlConfig';
 export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBaseService {
 
   private domainName: string;
-
-  constructor(private http: HttpClient, private alertService: AlertService, private configService: ConfigService) {
+  get alertService(): AlertService { return Shell.Injector.get(AlertService); }
+  get configService(): ConfigService { return Shell.Injector.get(ConfigService); }
+  get localize(): TranslationService { return Shell.Injector.get(TranslationService); }
+  constructor(private http: HttpClient) {
     super();
     this.domainName = this.configService.getAppUrl('HOST_API');
   }
@@ -54,10 +59,29 @@ export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBa
 
   private alertHandling(event: ApResponse<any>) {
     if (event.status) {
-      if (event.status.toString().startsWith('2')) {
-        this.alertService.success(event.message ? event.message : 'Successfully Done...');
+      debugger;
+      if (Number.isNaN(Number(event.status))) {
+        debugger;
+        if (event.status.toString().startsWith('2')) {
+          this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
+        } else {
+          this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
+        }
       } else {
-        this.alertService.error(event.message ? event.message : '!NOT HANDLED ERROR!');
+        switch (event.status.toString()) {
+          case HttpStatus.CREATED: {
+            this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
+            break;
+          }
+          case HttpStatus.BADREQUEST: {
+            this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
+            break;
+          }
+          default: {
+            this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
+          }
+        }
+
       }
     }
   }
