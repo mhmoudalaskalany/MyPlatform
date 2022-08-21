@@ -69,12 +69,28 @@ export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBa
         }
       } else {
         switch (event.status.toString()) {
-          case HttpStatus.CREATED: {
+          case HttpStatus.Created: {
             this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
             break;
           }
-          case HttpStatus.BADREQUEST: {
+          case HttpStatus.Accepted: {
+            this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
+            break;
+          }
+          case HttpStatus.Created: {
+            this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
+            break;
+          }
+          case HttpStatus.BadRequest: {
             this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
+            break;
+          }
+          case HttpStatus.BadRequest: {
+            this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
+            break;
+          }
+          case HttpStatus.InternalServerError: {
+            this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : this.localize.translate.instant('Validation.InternalServerError'));
             break;
           }
           default: {

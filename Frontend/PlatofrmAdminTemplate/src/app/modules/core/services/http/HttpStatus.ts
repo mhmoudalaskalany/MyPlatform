@@ -1,6 +1,8 @@
 export enum HttpStatus {
-    CREATED = 'CREATED',
-    OK = 'OK',
-    ACCEPTED = 'ACCEPTED',
-    BADREQUEST = 'BADREQUEST'
+    Created = 'Created',
+    Ok = 'OK',
+    Accepted = 'Accepted',
+    BadRequest = 'BadRequest',
+    NoContent = 'NoContent',
+    InternalServerError = 'InternalServerError'
 }
