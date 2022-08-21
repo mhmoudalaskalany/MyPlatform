@@ -26,7 +26,7 @@ export class TokenInterceptor implements HttpInterceptor {
         'Cache-Control': 'no-store, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
-        'language': `${this.language}`
+        'Accept-Language': `${this.language}`
       }
     });
 
