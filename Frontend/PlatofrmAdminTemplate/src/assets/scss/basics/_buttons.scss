@@ -27,7 +27,7 @@ button {
   // }
 
   &:disabled {
-    color: $white !important;
+    color: $white  !important;
     background-color: #e3e5ee !important;
     // border: 1.5px solid #e3e5ee !important;
   }
@@ -84,7 +84,7 @@ button {
 
   &.strock-bg {
     background-color: $white;
-    border-color: $primary !important;
+    border-color: $primary  !important;
     color: $primary;
 
     &.active {
@@ -93,14 +93,16 @@ button {
     }
 
     &.danger {
-      background-color: $white !important;
-      border-color: $error !important;
-      color: $error !important;
+      background-color: $white  !important;
+      border-color: $error  !important;
+      color: $error  !important;
     }
   }
 
   &.error {
-    border-color: $error !important;
+    background-color: $error;
+    color: $white;
+    border-color: $error  !important;
   }
 
   &.w-max {
