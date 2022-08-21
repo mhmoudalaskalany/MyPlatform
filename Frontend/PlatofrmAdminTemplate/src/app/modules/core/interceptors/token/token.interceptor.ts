@@ -13,19 +13,20 @@ import { StorageService } from 'core/services/storage/storage.service';
 export class TokenInterceptor implements HttpInterceptor {
 
   private token: string | null = null;
-
+  private language: string | null = null;
   constructor(private storage: StorageService) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     this.token = this.storage.getTokenFromSessionStorage();
-
+    this.language = this.storage.getItem('currentLang');
     request = request.clone({
       setHeaders: {
         'Authorization': `Bearer ${this.token ? this.token : ''}`,
         'Cache-Control': 'no-store, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
+        'language': `${this.language}`
       }
     });
 

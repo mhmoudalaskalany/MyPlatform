@@ -11,8 +11,12 @@ export class StorageService {
     return of(localStorage.setItem(key, value));
   }
 
-  getItem(key: string) {
+  getItemObservable(key: string) {
     return of(localStorage.getItem(key));
+  }
+
+  getItem(key: string) {
+    return localStorage.getItem(key);
   }
 
   getUserData(key: string) {
