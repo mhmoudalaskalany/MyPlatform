@@ -4,6 +4,9 @@
     "Logout": "Logout"
   },
   "Pages": {
+    "Home": {
+      "Title": "Home"
+    },
     "Dashboard": {
       "Title": "Statistics"
     },
@@ -11,22 +14,21 @@
       "Title": "Budgets",
       "Add": "Add Budget",
       "Edit": "Edit Budget",
-      "BudgetInformation":"Budget Information",
-      "ClausesDetails":"Clauses Details"
+      "BudgetInformation": "Budget Information",
+      "ClausesDetails": "Clauses Details"
     },
     "Clause": {
       "Title": "Clauses",
       "Add": "Add Clause",
       "Edit": "Edit Clause",
-      "BudgetInformation":"Clauses Information",
-      "ClausesDetails":"Clauses Details"
+      "BudgetInformation": "Clauses Information",
+      "ClausesDetails": "Clauses Details"
     },
     "Clauses": {
       "Title": "Clauses",
       "Add": "Add Clauses",
       "Edit": "Edit Clauses"
     },
-    
     "Lookups": {
       "Title": "System Settings",
       "Actions": {
@@ -68,8 +70,8 @@
     "ClauseNumber": "Clause Number",
     "ApprovedAmount": "Approved Amount",
     "ActualAmount": "Actual Amount",
-    "SelectBudget":"Select Budget",
-    "Year":"Year"
+    "SelectBudget": "Select Budget",
+    "Year": "Year"
   },
   "Validation": {
     "InvalidEnglishName": "Name Should Be English Characters Only And More Than 3 And Less Than 100",
@@ -125,6 +127,11 @@
     "Delete": "Delete",
     "Options": "Options",
     "Portal": "Portal"
+  },
+  "Errors": {
+    "404": "Page Not Found",
+    "401": "UnAuthorized",
+    "403": "You Are Not Authorized To Access This Page"
   },
   "Actions": {
     "Title": "Actions",

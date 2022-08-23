@@ -4,6 +4,9 @@
     "Logout": "تسجيل خروج"
   },
   "Pages": {
+    "Home": {
+      "Title": "الرئيسية"
+    },
     "Dashboard": {
       "Title": "إحصائيات"
     },
@@ -11,15 +14,15 @@
       "Title": "الموازنات",
       "Add": "اضافة موازنة",
       "Edit": "تعديل موازنة",
-      "BudgetInformation":"بيانات الموازنة",
-      "ClausesDetails":"تفاصيل البنود"
+      "BudgetInformation": "بيانات الموازنة",
+      "ClausesDetails": "تفاصيل البنود"
     },
     "Clause": {
       "Title": "البنود",
       "Add": "اضافة بند",
       "Edit": "تعديل بند",
-      "BudgetInformation":"بيانات البنود",
-      "ClausesDetails":"تفاصيل البنود"
+      "BudgetInformation": "بيانات البنود",
+      "ClausesDetails": "تفاصيل البنود"
     },
     "Lookups": {
       "Title": "إعدادات النظام",
@@ -62,8 +65,8 @@
     "ClauseNumber": "رقم البند",
     "ApprovedAmount": "الرصيد المعتمد",
     "ActualAmount": "الرصيد المعدل",
-    "SelectBudget":"اختر ميزانية",
-    "Year":"السنة"
+    "SelectBudget": "اختر ميزانية",
+    "Year": "السنة"
   },
   "Validation": {
     "InvalidEnglishName": "يجب ان تكون الاحرف انجليزية فقط واكثر من 3 واقل من 100",
@@ -119,6 +122,11 @@
     "Delete": "حذف",
     "Options": "خيارات",
     "Portal": "البوابة"
+  },
+  "Errors": {
+    "404": "هذه الصفحة غير موجودة",
+    "401": "غير مصرح لك بالدخول",
+    "403": "انت لست مخولا بالدخول على هذه الصفحة"
   },
   "Actions": {
     "Title": "خيارات",
