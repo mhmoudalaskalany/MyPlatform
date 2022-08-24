@@ -39,6 +39,7 @@ import { ChartsModule } from './sub-modules/charts/charts.module';
 import { DataTableComponent } from './components/datatable/data-table.component';
 import { PdfViewerComponent } from './components/pdf-viewer/pdf-viewer.component';
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
+import { ImageViewerComponent } from './components/image-viewer/image-viewer.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     DataTableComponent,
     PaginatorComponent, // unused...
     PdfViewerComponent,
+    ImageViewerComponent,
     // Pipes
     ValidationHandlerPipe,
     KeysPipe
@@ -109,7 +111,8 @@ import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
     DeleteModalComponent,
     DataTableComponent,
     PaginatorComponent, // unused...
-    PdfViewerComponent
+    PdfViewerComponent,
+    ImageViewerComponent
   ]
 })
 export class SharedModule { }
