@@ -37,6 +37,8 @@ import { ValidateNationalIdDirective } from './directives/validators/specific-la
 import { KeysPipe } from './pipes/tableHeader.pipe';
 import { ChartsModule } from './sub-modules/charts/charts.module';
 import { DataTableComponent } from './components/datatable/data-table.component';
+import { PdfViewerComponent } from './components/pdf-viewer/pdf-viewer.component';
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 
 
 @NgModule({
@@ -61,7 +63,7 @@ import { DataTableComponent } from './components/datatable/data-table.component'
     DeleteModalComponent,
     DataTableComponent,
     PaginatorComponent, // unused...
-
+    PdfViewerComponent,
     // Pipes
     ValidationHandlerPipe,
     KeysPipe
@@ -75,7 +77,7 @@ import { DataTableComponent } from './components/datatable/data-table.component'
     MaterialModule,
     BaseSharedModule,
     ChartsModule,
-
+    PdfJsViewerModule,
     NgSelectModule,
     NgbPaginationModule,
     NgApexchartsModule,
@@ -107,6 +109,7 @@ import { DataTableComponent } from './components/datatable/data-table.component'
     DeleteModalComponent,
     DataTableComponent,
     PaginatorComponent, // unused...
+    PdfViewerComponent
   ]
 })
 export class SharedModule { }

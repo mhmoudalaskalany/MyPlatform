@@ -39,6 +39,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.2",
     "ng-apexcharts": "^1.7.1",
+    "ng2-pdfjs-viewer": "^13.2.2",
     "ngx-moment": "^6.0.2",
     "ngx-toastr": "^15.0.0",
     "oidc-client": "^1.11.5",
