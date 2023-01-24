@@ -36,6 +36,6 @@ export class NavbarComponent implements OnInit {
     window.location.href = this.Config.getAppUrl('PORTAL');
   }
   async logout() {
-    await this.AuthService.signout();
+    await this.AuthService.signOut();
   }
 }

@@ -124,7 +124,7 @@ export class AuthService {
     return this.user ? this.user.access_token : null;
   }
 
-  async signout() {
+  async signOut() {
     Shell.Session.EndSession();
     await this.manager.signoutRedirect();
     sessionStorage.clear();
