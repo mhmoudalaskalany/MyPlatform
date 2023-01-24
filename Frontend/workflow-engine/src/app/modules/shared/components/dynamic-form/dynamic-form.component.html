@@ -1,0 +1,75 @@
+<form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="form">
+    <div class="mt-1" *ngFor="let control of jsonFormData?.controls">
+
+
+        <!--Input -->
+        <app-input-text *ngIf="
+          [
+            'text',
+            'password',
+            'email',
+            'number',
+            'search',
+            'tel',
+            'url'
+          ].includes(control.type)
+        " [contentType]="control.dataType" [value]="control.value" [formGroup]="form" [controlName]="control.name"
+            label="{{ Localize.isEnglish() ? control.labelEn : control.labelAr}}">
+        </app-input-text>
+
+
+        <!-- Text Area -->
+        <app-textarea *ngIf="control.type === 'textarea'" [type]="control.type" [value]="control.value"
+            [formGroup]="form" [controlName]="control.name"
+            label="{{ Localize.isEnglish() ? control.labelEn : control.labelAr}}">
+        </app-textarea>
+
+
+        <!-- Checknox -->
+        <app-checkbox *ngIf="control.type === 'checkbox'" [type]="control.type" [value]="control.value"
+            [formGroup]="form" [controlName]="control.name"
+            label="{{ Localize.isEnglish() ? control.labelEn : control.labelAr}}">
+        </app-checkbox>
+
+
+        <!-- Dropdown -->
+        <div class="mt-2" *ngIf="control.type === 'dropdown'">
+
+            <app-dropdown [formGroup]="form" [options]="control.dropDownDataOptions" [controlName]="control.name"
+                placeholder="{{ Localize.isEnglish() ? control.labelEn : control.labelAr}}"
+                [bindLabel]="Localize.isEnglish() ? control.dropDownOptions.bindLabelEn   :  control.dropDownOptions.bindLabelAr"
+                [bindValue]="Localize.isEnglish() ?  control.dropDownOptions.bindLabelEn   :  control.dropDownOptions.bindLabelAr"
+                [url]="control.dropDownOptions.url">
+            </app-dropdown>
+        </div>
+
+
+        <!-- Datepicker -->
+        <app-datepicker *ngIf="control.type === 'datepicker'" [formGroup]="form" [controlName]="control.name"
+            label="{{ Localize.isEnglish() ? control.labelEn : control.labelAr}}">
+        </app-datepicker>
+
+        <!-- Attachment -->
+        <div>
+            <app-attachment *ngIf="control.type === 'attachment'" [formGroup]="form" [controlName]="control.name"
+                [isPublic]="false" [allowedTypes]="fileDetails" [maxFilesNumbers]="5" [label]="'SERVICES.ATTACHMENTS'">
+            </app-attachment>
+        </div>
+
+
+
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center mt-4">
+        <button class="main-btn font-14 text-error px-4 m-inline-start-3" type="button" mat-flat-button
+            (click)="form.reset(); Router.navigateByUrl('/main/e-service')">
+            {{ 'Action.Cancel' | translate }}
+        </button>
+
+        <button class="main-btn main font-14 text-white px-4 m-inline-start-3" type="submit" mat-flat-button
+            [disabled]="form.invalid">
+            {{ 'Action.Submit' | translate }}
+        </button>
+    </div>
+
+</form>

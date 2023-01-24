@@ -1,0 +1,15 @@
+<h1 class="text-gradient-primary" mat-dialog-title>
+  {{ 'Validation.DeleteConfirmation' | translate}}
+</h1>
+
+<div mat-dialog-content>
+  <h3>{{ 'Validation.DeleteMessage' | translate }}</h3>
+</div>
+
+
+<div mat-dialog-actions class="d-flex">
+  <button type="button" (click)="onDismiss()" class="btn btn-lg  btn-gradient-dark mx-2">{{ 'Common.No' |
+    translate }}</button>
+  <button type="button" (click)="onConfirm()" class="btn btn-lg  btn-gradient-red mx-2">{{ 'Common.Yes' | translate
+    }}</button>
+</div>

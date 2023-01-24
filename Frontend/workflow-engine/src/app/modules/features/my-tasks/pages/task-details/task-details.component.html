@@ -1,0 +1,46 @@
+<div class="page-wrapper h-100" *ngIf="taskData">
+    <div class="row">
+        <div class="col-lg-9 col-xl-8 h-100">
+            <div class="bg-white box-shadow page-wrapper h-100" *ngIf="requestData">
+                <h1 class="m-0 regular font-22 d-flex align-items-center">
+                    <img class="m-inline-end-2" [src]="taskData.service.imageUrl" alt="Serice Icon"
+                        style="width: 28px; height: 28px;">
+                    {{ Localize.isEnglish() ? taskData.service.nameEn : taskData.service.nameAr }}
+                </h1>
+
+                <div class="request-details-wrapper mt-5">
+                    <app-details [details]="requestData"></app-details>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xl-4">
+            <div class="bg-white page-wrapper box-shadow">
+                <h1 class="m-0 regular font-16 text-dark fw-bold">{{ 'REQUEST_ACTIONS' | translate }}</h1>
+
+                <form class="mt-3 bg-light py-3 px-4" [formGroup]="taskForm">
+                    <app-input-text [formGroup]="taskForm" controlName="comments" inputType="textarea"
+                        [label]="'Common.Comment' | translate">
+                    </app-input-text>
+
+                    <app-attachment [formGroup]="taskForm" controlName="attachments" [isPublic]="false"
+                        [allowedTypes]="fileDetails" [maxFilesNumbers]="1"
+                        [label]="'Attachment.Attachments' | translate">
+                    </app-attachment>
+                </form>
+
+                <div class="mt-3 actions">
+                    <div class="row">
+                        <div class="col-sm-6 mb-2" *ngFor="let action of taskData.actions">
+                            <button
+                                class="main-btn w-100 font-14  px-4 {{ setBackgroundColor(action.color) }}"
+                                type="button" (click)="executeAction(action)" mat-flat-button>
+                                {{ Localize.isEnglish() ? action.nameEn : action.nameAr }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

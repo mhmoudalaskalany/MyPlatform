@@ -1,0 +1,47 @@
+$primary: #019267;
+$primary-light: rgba($primary, 0.11);
+$secondary: #e7cfb4;
+$secondary-light: rgba($secondary, 0.11);
+$danger: #ef4444;
+$warning: #f59e0b;
+$light: rgba(128, 73, 169, 0.15);
+$green: #10b981;
+$blue-light: #0099cb;
+$page-bg: #f7f9fd;
+$sidebar-hover: #049974;
+$purple: #747cf3;
+$white: white;
+$black: black;
+$dark: #1f2937;
+$dark-blue: #2a2a49;
+$text-light: #d9d9d9;
+$text-dark: #212a36;
+$middle: #9ca3af;
+$success: #10b981;
+$success-light: rgba(
+    $color: $success,
+    $alpha: 0.11,
+);
+$error: #ef4444;
+$error-light: rgba(
+    $color: $error,
+    $alpha: 0.11,
+);
+$pending: #f59e0b;
+$pending-light: rgba(
+    $color: $pending,
+    $alpha: 0.11,
+);
+$box-shadow: 0 3px 12px rgba(6, 11, 47, 0.06);
+
+$theme-gradient-colors: (
+    primary: linear-gradient(to right, $primary-light, $primary),
+    secondary: linear-gradient(to right, $secondary-light, $secondary),
+    success: linear-gradient(to right, $success-light, $success),
+    info: linear-gradient(to right, $blue-light, #047edf 99%),
+    warning: linear-gradient(to right, $pending-light, $pending),
+    danger: linear-gradient(to right, $error-light, $error),
+    light: linear-gradient(to bottom, #f4f4f4, $light),
+    dark: linear-gradient(89deg, $middle, $dark),
+    red: linear-gradient(to right, $error-light, $error),
+);

@@ -1,0 +1,24 @@
+<div class="page-wrapper" *ngIf="serviceData">
+    <div class="d-flex align-items-center">
+        <img class="m-inline-end-2" [src]="serviceData.imageUrl" width="32" alt="Service Icon">
+        <h1 class="m-0 regular font-24 m-inline-start-3">{{ Localize.isEnglish() ? serviceData.nameEn :
+            serviceData.nameAr }}</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-10 col-lg-7 col-xl-6">
+            <div class="bg-white box-shadow page-wrapper border-radius-8">
+                <app-new-device *ngIf="code === 'DEVICE'"></app-new-device>
+                <app-leave *ngIf="code === 'LCR'"></app-leave>
+                <app-new-email *ngIf="code === 'ER'"></app-new-email>
+                <app-vpn *ngIf="code === 'VPN'"></app-vpn>
+                <app-work-card *ngIf="code === 'WC'"></app-work-card>
+                <app-ink *ngIf="code === 'INK'"></app-ink>
+                <app-news *ngIf="code === 'NEW'"></app-news>
+                <app-software-support *ngIf="code === 'SWRS'"></app-software-support>
+                <app-reviewers *ngIf="code === 'FO-UP'"></app-reviewers>
+                <app-support *ngIf="code === 'SUPP'"></app-support>
+            </div>
+        </div>
+    </div>
+</div>

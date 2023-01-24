@@ -1,0 +1,19 @@
+<div class="page-wrapper">
+    <h1 class="m-0 mb-4 regular font-22 d-flex align-items-center text-primary"><i
+            class='bx bx-briefcase font-24 m-inline-end-2 text-primary'></i> {{ 'EService.TITLE' | translate }}</h1>
+
+    <div class="row justify-content-end">
+        <div class="col-md-6 col-lg-3 mt-2">
+            <div class="form-group" style="padding-top: 12px;">
+                <ng-select [items]="categories" bindLabel="{{Localize.isEnglish() ? 'nameEn' : 'nameAr'}}"
+                    bindValue="id" [searchable]="false" placeholder="{{ 'Filter.FilterByCategoryName' | translate }}"
+                    (change)="getSelectedOption($event)">
+                </ng-select>
+            </div>
+        </div>
+    </div>
+
+    <div class="services d-grid">
+        <app-service-card [service]="service" *ngFor="let service of services"></app-service-card>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="submit()">
+
+
+    <div class="mt-2">
+        <app-input-text [formGroup]="form" controlName="nameEn" validatorLanguageType="en"
+            [label]="('Common.EnglishName' | translate) + ('EN' | translate)">
+        </app-input-text>
+    </div>
+
+    <app-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar"
+        [label]="('Common.ArabicName' | translate) + ('AR' | translate)">
+    </app-input-text>
+
+    <app-checkbox [formGroup]="form" controlName="required" [label]="'FormBuilder.Required' | translate">
+    </app-checkbox>
+
+    <div class="d-flex justify-content-end align-items-center mt-4">
+        <button class="main-btn font-14 text-error px-4 m-inline-start-3" type="button" mat-flat-button
+            (click)="form.reset(); Router.navigateByUrl('/admin/employees')">
+            {{ 'Action.Cancel' | translate }}
+        </button>
+
+        <button class="main-btn main font-14 text-white px-4 m-inline-start-3" type="submit" mat-flat-button
+            [disabled]="form.invalid">
+            {{ 'Action.Submit' | translate }}
+        </button>
+    </div>
+</form>

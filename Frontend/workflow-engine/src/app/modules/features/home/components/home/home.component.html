@@ -1,0 +1,39 @@
+<!--Header Card Statistics-->
+<div>
+    <div class="row px-2">
+        <div class="col-md-4">
+            <span class="text-primary font-20">{{ 'Home.TaskStatistics' | translate}} : </span>
+        </div>
+    </div>
+
+    <div class="row px-2">
+        <div *ngFor="let type of model" class="col-md-3">
+            <app-top-card [backgroundColor]="" [backgroundIcon]="" [count]="type.count"
+                [title]="Localize.isEnglish() ? type.nameEn : type.nameAr" [iconColor]="type.color" [icon]="type.icon"
+                [status]="" [iconSize]="'font-28'">
+            </app-top-card>
+        </div>
+    </div>
+</div>
+
+<!-- bx-x-circle -->
+<!-- bx-check-circle -->
+<!-- bx-loader-circle -->
+
+<!--Favorite Services-->
+<div>
+    <div class="row px-2">
+        <div class="col-md-4">
+            <span class="text-primary font-20">{{ 'Home.FavoriteServices' | translate}} : </span>
+        </div>
+    </div>
+
+
+    <div class="row px-2">
+        <div class="col-md-3">
+            <app-favorite-service [service]="{}"></app-favorite-service>
+        </div>
+    </div>
+</div>
+
+

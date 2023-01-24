@@ -1,0 +1,91 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~ngx-toastr/toastr";
+@import "~sweetalert2/dist/sweetalert2.min.css";
+/* global styles for element */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    // background-color: #f4f7fc !important;
+}
+
+// set input text undeline color in angular material
+
+
+
+.material-icons {
+    font-family: "Material Icons" !important;
+}
+
+.mat-icon {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.pi {
+    font-family: "primeicons" !important;
+}
+/** RTL Styles */
+
+.rtl {
+    direction: rtl;
+    text-align: start;
+}
+
+/* ng select element styles */
+/* selected element background */
+
+mat-panel-title {
+    padding: 10px !important;
+}
+
+/* scroll bar style */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #02cc8f, #019267) !important;
+    border-radius: 8px;
+}
+
+/* ng toaster */
+.toast-container {
+    .ngx-toastr {
+        display: flex;
+        align-items: center;
+        min-height: 48px;
+        border-bottom: none;
+        margin: 0;
+        box-shadow: 0 3px 5px -1px rgb(0 0 0 / 20%), 0 6px 10px 0 rgb(0 0 0 / 14%), 0 1px 18px 0 rgb(0 0 0 / 12%);
+
+        &.toast-success {
+            border: 1px solid #059669;
+            background-color: #34d399;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE4IiBzdHJva2U9IiNmZmYiPg0KICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTkgMTJsMiAyIDQtNG02IDJhOSA5IDAgMTEtMTggMCA5IDkgMCAwMTE4IDB6IiAvPg0KPC9zdmc+");
+        }
+
+        &.toast-error {
+            border: 1px solid #dc2626;
+            background-color: #f87171;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjE4IiBzdHJva2U9IiNmZmYiPg0KICA8cGF0aCBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTEwIDE0bDItMm0wIDBsMi0ybS0yIDJsLTItMm0yIDJsMiAybTctMmE5IDkgMCAxMS0xOCAwIDkgOSAwIDAxMTggMHoiIC8+DQo8L3N2Zz4=");
+        }
+
+        .toast-progress {
+            height: 2px;
+        }
+    }
+}

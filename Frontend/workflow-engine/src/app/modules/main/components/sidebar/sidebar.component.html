@@ -1,0 +1,23 @@
+<aside class="sidebar-wrapper bg-primary d-flex flex-column h-100" [ngClass]="{'opened': isSidebarOpened}">
+    <div class="sidebar-logo d-flex justify-content-end">
+        
+        <!-- <span class="m-auto font-weight-bold"><img src="assets/images/logo/goldenlogo.png"
+                style="height: 55px;" /></span> -->
+        <button mat-button class="text-white border-radius-0 d-none d-sm-block" aria-label="icon-button with menu icon"
+            (click)="sidebarToggle()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+
+        </button>
+    </div>
+
+    <div class="sidebar-content w-100 h-100">
+        <mat-list class="d-flex flex-column p-0" role="list">
+            <mat-list-item role="listitem" *ngFor="let sidebarItem of sidebarItems">
+                <app-sidebar-list-item [sidebarItem]="sidebarItem" [user]="user"></app-sidebar-list-item>
+            </mat-list-item>
+        </mat-list>
+    </div>
+</aside>

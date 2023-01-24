@@ -1,0 +1,14 @@
+.datepicker {
+    .date-icon {
+        right: 11px;
+        top: unset;
+    }
+
+    &.rtl {
+        .date-icon {
+            left: 11px;
+            top: unset;
+            right: unset;
+        }
+    }
+}

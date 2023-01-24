@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="86px" viewBox="0 0 86 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Group 36</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-14.1%" y="-5.3%" width="128.2%" height="110.6%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="10" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.05 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <circle id="path-2" cx="42" cy="42" r="42"></circle>
+        <path d="M27.5639804,6.75 C32.4625587,6.75 36.4881283,10.7649246 36.4881283,15.6741479 C36.4881283,20.5833713 32.4625587,24.5982958 27.5639804,24.5982958 C22.6654011,24.5982958 18.6398324,20.5833713 18.6398324,15.6741479 C18.6398324,10.7649246 22.6654011,6.75 27.5639804,6.75 Z M27.5347687,27.6363036 C37.560292,27.6363036 46.0695375,34.5283239 46.0695375,43.5014555 C46.0695375,44.5966703 45.1988519,45.4845995 44.124906,45.4845995 L10.9446315,45.4845995 C9.87068563,45.4845995 9,44.5966703 9,43.5014555 C9,34.5283239 17.5092445,27.6363036 27.5347687,27.6363036 Z" id="path-4"></path>
+    </defs>
+    <g id="My-jusoor" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.1.9.myjusoor/my-profile-Empty-State" transform="translate(-289.000000, -200.000000)">
+            <g id="Group-9" filter="url(#filter-1)" transform="translate(188.000000, 152.000000)">
+                <g id="Group-36" transform="translate(102.000000, 49.000000)">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Oval" stroke="#FFFFFF" fill="#CAB0D0" xlink:href="#path-2"></use>
+                    <g id="icon/personal-info" mask="url(#mask-3)">
+                        <g transform="translate(15.000000, 15.000000)">
+                            <mask id="mask-5" fill="white">
+                                <use xlink:href="#path-4"></use>
+                            </mask>
+                            <use id="Combined-Shape" stroke="none" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-4"></use>
+                            <g id="🌈Fill/white" stroke="none" fill="none" mask="url(#mask-5)" fill-rule="evenodd">
+                                <polygon id="Rectangle" fill="#FFFFFF" points="0 0 56.62 0 56.62 57 0 57"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

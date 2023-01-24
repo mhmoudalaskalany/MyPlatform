@@ -1,0 +1,19 @@
+<div class="page-wrapper h-100" *ngIf="requestData">
+    <div class="bg-white box-shadow page-wrapper h-100">
+        <div class="d-flex justify-content-between">
+            <h1 class="m-0 regular font-22 d-flex align-items-center">
+                <img class="m-inline-end-2" [src]="requestData.service.imageUrl" width="32" alt="Serice Icon">
+                {{ Localize.isEnglish() ? requestData.service.nameEn : requestData.service.nameAr }}
+            </h1>
+
+            <h1 class="regular font-20">
+                {{ 'Common.RequestNumber' | translate}} : {{ requestData.requestOrder }}
+            </h1>
+        </div>
+
+        <div class="request-details-wrapper mt-5">
+            <app-details [details]="requestData"></app-details>
+        </div>
+
+    </div>
+</div>

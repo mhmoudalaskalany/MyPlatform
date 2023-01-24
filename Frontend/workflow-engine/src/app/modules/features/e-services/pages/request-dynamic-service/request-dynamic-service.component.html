@@ -1,0 +1,15 @@
+<div class="page-wrapper" *ngIf="serviceData">
+    <div class="d-flex align-items-center">
+        <img class="m-inline-end-2" [src]="serviceData.imageUrl" width="32" alt="Service Icon">
+        <h1 class="m-0 regular font-24 m-inline-start-3">{{ Localize.isEnglish() ? serviceData.nameEn :
+            serviceData.nameAr }}</h1>
+    </div>
+
+    <div class="row justify-content-center mt-4" *ngIf="serviceData">
+        <div class="col-md-10 col-lg-7 col-xl-6">
+            <div class="bg-white box-shadow page-wrapper border-radius-8">
+                <app-dynamic-form [jsonFormData]="serviceData" (add)="submitRequest($event)"></app-dynamic-form>
+            </div>
+        </div>
+    </div>
+</div>

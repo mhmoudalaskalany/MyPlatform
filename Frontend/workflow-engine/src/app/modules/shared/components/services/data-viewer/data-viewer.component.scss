@@ -1,0 +1,19 @@
+@import "style";
+
+.request-details {
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1.5rem;
+
+    @include small-screen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include normal-screen {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include large-screen {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

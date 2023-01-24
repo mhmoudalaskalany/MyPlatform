@@ -1,0 +1,233 @@
+<div class="page-wrapper">
+    <h1 class="m-0 regular font-weight-bold font-22">{{ (isNew ? 'Action.Add' : 'Action.Edit') | translate }} {{
+        'Pages.Workflow' |translate}}
+    </h1>
+
+
+    <form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="submitReactive()" novalidate>
+
+        <div class="row justify-content-center w-100 mt-4">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+
+                        <app-input-text [formGroup]="form" controlName="nameEn" validatorLanguageType="en"
+                            [label]="('Common.EnglishName' | translate) + ('EN' | translate)">
+                        </app-input-text>
+
+                        <div class="mt-2">
+                            <app-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar"
+                                [label]="('Common.ArabicName' | translate) + ('AR' | translate)">
+                            </app-input-text>
+                        </div>
+
+                        <div class="mt-2">
+                            <app-input-text [formGroup]="form" controlName="managersLevels"
+                                [label]="('WorkflowBuilder.ManagersLevels' | translate)">
+                            </app-input-text>
+                        </div>
+
+                        <div class="mt-2">
+                            <app-checkbox [formGroup]="form" controlName="includeEmployeeFirst"
+                                [label]="'WorkflowBuilder.IncludeEmployeeFirst' | translate">
+                            </app-checkbox>
+                        </div>
+
+                        <div class="d-flex justify-content-end align-items-center mt-4">
+                            <button class="main-btn font-14 text-error px-4 m-inline-start-3" type="button"
+                                mat-flat-button
+                                (click)="form.reset(); Route.navigateByUrl('/main/admin/workflow-builder')">
+                                {{ 'Action.Cancel' | translate }}
+                            </button>
+
+                            <button class="main-btn main font-14 text-white px-4 m-inline-start-3" type="submit"
+                                mat-flat-button [disabled]="form.invalid">
+                                {{ 'Action.Submit' | translate }}
+                            </button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Template Order Form-->
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="my-2" formArrayName="templateOrders">
+
+                            <div class="d-flex align-items-center justify-content-between">
+                                <label for="ticketPrices" class="text-middle font-16">
+                                    {{ 'WorkflowBuilder.WorkflowOrder' | translate }}</label>
+
+                                <button class="main-btn text-primary bg-transparent font-14 px-2 p-inline-end-3"
+                                    type="button" mat-flat-button
+                                    (click)="templateOrders.push(initTemplateOrderForm())">
+                                    <div class="d-flex align-items-center">
+                                        <i class='bx bx-plus font-20'></i>
+
+                                        <span class="m-inline-start-1">{{ 'Action.Add' | translate }}</span>
+                                    </div>
+                                </button>
+                            </div>
+
+
+
+                            <div class="bg-white px-3 py-2 box-shadow mt-3 d-flex align-items-center"
+                                *ngFor="let templateorder of templateOrders.controls; let templateorderIndex=index">
+
+                                <div class="w-100">
+                                    <!--First Row-->
+                                    <div class="row w-100">
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <app-input-text [formGroup]="templateorder" controlName="nameEn"
+                                                [label]="('Common.EnglishName' | translate)">
+                                            </app-input-text>
+                                        </div>
+
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <app-input-text [formGroup]="templateorder" controlName="nameAr"
+                                                [label]="('Common.ArabicName' | translate)">
+                                            </app-input-text>
+                                        </div>
+
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <app-input-text [formGroup]="templateorder" controlName="order"
+                                                [label]="('WorkflowBuilder.Order' | translate)" contentType="'number'">
+                                            </app-input-text>
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--End First Row-->
+
+                                    <!--Second Row-->
+                                    <div class="row w-100">
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <app-dropdown (selected)="showHideParamters($event , templateorderIndex)"
+                                                [formGroup]="templateorder" [options]="workFlowOrderTypes"
+                                                controlName="type" [placeholder]="'WorkflowBuilder.Type' | translate">
+                                            </app-dropdown>
+                                        </div>
+
+                                        <div class="col-md-4 d-flex align-items-center"
+                                            *ngIf="templateorder.get('type').value == 2">
+                                            <app-dropdown [formGroup]="templateorder" [options]="groups"
+                                                controlName="groupId"
+                                                [placeholder]="'WorkflowBuilder.Group' | translate">
+                                            </app-dropdown>
+                                        </div>
+
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <app-checkbox [formGroup]="templateorder" controlName="hasReminder"
+                                                [label]="'WorkflowBuilder.HasReminder' | translate">
+                                            </app-checkbox>
+                                        </div>
+                                    </div>
+                                    <!--End Second Row-->
+
+                                    <div class="row w-100">
+
+                                        <div class="col-md-4">
+                                            <app-input-text [formGroup]="templateorder" controlName="reminderHours"
+                                                [label]="('WorkflowBuilder.ReminderHours' | translate)"
+                                                contentType="'number'">
+                                            </app-input-text>
+                                        </div>
+
+                                        <div class="col-md-4 d-flex align-items-center">
+                                            <app-dropdown [formGroup]="templateorder" [options]="escalationTypes"
+                                                controlName="escalationType"
+                                                [placeholder]="'WorkflowBuilder.EscalationType' | translate">
+                                            </app-dropdown>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <app-input-text [formGroup]="templateorder" controlName="escalationHours"
+                                                [label]="('WorkflowBuilder.EscalationHours' | translate)"
+                                                contentType="'number'">
+                                            </app-input-text>
+
+                                        </div>
+                                    </div>
+
+
+                                    <!--Template Order Actions Form-->
+                                    <div [formGroup]="templateorder">
+                                        <div class="my-2" formArrayName="templateOrderActions">
+
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                <label for="ticketPrices" class="text-middle font-16">
+                                                    {{ 'WorkflowBuilder.WorkflowOrderAction' | translate }}</label>
+
+                                                <button
+                                                    class="main-btn text-primary bg-transparent font-14 px-2 p-inline-end-3"
+                                                    type="button" mat-flat-button
+                                                    (click)="addTemplateOrderAction(templateorderIndex)">
+                                                    <div class=" d-flex align-items-center">
+                                                        <i class='bx bx-plus font-20'></i>
+
+                                                        <span class="m-inline-start-1">{{ 'Action.Add' | translate
+                                                            }}</span>
+                                                    </div>
+                                                </button>
+                                            </div>
+
+                                            <div class="bg-white px-3 py-2 box-shadow mt-3 d-flex align-items-center"
+                                                *ngFor="let templateorderAction of getTemplateOrderActions(templateorderIndex).controls let templateorderActionIndex=index">
+
+                                                <div class="row w-100">
+                                                    <div class="col-md-4 d-flex align-items-center">
+                                                        <app-dropdown [formGroup]="templateorderAction"
+                                                            [options]="actions" controlName="actionId"
+                                                            [placeholder]="'WorkflowBuilder.WorkflowOrderAction' | translate"
+                                                            (selected)="disableSelectedOption($event, templateorderActionIndex , templateorderIndex)">
+                                                        </app-dropdown>
+                                                    </div>
+
+                                                    <button
+                                                        class="main-btn w-max text-error bg-transparent px-1 font-14 m-inline-start-2"
+                                                        type="button" mat-flat-button
+                                                        (click)="removeTemplateOrderAction(templateorderIndex,templateorderActionIndex)"
+                                                        [disabled]="getTemplateOrderActions(templateorderIndex).controls.length === 1">
+                                                        <div class="d-flex align-items-center">
+                                                            <i class='bx bx-x font-20'></i>
+                                                        </div>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <!--End Template Order Action Form-->
+
+                                </div>
+
+
+                                <button class="main-btn w-max text-error bg-transparent px-1 font-14 m-inline-start-2"
+                                    type="button" mat-flat-button
+                                    (click)="templateOrders.removeAt(templateorderIndex); disableSelectedOption($event, templateorderIndex)"
+                                    [disabled]="templateOrders.controls.length === 1">
+                                    <div class="d-flex align-items-center">
+                                        <i class='bx bx-x font-20'></i>
+                                    </div>
+                                </button>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--End Template Order Form-->
+
+        </div>
+    </form>
+</div>

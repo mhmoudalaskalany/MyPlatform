@@ -1,0 +1,107 @@
+<div class="page-wrapper">
+  <h1 class="m-0 regular font-weight-bold font-22">{{ (isNew ? 'Action.Add' : 'Action.Edit') | translate }} {{
+    'Pages.Group' |translate}}
+  </h1>
+
+  <div class="row justify-content-center w-100 mt-4">
+    <div class="col-lg-10 col-xl-7">
+      <div class="card">
+        <div class="card-body">
+
+          <form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="submitReactive()" novalidate>
+            <app-input-text [formGroup]="form" controlName="nameEn" validatorLanguageType="en"
+              [label]="('Common.EnglishName' | translate) + ('EN' | translate)">
+            </app-input-text>
+
+            <div class="mt-2">
+              <app-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar"
+                [label]="('Common.ArabicName' | translate) + ('AR' | translate)">
+              </app-input-text>
+            </div>
+
+            <div class="mt-2">
+              <app-input-text [formGroup]="form" controlName="code" [label]="('Common.Code' | translate)">
+              </app-input-text>
+            </div>
+
+
+            <div class="d-flex justify-content-end align-items-center mt-4">
+              <button class="main-btn font-14 text-error px-4 m-inline-start-3" type="button" mat-flat-button
+                (click)="form.reset(); Route.navigateByUrl('/main/admin/lookup/group')">
+                {{ 'Action.Cancel' | translate }}
+              </button>
+
+              <button class="main-btn main font-14 text-white px-4 m-inline-start-3" type="submit" mat-flat-button
+                [disabled]="form.invalid">
+                {{ 'Action.Submit' | translate }}
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row justify-content-center w-100 mt-4">
+    <div class="col-lg-10 col-xl-7">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-10 ">
+              <ng-select [items]="employees" placeholder="{{ 'User.SelectEmployee' | translate }}"
+                bindLabel="fullNameAr" [(ngModel)]="employee" [typeahead]="employeeInputSearch$" [searchable]="true"
+                required>
+              </ng-select>
+            </div>
+
+            <div class="col-md-2 d-flex align-items-center">
+              <button class="main-btn main font-14 text-white px-4 m-inline-start-3" (click)="add()" type="button"
+                mat-flat-button [disabled]="form.invalid">
+                {{ 'Action.Add' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center w-100 mt-4" *ngIf="groupMembers.length > 0">
+    <div class="col-lg-10 col-xl-7">
+      <div class="card">
+        <div class="card-body">
+          <table class="table table-light">
+            <thead>
+              <tr>
+                <th>{{ 'Common.ArabicName' | translate }}</th>
+                <th>{{ 'Common.Email' | translate }}</th>
+                <th>{{ 'Common.CivilNumber' | translate }}</th>
+                <th>{{ 'Action.Actions' | translate}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let member of groupMembers">
+                <td>{{ member.nameAr }}</td>
+                <td>{{ member.employeeEmail }}</td>
+                <td>{{ member.civilNumber }}</td>
+                <td>
+                  <button class="main-btn w-max text-error bg-transparent px-1 font-14 m-inline-start-2" type="button"
+                    mat-flat-button (click)="deleteMember(member)">
+                    <div class="d-flex align-items-center">
+                      <i class='bx bx-x font-20'></i>
+                    </div>
+                  </button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,82 @@
+<form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="submit()">
+
+
+    <div class="mt-2">
+        <app-input-text [formGroup]="form" controlName="nameEn" validatorLanguageType="en"
+            [label]="('Common.EnglishName' | translate) + ('EN' | translate)">
+        </app-input-text>
+    </div>
+
+    <app-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar"
+        [label]="('Common.ArabicName' | translate) + ('AR' | translate)">
+    </app-input-text>
+
+
+    <app-checkbox [formGroup]="form" controlName="required" [label]="'FormBuilder.Required' | translate">
+    </app-checkbox>
+
+    <app-checkbox [formGroup]="form" controlName="isServerSide" (isChecked)="showorHideUrl($event)"
+        [label]="'FormBuilder.IsServerSide' | translate">
+    </app-checkbox>
+
+    <app-input-text *ngIf="form.get('isServerSide').value == true" [formGroup]="form" controlName="url"
+        [label]="('FormBuilder.DropDownUrl' | translate) ">
+    </app-input-text>
+
+    <!-- Options-->
+    <div class="my-2" formArrayName="dropDownDataOptions" *ngIf="form.get('isServerSide').value == false">
+        <div class="d-flex align-items-center justify-content-between">
+            <label for="options" class="text-middle font-16">{{ 'FormBuilder.Options' | translate
+                }}</label>
+
+            <button class="main-btn text-primary bg-transparent font-14 px-2 p-inline-end-3" type="button"
+                mat-flat-button (click)="dropDownDataOptions.push(initOption())">
+                <div class="d-flex align-items-center">
+                    <i class='bx bx-plus font-20'></i>
+
+                    <span class="m-inline-start-1">{{ 'Action.Add' | translate }}</span>
+                </div>
+            </button>
+        </div>
+
+
+        <div class="bg-white px-3 py-2 box-shadow mt-3 d-flex align-items-center"
+            *ngFor="let option of dropDownDataOptions.controls; let optionIndex =index ">
+            <div class="row w-100">
+
+
+                <div class="col-md-4 d-flex align-items-center">
+                    <app-input-text [formGroup]="option" controlName="nameEn" contentType="text"
+                        [label]="('Common.EnglishName' | translate)">
+                    </app-input-text>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-center">
+                    <app-input-text [formGroup]="option" controlName="nameAr" contentType="text"
+                        [label]="('Common.ArabicName' | translate)">
+                    </app-input-text>
+                </div>
+            </div>
+
+            <button class="main-btn w-max text-error bg-transparent px-1 font-14 m-inline-start-2" type="button"
+                mat-flat-button (click)="dropDownDataOptions.removeAt(optionIndex)"
+                [disabled]="dropDownDataOptions.controls.length === 1">
+                <div class="d-flex align-items-center">
+                    <i class='bx bx-x font-20'></i>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end align-items-center mt-4">
+        <button class="main-btn font-14 text-error px-4 m-inline-start-3" type="button" mat-flat-button
+            (click)="form.reset(); Router.navigateByUrl('/admin/employees')">
+            {{ 'Action.Cancel' | translate }}
+        </button>
+
+        <button class="main-btn main font-14 text-white px-4 m-inline-start-3" type="submit" mat-flat-button
+            [disabled]="form.invalid">
+            {{ 'Action.Submit' | translate }}
+        </button>
+    </div>
+</form>

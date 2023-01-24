@@ -1,0 +1,18 @@
+<div class="row p-3">
+    <div class="col-md-12">
+        <div class="card border-0 mb-1">
+            <div class="card-title  p-3 d-flex justify-content-between align-items-center">
+                <div>
+                    <h2 class="text-gradient-primary font-20">{{ 'Pages.' + pageTitle | translate}}</h2>
+                </div>
+                <div class="d-flex">
+                    <button *ngFor="let button of pageHeaderButtons.buttons"
+                        class="main-btn main font-14 text-white px-4 m-inline-start-3" routerLink="{{button.route}}"
+                        mat-flat-button>
+                        {{'Action.' + button.name | translate}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

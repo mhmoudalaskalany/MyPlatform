@@ -1,0 +1,118 @@
+{
+    "controls": [
+        {
+            "name": "reviewSubject",
+            "label": "SERVICES.REVIEW_SUBJECT",
+            "value": "",
+            "type": "text",
+            "dataType": "text",
+            "validators": {
+                "required": true,
+                "minLength": 10
+            }
+        },
+        {
+            "name": "comments",
+            "label": "SERVICES.COMMENTS",
+            "value": "",
+            "type": "textarea",
+            "dataType": "text",
+            "validators": {}
+        },
+        {
+            "name": "reviewType",
+            "label": "SERVICES.REVIEW_TYPE",
+            "value": "",
+            "type": "dropdown",
+            "dropDownOptions": {
+                "bindLabelAr": "nameAr",
+                "bindLabelEn": "nameEn",
+                "bindValue": "nameAr",
+                "url": "lookups/getReviewTypes"
+            },
+            "dropDownDataOptions": [
+                {
+                    "id": 1,
+                    "nameEn": "test review 1",
+                    "nameAr": "1 مراجعة اختبار"
+                },
+                {
+                    "id": 2,
+                    "nameEn": "test review 2",
+                    "nameAr": "2 مراجعة اختبار"
+                },
+                {
+                    "id": 3,
+                    "nameEn": "test review 3",
+                    "nameAr": "3 مراجعة اختبار"
+                }
+            ],
+            "validators": {}
+        },
+        {
+            "name": "governorate",
+            "label": "SERVICES.GOVERNORATE",
+            "value": "",
+            "type": "dropdown",
+            "dropDownOptions": {
+                "bindLabelAr": "nameAr",
+                "bindLabelEn": "nameEn",
+                "bindValue": "nameAr"
+            },
+            "dropDownDataOptions": [
+                {
+                    "id": 1,
+                    "nameEn": "Dhofar",
+                    "nameAr": "ظفار"
+                }
+            ],
+            "validators": {}
+        },
+        {
+            "name": "state",
+            "label": "SERVICES.STATE",
+            "value": "",
+            "type": "dropdown",
+            "dropDownOptions": {
+                "bindLabelAr": "nameAr",
+                "bindLabelEn": "nameEn",
+                "bindValue": "nameAr"
+            },
+            "dropDownDataOptions": [
+                {
+                    "id": 1,
+                    "nameEn": "Salalah",
+                    "nameAr": "صلالة"
+                },
+                {
+                    "id": 2,
+                    "nameEn": "Taqa",
+                    "nameAr": "طاقة"
+                }
+            ],
+            "validators": {}
+        },
+        {
+            "name": "date",
+            "label": "SERVICES.DATE",
+            "value": "",
+            "type": "datepicker",
+            "validators": {}
+        },
+        {
+            "name": "attachments",
+            "label": "SERVICES.ATTACHMENTS",
+            "value": "",
+            "type": "attachment",
+            "validators": {}
+        },
+        {
+            "name": "active",
+            "label": "SERVICES.ACTIVE",
+            "value": "false",
+            "type": "checkbox",
+            "dataType": "",
+            "validators": {}
+        }
+    ]
+}

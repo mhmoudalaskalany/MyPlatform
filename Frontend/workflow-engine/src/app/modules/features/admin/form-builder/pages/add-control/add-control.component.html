@@ -1,0 +1,40 @@
+<div class="page-wrapper">
+    <div class="d-flex align-items-center">
+        <h1 class="m-0 regular font-24 m-inline-start-3">{{ 'Action.Add' | translate}} {{ 'FormBuilder.Control' |
+            translate}}
+        </h1>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-md-6">
+            <ng-select [items]="services" bindValue="id" bindLabel="{{ Localize.isEnglish() ? 'nameEn' : 'nameAr'}}"
+                [placeholder]="'EService.TITLE' | translate" (change)="setServiceId($event)">
+            </ng-select>
+        </div>
+
+        <div class="col-md-6" *ngIf="serviceId">
+            <ng-select [items]="controlTypes" bindValue="id" bindLabel="{{ Localize.isEnglish() ? 'nameEn' : 'nameAr'}}"
+                [placeholder]="'FormBuilder.ControlType' | translate" (change)="renderControlComponent($event)">
+            </ng-select>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center mt-4" *ngIf="code">
+        <div class="col-md-10 col-lg-7 col-xl-6">
+            <div class="bg-white box-shadow page-wrapper border-radius-8">
+                <app-add-text *ngIf="code === 'text' && serviceId != null" [serviceId]="serviceId"></app-add-text>
+                <app-add-textarea *ngIf="code === 'textarea' && serviceId != null" [serviceId]="serviceId">
+                </app-add-textarea>
+                <app-add-dropdown *ngIf="code === 'dropdown' && serviceId != null" [serviceId]="serviceId">
+                </app-add-dropdown>
+                <app-add-checkbox *ngIf="code === 'checkbox' && serviceId != null" [serviceId]="serviceId">
+                </app-add-checkbox>
+                <app-add-datepicker *ngIf="code === 'datepicker' && serviceId != null" [serviceId]="serviceId">
+                </app-add-datepicker>
+                <app-add-attachment *ngIf="code === 'attachment' && serviceId != null" [serviceId]="serviceId">
+                </app-add-attachment>
+            </div>
+        </div>
+    </div>
+</div>

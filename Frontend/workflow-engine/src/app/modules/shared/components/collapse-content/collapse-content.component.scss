@@ -1,0 +1,48 @@
+@import "style";
+
+.collapse-wrapper {
+  padding: 0 1rem;
+
+  &.default {
+    background-color: $white;
+    box-shadow: 2px 2px 4px 0 rgba(142, 154, 160, 0.1);
+  }
+
+  .collapse-conetnt {
+    cursor: pointer;
+    min-height: 34px;
+
+    span {
+      line-height: 2;
+    }
+
+    svg {
+      transition: all 0.5s ease;
+      transform: rotate(0deg);
+      color: $primary;
+
+      &.animate {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .collapse-separetor {
+    height: 1px;
+    background-color: #dde0e2;
+  }
+
+  .contentCollapsed {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+
+    &.showContent {
+      margin: 1rem 0;
+    }
+  }
+}
+
+.active {
+  color: $primary !important;
+}

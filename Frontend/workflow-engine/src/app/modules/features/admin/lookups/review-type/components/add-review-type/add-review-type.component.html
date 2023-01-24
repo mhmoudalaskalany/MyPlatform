@@ -1,0 +1,54 @@
+<div class="page-wrapper">
+  <h1 class="m-0 regular font-weight-bold font-22">{{ (isNew ? 'Action.Add' : 'Action.Edit') | translate }} {{
+    'Pages.ReviewType' |translate}}
+  </h1>
+
+  <div class="row justify-content-center w-100 mt-4">
+    <div class="col-lg-8 col-xl-5">
+      <div class="card">
+        <div class="card-body">
+          <div class="user-form-wrapper">
+            <form class="d-flex flex-column" [formGroup]="form" (ngSubmit)="submitReactive()" novalidate>
+              <app-input-text [formGroup]="form" controlName="nameEn" validatorLanguageType="en"
+                [label]="('Common.EnglishName' | translate) + ('EN' | translate)">
+              </app-input-text>
+
+              <div class="mt-2">
+                <app-input-text [formGroup]="form" controlName="nameAr" validatorLanguageType="ar"
+                  [label]="('Common.ArabicName' | translate) + ('AR' | translate)">
+                </app-input-text>
+              </div>
+
+              <div class="mt-2">
+                <app-input-text [formGroup]="form" controlName="descriptionEn"
+                  [label]="('Common.EnglishDescription' | translate)">
+                </app-input-text>
+              </div>
+
+              <div class="mt-2">
+                <app-input-text [formGroup]="form" controlName="descriptionAr"
+                  [label]="('Common.ArabicDescription' | translate)">
+                </app-input-text>
+              </div>
+
+
+
+              <div class="d-flex justify-content-end align-items-center mt-4">
+                <button class="main-btn font-14 text-error px-4 m-inline-start-3" type="button" mat-flat-button
+                  (click)="form.reset(); Route.navigateByUrl('/admin/nationalities')">
+                  {{ 'Action.Cancel' | translate }}
+                </button>
+
+                <button class="main-btn main font-14 text-white px-4 m-inline-start-3" type="submit" mat-flat-button
+                  [disabled]="form.invalid">
+                  {{ 'Action.Submit' | translate }}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

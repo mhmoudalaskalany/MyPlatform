@@ -1,0 +1,70 @@
+<mat-tab-group>
+    <!-- request details -->
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <h1 class="m-0 regular font-20 text-dark fw-bold">{{ 'REQUEST_DETAILS' | translate }}</h1>
+        </ng-template>
+
+        <app-data-viewer [data]="requestDetails"></app-data-viewer>
+    </mat-tab>
+
+    <!-- attachments -->
+    <mat-tab *ngIf="details.requestAttachments?.length">
+        <ng-template mat-tab-label>
+            <h1 class="m-0 regular font-18 text-dark fw-bold">{{ 'Attachment.Attachments' | translate }}</h1>
+        </ng-template>
+
+        <div class="attachments-wrapper mt-3 d-flex flex-column">
+            <div class="attachment cursor-pointer w-max mt-3"
+                (click)="download(requestAttachment.url, requestAttachment.fileName)"
+                *ngFor="let requestAttachment of details.requestAttachments; let i=index">
+                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 128 128">
+                    <path
+                        d="M78 5.6c-2.5.9-5.8 2.5-7.5 3.7C65.5 12.7 8 70.4 8 72c0 2 1.9 4 3.8 4 .8 0 15.1-13.4 31.7-29.8 17.9-17.6 31.9-30.6 34.1-31.7 9.6-4.5 19.2-2.8 27 4.9 7.7 7.8 9.4 17.4 4.8 27.1-1.2 2.5-13.6 15.8-33.9 36.2-28 28.2-32.5 32.3-35.8 32.9-6 1-10.7-.4-14.8-4.5-4.1-4.1-5.5-8.8-4.4-14.9.5-3.2 4-7.1 24.3-27.5C66 47.6 68.9 45 71.8 45c4.2 0 7.2 3 7.2 7.2 0 2.8-2.5 5.7-21.5 24.8C45.7 88.8 36 99.2 36 100.1c0 1.9 2 3.9 4 3.9 2.1 0 44.7-42.8 46-46.3 4.8-13-7.6-24.8-20.3-19.3-1.8.7-14 12.3-27.3 25.7-19.8 20.1-24.2 25.1-25.2 28.5-2.7 9.5-.8 16.9 6.3 23.9 7.2 7.3 15.1 9.2 24.6 6 3.8-1.3 9.6-6.7 37.5-34.8 37.8-38 37.8-37.9 37.8-51.7 0-10-2.4-16-8.9-22.5C102.3 5.3 88.3 1.9 78 5.6z" />
+                </svg>
+
+                <a class="text-dark m-inline-start-1">{{ requestAttachment.fileName }}</a>
+            </div>
+        </div>
+    </mat-tab>
+
+    <!-- previous actions -->
+    <mat-tab *ngIf="details.tasks?.length">
+        <ng-template mat-tab-label>
+            <h1 class="m-0 regular font-18 text-dark fw-bold">{{ 'PREVIOUS_ACTIONS' | translate }}</h1>
+        </ng-template>
+
+        <div class="previous-actions page-wrapper">
+            <div class="previous-action d-grid mt-3" *ngFor="let task of details.tasks; let i=index">
+                <div class="user-wrapper d-flex align-items-center">
+                    <img [src]="task.approverImageUrl" onerror="this.src = 'assets/images/empty/profile.svg'"
+                        alt="Profile">
+
+                    <div class="d-flex flex-column m-inline-start-3">
+                        <h3 class="m-0 regular font-16 text-dark">{{ Localize.isEnglish() ? task.approverNameEn :
+                            task.approverNameAr }}</h3>
+                        <h6 class="m-0 regular font-14 text-middle">{{ Localize.isEnglish() ? task.approverJobEn :
+                            task.approverJobAr }}</h6>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column m-inline-start-2">
+                    <h3 class="m-0 regular font-16 text-dark">{{ 'PROCESS_DATE' | translate }}</h3>
+                    <h6 class="m-0 regular font-14 text-middle">{{ task.approverDate | amDateFormat: 'DD/MM/YYYY' }}
+                    </h6>
+                </div>
+
+                <div class="status d-flex align-items-center">
+                    <span class="px-3 py-2 border-radius-25" [ngClass]="setBackgroundColor(task.action.color)">
+                        {{ Localize.isEnglish() ? task.action.actionTakenNameEn : task.action.actionTakenNameAr }}
+                    </span>
+                </div>
+                
+                <div class="d-flex flex-column m-inline-start-2">
+                    <h3 class="m-0 regular font-16 text-dark">{{ 'Common.Comments' | translate }}</h3>
+                    <h6 class="m-0 regular font-14 text-middle">{{ task.comment }}</h6>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>

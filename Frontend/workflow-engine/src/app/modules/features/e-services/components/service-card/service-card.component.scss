@@ -1,0 +1,18 @@
+.service-card {
+    // aspect-ratio: 3 / 3.25;
+    border-radius: 8px;
+    box-shadow: 0 0 20px 0 rgba(114, 159, 197, 0.1);
+
+    .service-card-photo {
+        img {
+            width: 55px;
+            height: 55px;
+        }
+    }
+
+    .title {
+        i {
+            transform: rotate(180deg);
+        }
+    }
+}
