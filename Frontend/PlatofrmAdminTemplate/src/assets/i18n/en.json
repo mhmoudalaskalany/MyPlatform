@@ -1,5 +1,5 @@
 {
-  "Title": "Financial System",
+  "Title": "System Title",
   "Account": {
     "Logout": "Logout"
   },
@@ -10,25 +10,6 @@
     "Dashboard": {
       "Title": "Statistics"
     },
-    "Budgets": {
-      "Title": "Budgets",
-      "Add": "Add Budget",
-      "Edit": "Edit Budget",
-      "BudgetInformation": "Budget Information",
-      "ClausesDetails": "Clauses Details"
-    },
-    "Clause": {
-      "Title": "Clauses",
-      "Add": "Add Clause",
-      "Edit": "Edit Clause",
-      "BudgetInformation": "Clauses Information",
-      "ClausesDetails": "Clauses Details"
-    },
-    "Clauses": {
-      "Title": "Clauses",
-      "Add": "Add Clauses",
-      "Edit": "Edit Clauses"
-    },
     "Lookups": {
       "Title": "System Settings",
       "Actions": {
@@ -36,15 +17,6 @@
       },
       "Categories": {
         "Title": "Categories"
-      },
-      "Statuses": {
-        "Title": "Statuses"
-      },
-      "PaymentTypes": {
-        "Title": "Payment Types"
-      },
-      "Suppliers": {
-        "Title": "Suppliers"
       }
     }
   },
@@ -61,16 +33,6 @@
     "DescriptionAr": "Arabic Description",
     "Name": "Name",
     "Code": "Code",
-    "Clause": "Clause",
-    "Clauses": "Clauses",
-    "Budget": "Budget",
-    "BudgetNumber": "Budget Number",
-    "BudgetYear": "Budget Year",
-    "Amount": "Amount",
-    "ClauseNumber": "Clause Number",
-    "ApprovedAmount": "Approved Amount",
-    "ActualAmount": "Actual Amount",
-    "SelectBudget": "Select Budget",
     "Year": "Year"
   },
   "Validation": {
@@ -144,7 +106,6 @@
     "Process": "Process",
     "View": "View",
     "Edit": "Edit",
-    "Delete": "Delete",
-    "LawsuitProcess": "Process"
+    "Delete": "Delete"
   }
 }

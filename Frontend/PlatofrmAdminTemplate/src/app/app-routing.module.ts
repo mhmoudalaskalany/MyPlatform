@@ -27,14 +27,6 @@ const routes: Routes = [
         loadChildren: () => import('./modules/features/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'budgets',
-        loadChildren: () => import('./modules/features/budgets/budgets.module').then(m => m.BudgetsModule)
-      },
-      {
-        path: 'clause',
-        loadChildren: () => import('./modules/features/clause/clause.module').then(m => m.ClauseModule)
-      },
-      {
         path: 'lookups',
         loadChildren: () => import('./modules/features/lookups/lookups.module').then(m => m.LookupsModule)
       },

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { Shell } from 'base/components/shell';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';

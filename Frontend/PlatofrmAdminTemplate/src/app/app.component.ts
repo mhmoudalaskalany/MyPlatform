@@ -29,9 +29,6 @@ export class AppComponent implements OnInit {
   }
 
   ngAfterContentInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-
     this.loading.isLoading.pipe(takeUntil(this.destroy$)).subscribe(isLoading => {
       setTimeout(() => {
         this.show = isLoading;
@@ -41,15 +38,13 @@ export class AppComponent implements OnInit {
 
   setTitle(): void {
     if (this.translateService.isEnglish) {
-      this.titleService.setTitle('Financial System');
+      this.titleService.setTitle('System Name');
     } else {
-      this.titleService.setTitle('النظام المالى');
+      this.titleService.setTitle('عنوان النظام');
     }
   }
 
   ngOnDestroy(): void {
-    //Called once, before the instance is destroyed.
-    //Add 'implements OnDestroy' to the class.
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }

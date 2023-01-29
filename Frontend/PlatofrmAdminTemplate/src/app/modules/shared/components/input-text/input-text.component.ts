@@ -15,7 +15,7 @@ export class InputTextComponent implements OnInit {
   @Input() validatorLanguageType = '';
   @Input() inputType = 'textbox';
   @Input() contentType = 'text';
-  @Input() appearance: MatFormFieldAppearance = 'standard';
+  @Input() appearance: MatFormFieldAppearance = 'fill';
   @Input() readonly = false;
 
   constructor() { }

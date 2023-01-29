@@ -1,5 +1,5 @@
 export const environment = {
   state: 'stage',
   HOST_API: '',
-  defaultLang: 'en'
+  defaultLang: 'ar'
 };

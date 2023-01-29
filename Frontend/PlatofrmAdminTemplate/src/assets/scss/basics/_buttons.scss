@@ -4,14 +4,16 @@ button {
     outline: none !important;
   }
 
-  .mat-button-focus-overlay {
-    background: $white;
+  .mat-mdc-button-focus-overlay {
+    background: $white !important;
   }
 }
 
 .btn-disabled {
   background-color: transparent !important;
 }
+
+
 
 .main-btn {
   border-radius: 0 !important;
@@ -27,33 +29,40 @@ button {
   // }
 
   &:disabled {
-    color: $white  !important;
+    color: $white !important;
     background-color: #e3e5ee !important;
     // border: 1.5px solid #e3e5ee !important;
   }
 
   &.white {
-    background-color: $white;
+    background-color: $white !important;
     color: $primary;
+
+
   }
 
   &.main {
-    background-color: $primary;
-    color: $white;
+    background-color: $primary !important;
+    color: $white !important;
+
+    &:disabled {
+      color: $white !important;
+      background-color: #e3e5ee !important;
+    }
   }
 
   &.light {
-    background-color: $primary-light;
-    color: $white;
+    background-color: $primary-light !important;
+    color: $white !important;
   }
 
   &.secondary {
-    background-color: $secondary;
+    background-color: $secondary !important;
     color: $white;
 
     &:disabled {
-      background-color: #e3e5ee;
-      color: #ccc;
+      background-color: #e3e5ee !important;
+      color: #ccc !important;
     }
   }
 
@@ -62,47 +71,45 @@ button {
   }
 
   &.dark {
-    background-color: $dark;
-    color: $white;
+    background-color: $dark !important;
+    color: $white !important;
   }
 
   &.flat {
-    border: none;
-    color: $primary;
+    border: none !important;
+    color: $primary !important;
   }
 
   &.strock {
-    border: 1.5px solid $dark;
-    color: $black;
-    background-color: transparent;
+    border: 1.5px solid $dark !important;
+    color: $black !important;
+    background-color: transparent !important;
 
     &.active {
-      background-color: $primary;
-      color: $white;
+      background-color: $primary !important;
+      color: $white !important;
     }
   }
 
   &.strock-bg {
-    background-color: $white;
-    border-color: $primary  !important;
-    color: $primary;
+    background-color: $white !important;
+    border-color: $primary !important;
+    color: $primary !important;
 
     &.active {
-      background-color: $primary;
-      color: $white;
+      background-color: $primary !important;
+      color: $white !important;
     }
 
     &.danger {
-      background-color: $white  !important;
-      border-color: $error  !important;
-      color: $error  !important;
+      background-color: $white !important;
+      border-color: $error !important;
+      color: $error !important;
     }
   }
 
   &.error {
-    background-color: $error;
-    color: $white;
-    border-color: $error  !important;
+    border-color: $error !important;
   }
 
   &.w-max {
@@ -113,9 +120,8 @@ button {
     border: 1.5px solid transparent !important;
   }
 
-  .mat-button-wrapper {
+  .mat-mdc-button-wrapper {
     display: flex;
-    justify-content: center;
     width: 100%;
     line-height: 32px;
   }

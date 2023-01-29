@@ -1,16 +1,16 @@
 {
-  "HOST_API": "https://localhost:5033/api/v1/",
-  "HUB_URL": "https://localhost:5033/",
+  "HOST_API": "https://localhost:5030/api/",
+  "HUB_URL": "https://localhost:5030/",
   "ID4": "https://localhost:5001",
   "UserManagementApi": "https://localhost:5002/api/",
   "FileManagementApi": "https://localhost:5016/api/",
   "SIGNAL-R-INTERVALS": "10",
   "SIGNAL-R-INTERVAL": "5",
   "INTERVAL": "500000",
-  "AppCode": "FINANCIAL-SYSTEM",
-  "REDIRECT-URL": "https://localhost:4206/account/auth-callback",
-  "LOGOUT-URL": "https://localhost:4206/",
+  "AppCode": "TEMPLATE-SYSTEM",
+  "REDIRECT-URL": "https://localhost:4010/account/auth-callback",
+  "LOGOUT-URL": "https://localhost:4010/",
   "MY-PROFILE": "https://localhost:4200/main/my-profile",
   "PORTAL": "https://localhost:4300",
-  "OidcTicket": "oidc.user:https://localhost:5001:FINANCIAL-SYSTEM"
+  "OidcTicket": "oidc.user:https://localhost:5001:TEMPLATE-SYSTEM"
 }

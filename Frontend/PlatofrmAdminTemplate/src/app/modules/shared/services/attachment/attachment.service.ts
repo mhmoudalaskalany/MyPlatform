@@ -7,7 +7,7 @@ import { AttachmentDto } from 'shared/interfaces/attachment/attachment';
 @Injectable({
   providedIn: 'root'
 })
-export class AttachmentService extends HttpService<AttachmentDto, FormData, FormData> {
+export class AttachmentService extends HttpService {
 
   get baseUrl(): string {
     return 'Files/';
@@ -18,10 +18,10 @@ export class AttachmentService extends HttpService<AttachmentDto, FormData, Form
     const serverUrl = this.Config.getAppUrl('FileManagementApi');
     const permissions = JSON.parse(sessionStorage.getItem('Permissions'));
     const appCode = permissions.appCode;
-    const categoryCode = 'FINANCIAL';
+    const categoryCode = 'TEMPLATE';
     const endPoint = serverUrl + `UploadToSanStorage?storageType=1&isPublic=${isPublic}&appCode=${appCode}&categoryCode=${categoryCode}`;
 
-    return this.post<AttachmentDto[]>({ apiName: endPoint }, body);
+    return this.post<FormData , AttachmentDto[]>({ apiName: endPoint }, body);
   }
 
   deleteAttachment(fileId: string) {

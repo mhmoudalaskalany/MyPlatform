@@ -13,7 +13,9 @@ export class ErrorComponent implements OnInit {
   constructor(private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe(data => this.errorNumber = data['errorNumber']);
+    this.activeRoute.params.subscribe(data => {
+      this.errorNumber = data['errorNumber'];
+    });
   }
 
   logout() {

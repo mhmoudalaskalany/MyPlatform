@@ -5,7 +5,7 @@ import { ActionDto, AddActionDto, UpdateActionDto } from 'shared/interfaces/acti
 @Injectable({
   providedIn: 'root'
 })
-export class ActionsService extends HttpService<ActionDto, AddActionDto, UpdateActionDto> {
+export class ActionsService extends HttpService {
 
   protected get baseUrl(): string {
     return 'v1/Actions/';
@@ -20,7 +20,7 @@ export class ActionsService extends HttpService<ActionDto, AddActionDto, UpdateA
   }
 
   add(body: AddActionDto) {
-    return this.post<ActionDto>({ apiName: 'add', showAlert: true }, body);
+    return this.post<AddActionDto, ActionDto>({ apiName: 'add', showAlert: true }, body);
   }
 
   update(body: UpdateActionDto) {

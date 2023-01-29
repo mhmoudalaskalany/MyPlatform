@@ -23,11 +23,11 @@ export class AuthService {
 
   private manager = new UserManager({
     authority: this.configService.getAppUrl('ID4'),
-    client_id: 'FINANCIAL-SYSTEM',
+    client_id: this.configService.getAppUrl('AppCode'),
     redirect_uri: this.configService.getAppUrl('REDIRECT-URL'),
     post_logout_redirect_uri: this.configService.getAppUrl('LOGOUT-URL'),
     response_type: 'code',
-    scope: 'openid profile email UserManagementApi FinancialApi FileManagerApi',
+    scope: 'openid profile email UserManagementApi BackendCoreApi FileManagerApi',
     filterProtocolClaims: true,
     loadUserInfo: true,
     revokeAccessTokenOnSignout: true
@@ -124,7 +124,7 @@ export class AuthService {
     return this.user ? this.user.access_token : null;
   }
 
-  async signOut() {
+  async signout() {
     Shell.Session.EndSession();
     await this.manager.signoutRedirect();
     sessionStorage.clear();
@@ -135,7 +135,7 @@ export class AuthService {
       this.user = null;
       Shell.Session.EndSession();
       sessionStorage.clear();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/account/login']);
     });
   }
 

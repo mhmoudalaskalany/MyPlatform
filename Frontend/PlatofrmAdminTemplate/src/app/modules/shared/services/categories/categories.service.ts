@@ -5,7 +5,7 @@ import { AddCategoryDto, CategoryDto, UpdateCategoryDto } from 'shared/interface
 @Injectable({
   providedIn: 'root'
 })
-export class CategoriesService extends HttpService<CategoryDto, AddCategoryDto, UpdateCategoryDto> {
+export class CategoriesService extends HttpService{
 
   protected get baseUrl(): string {
     return 'Categories/';
@@ -20,7 +20,7 @@ export class CategoriesService extends HttpService<CategoryDto, AddCategoryDto, 
   }
 
   add(body: AddCategoryDto) {
-    return this.post<CategoryDto>({ apiName: 'Add', showAlert: true }, body);
+    return this.post<AddCategoryDto , CategoryDto>({ apiName: 'Add', showAlert: true }, body);
   }
 
   update(body: UpdateCategoryDto) {

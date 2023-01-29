@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BaseListComponent } from 'base/components/base-list-component';
 import { Shell } from 'base/components/shell';
-import { TranslationService } from 'core/services/translation/translation.service';
-import { Subject, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { TableOptions } from 'shared/interfaces/table/table';
 import { CategoriesService } from 'shared/services/categories/categories.service';
 

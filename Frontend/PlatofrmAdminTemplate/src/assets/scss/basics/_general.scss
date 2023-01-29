@@ -33,21 +33,46 @@ body {
   }
 }
 
+/* Scrollbar Styles Start Here*/
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d2d2d2;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $primary;
+}
+
 // menu
-.mat-menu-panel {
+.mat-mdc-menu-panel {
   margin-top: .5rem;
   min-width: 130px !important;
   min-height: $menu-item-height  !important;
 
-  .mat-menu-content {
+  .mat-mdc-menu-content {
     padding: 0 !important;
 
-    .mat-list {
-      .mat-list-item {
+    .mat-mdc-list {
+      .mat-mdc-list-item {
         height: $menu-item-height  !important;
-
-        .mat-list-item-content {
-          .mat-menu-item {
+        
+        
+        .mat-mdc-list-item-content {
+          .mat-mdc-menu-item {
             height: $menu-item-height  !important;
             align-items: center;
           }
@@ -58,16 +83,17 @@ body {
 }
 
 // mat-slider
-.mat-slider {
-  &:not(.mat-slider-disabled) {
+.mat-mdc-slider {
+
+  &:not(.mat-mdc-slider-disabled) {
     &.cdk-focused {
-      .mat-slider-thumb-label {
+
+      .mat-mdc-slider-thumb-label {
         border-radius: 0 !important;
         transform: none;
         background-color: $white;
         box-shadow: 0 2px 10px 0 rgba(142, 154, 160, 0.22);
-
-        .mat-slider-thumb-label-text {
+        .mat-mdc-slider-thumb-label-text {
           transform: none;
           color: $primary;
         }
@@ -76,33 +102,28 @@ body {
   }
 
   &.mat-accent {
-    .mat-slider-thumb-label {
+    .mat-mdc-slider-thumb-label {
       background-color: $primary;
     }
   }
-
-  .mat-slider-wrapper {
+  .mat-mdc-slider-wrapper {
     height: 6px !important;
-
-    .mat-slider-track-wrapper {
+    .mat-mdc-slider-track-wrapper {
       border-radius: 2.5px;
       height: 6px !important;
 
       * {
         height: 6px !important;
       }
-
-      .mat-slider-track-background {
+      .mat-mdc-slider-track-background {
         background-color: #f3f3f1 !important;
       }
-
-      .mat-slider-track-fill {
+      .mat-mdc-slider-track-fill {
         background-color: $secondary  !important;
         transition: all .4s ease;
       }
     }
-
-    .mat-slider-thumb {
+    .mat-mdc-slider-thumb {
       border-radius: 2px;
       box-shadow: 0 4px 10px 0 rgba(12, 0, 51, 0.22);
       background-color: $primary  !important;
@@ -111,18 +132,16 @@ body {
 }
 
 // mat-slide-toggle
-.mat-slide-toggle {
+.mat-mdc-slide-toggle {
   &.mat-checked {
-    .mat-slide-toggle-bar {
+    .mat-mdc-slide-toggle-bar {
       background-color: rgba($color: $primary, $alpha: .54);
-
-      .mat-slide-toggle-thumb {
+      .mat-mdc-slide-toggle-thumb {
         background: $primary;
       }
     }
   }
-
-  .mat-slide-toggle-content {
+  .mat-mdc-slide-toggle-content {
     font-family: $font-regular;
   }
 }
@@ -136,31 +155,31 @@ body {
   max-width: 90vw !important;
   max-height: 90vh !important;
 
-  .mat-dialog-container {
+  .mat-mdc-dialog-container {
     min-width: 90%;
     height: 90vh;
   }
 
-  .mat-dialog-actions {
+  .mat-mdc-dialog-actions {
     box-sizing: border-box;
     margin: 0;
     padding: 1rem 1.5rem;
   }
 
   &.p-0 {
-    .mat-dialog-container {
+    .mat-mdc-dialog-container {
       padding: 0;
     }
   }
 
   &.overview {
-    .mat-dialog-content {
+    .mat-mdc-dialog-content {
       overflow: visible;
     }
   }
 
   &.small {
-    .mat-dialog-container {
+    .mat-mdc-dialog-container {
       @include small-screen {
         min-width: clamp(400px, 50vw, 400px);
         max-width: clamp(400px, 50vw, 400px);
@@ -170,7 +189,7 @@ body {
   }
 
   &.medium {
-    .mat-dialog-container {
+    .mat-mdc-dialog-container {
       @include small-screen {
         min-width: clamp(660px, 60vw, 660px);
         max-width: clamp(660px, 60vw, 660px);
@@ -180,7 +199,7 @@ body {
   }
 
   &.min-width {
-    .mat-dialog-container {
+    .mat-mdc-dialog-container {
       min-width: 90%;
 
       @include small-screen {
@@ -190,7 +209,7 @@ body {
   }
 
   &.default {
-    .mat-dialog-container {
+    .mat-mdc-dialog-container {
       min-width: 90%;
       height: 90vh;
 
@@ -208,19 +227,18 @@ body {
 }
 
 // checkbox
-.mat-checkbox {
-  .mat-checkbox-layout {
+.mat-mdc-checkbox {
+  .mat-mdc-checkbox-layout {
     margin: 0;
   }
 
   .mat-ripple-element {
     background-color: $error;
   }
-
-  &.mat-checkbox-checked,
-  &.mat-checkbox-indeterminate {
+  &.mat-mdc-checkbox-checked,
+  &.mat-mdc-checkbox-indeterminate {
     &.mat-bg-error-light {
-      .mat-checkbox-background {
+      .mat-mdc-checkbox-background {
         background-color: $error;
       }
     }
@@ -229,8 +247,8 @@ body {
 
 // tooltip
 .cdk-overlay-container {
-  .mat-tooltip-panel {
-    .mat-tooltip {
+  .mat-mdc-tooltip-panel {
+    .mat-mdc-tooltip {
       background-color: $white;
       color: $black;
       margin: 8px;
@@ -272,6 +290,8 @@ $component-list: 'account',
   'shopping',
   'permissions',
   'transactions-reports',
+  'archive-product-invoices',
+  'shops',
   'reports';
 $prefix: 'app';
 
@@ -304,11 +324,11 @@ $prefix: 'app';
     background: white;
   }
 
-  .mat-dialog-container {
+  .mat-mdc-dialog-container {
     box-shadow: none;
   }
 
-  .mat-dialog-content {
+  .mat-mdc-dialog-content {
     overflow: hidden !important;
   }
 }

@@ -3,21 +3,11 @@
 ::ng-deep app-sidebar-list-item {
     width: 100%;
 
-    .mat-list {
-        .mat-list-item {
-            height: max-content !important;
-
-            .mat-list-item-content {
-                padding: 0 !important;
-            }
-        }
-    }
-
     .each {
         border-inline-start: 5px solid transparent;
-        padding-inline: calc(1rem + 1.5px);
         overflow: hidden;
         transform: translate(-100%, 0);
+        padding-inline: calc(1rem + 1.5px);
 
         // &.rtl {
         //     transform: translate(100%, 0);
@@ -33,7 +23,7 @@
         }
 
         svg {
-            min-width: 20px;
+            min-width: 20px !important;
             transform: rotate(0deg);
 
             &.animate {
@@ -82,6 +72,10 @@
 
         &.showContent {
             margin: .5rem 0;
+        }
+
+        .child {
+            padding-inline-start: .25rem;
         }
     }
 }

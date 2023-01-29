@@ -20,8 +20,8 @@ stages:
           - task: NodeTool@0
             inputs:
               versionSpec: "16.x"
-          - script: npm install --legacy-peer-deps
-          - script: npm run build   --prod
+          - script: npm install
+          - script: npm run build --configuration stage --base-href /template/
           - task: CopyFiles@2
             inputs:
                 SourceFolder: './dist'

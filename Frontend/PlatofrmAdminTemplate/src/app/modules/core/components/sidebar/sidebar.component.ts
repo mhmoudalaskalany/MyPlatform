@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../services/http/http.service';
 import { SidebarToggleService } from '../../services/sidebar-toggle/sidebar-toggle.service';
 
 interface SidebarDefault {
@@ -30,18 +29,6 @@ export class SidebarComponent implements OnInit {
       permissions: [],
     },
     {
-      label: 'Pages.Budgets.Title',
-      icon: 'bx bxs-dashboard',
-      routerLinkName: '/budgets',
-      permissions: [],
-    },
-    {
-      label: 'Pages.Clause.Title',
-      icon: 'bx bx-stats',
-      routerLinkName: '/clause',
-      permissions: [],
-    },
-    {
       label: 'Pages.Lookups.Title',
       icon: 'bx bx-chart',
       routerLinkName: '/lookups',
@@ -57,12 +44,6 @@ export class SidebarComponent implements OnInit {
           label: 'Pages.Lookups.Categories.Title',
           icon: 'bx bx-food-menu',
           routerLinkName: '/lookups/categories',
-          permissions: [],
-        },
-        {
-          label: 'Pages.Lookups.PaymentTypes.Title',
-          icon: 'bx bx-food-menu',
-          routerLinkName: '/lookups/paymentTypes',
           permissions: [],
         }
       ]

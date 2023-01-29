@@ -1,5 +1,5 @@
 {
-  "Title": "النظام المالى",
+  "Title": "عنوان النظام",
   "Account": {
     "Logout": "تسجيل خروج"
   },
@@ -10,20 +10,6 @@
     "Dashboard": {
       "Title": "إحصائيات"
     },
-    "Budgets": {
-      "Title": "الموازنات",
-      "Add": "اضافة موازنة",
-      "Edit": "تعديل موازنة",
-      "BudgetInformation": "بيانات الموازنة",
-      "ClausesDetails": "تفاصيل البنود"
-    },
-    "Clause": {
-      "Title": "البنود",
-      "Add": "اضافة بند",
-      "Edit": "تعديل بند",
-      "BudgetInformation": "بيانات البنود",
-      "ClausesDetails": "تفاصيل البنود"
-    },
     "Lookups": {
       "Title": "إعدادات النظام",
       "Actions": {
@@ -31,15 +17,6 @@
       },
       "Categories": {
         "Title": "التصنيفات"
-      },
-      "Statuses": {
-        "Title": "حالات الطلبات"
-      },
-      "PaymentTypes": {
-        "Title": "طرق الدفع"
-      },
-      "Suppliers": {
-        "Title": "الموردين"
       }
     }
   },
@@ -56,16 +33,6 @@
     "DescriptionAr": "الوصف العربى",
     "Name": "الاسم",
     "Code": "الكود",
-    "Clause": "البند",
-    "Clauses": "البنود",
-    "Budget": "الموازنة",
-    "BudgetNumber": "رقم الموازنة",
-    "BudgetYear": "السنة المالية",
-    "Amount": "الرصيد",
-    "ClauseNumber": "رقم البند",
-    "ApprovedAmount": "الرصيد المعتمد",
-    "ActualAmount": "الرصيد المعدل",
-    "SelectBudget": "اختر ميزانية",
     "Year": "السنة"
   },
   "Validation": {
@@ -139,7 +106,6 @@
     "Process": "معالجة",
     "View": "عرض",
     "Edit": "تعديل",
-    "Delete": "حذف",
-    "LawsuitProcess": "اجراءات"
+    "Delete": "حذف"
   }
 }

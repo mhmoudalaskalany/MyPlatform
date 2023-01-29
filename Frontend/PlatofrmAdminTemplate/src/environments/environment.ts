@@ -5,7 +5,7 @@
 export const environment = {
   state: 'development',
   HOST_API: '',
-  defaultLang: 'en'
+  defaultLang: 'ar'
 };
 
 /*

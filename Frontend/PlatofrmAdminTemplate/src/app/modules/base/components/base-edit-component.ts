@@ -96,7 +96,6 @@ export abstract class BaseEditComponent extends BaseComponent implements OnInit 
     }
   }
 
-
   /** Submit Reactive  Form */
   submitReactive(endpoint?: string): void {
     if (this.isNew) {

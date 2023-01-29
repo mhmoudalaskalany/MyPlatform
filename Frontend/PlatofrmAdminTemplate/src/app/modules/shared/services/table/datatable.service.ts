@@ -8,7 +8,7 @@ import { ConfigService } from 'core/services/config/config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class NewDataTableService {
+export class DataTableService {
 
   opt: TableOptions['bodyOptions'] = {
     pageNumber: 1,

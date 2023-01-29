@@ -1,18 +1,18 @@
 {
-    "HOST_API": "https://stageapis.dhofar.local:447/financial/api/",
+    "HOST_API": "https://stageapis.dhofar.local:447/template/api/",
     "ID4": "https://stageauthserver.dhofar.local:444",
     "UserManagementApi": "https://stageapis.dhofar.local:447/User/api/",
     "FileManagementApi": "https://stageapis.dhofar.local:447/FileManager/api/",
-    "HUB_URL": "https://stageapis.dhofar.local:447/financial/",
+    "HUB_URL": "https://stageapis.dhofar.local:447/template/",
     "SIGNAL-R-INTERVALS": "10",
     "SIGNAL-R-INTERVAL": "5",
     "INTERVAL": "500000",
-    "AppCode": "FINANCIAL-SYSTEM",
-    "REDIRECT-URL": "https://stageapps.dhofar.local/financial/auth-callback",
-    "LOGOUT-URL": "https://stageapps.dhofar.local/financial/",
+    "AppCode": "TEMPLATE-SYSTEM",
+    "REDIRECT-URL": "https://stageapps.dhofar.local/template/auth-callback",
+    "LOGOUT-URL": "https://stageapps.dhofar.local/template/",
     "MY-PROFILE": "https://stageapps.dhofar.local/User/main/my-profile",
     "CHECK-NATIONAL-ID": "https://stageapis.dhofar.local:447/User/api/Users/CheckNationalIdAsync/",
     "CHECK-EMAIL": "https://stageapis.dhofar.local:447/User/api/Users/CheckEmailAsync/",
     "PORTAL": "https://stageapps.dhofar.local/Portal",
-    "OidcTicket": "oidc.user:https://stageauthserver.dhofar.local:444:FINANCIAL-SYSTEM"
+    "OidcTicket": "oidc.user:https://stageauthserver.dhofar.local:444:TEMPLATE-SYSTEM"
 }

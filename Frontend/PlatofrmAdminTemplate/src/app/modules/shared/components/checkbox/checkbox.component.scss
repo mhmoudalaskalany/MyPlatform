@@ -1,18 +1,21 @@
 @import "style";
 
-:host ::ng-deep.mat-checkbox {
-    .mat-checkbox-layout {
+:host ::ng-deep.mat-mdc-checkbox {
+    
+    .mat-mdc-checkbox-layout {
         margin: 0;
     }
 
     .mat-ripple-element {
         background-color: $primary;
     }
-
-    &.mat-checkbox-checked,
-    &.mat-checkbox-indeterminate {
+    
+    
+    &.mat-mdc-checkbox-checked,
+    &.mat-mdc-checkbox-indeterminate {
         &.mat-bg-primary {
-            .mat-checkbox-background {
+            
+            .mat-mdc-checkbox-background {
                 background-color: $primary;
             }
         }

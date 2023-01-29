@@ -1,50 +1,64 @@
+import { Shell } from 'base/components/shell';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Shell } from 'base/components/shell';
 import { Observable, map } from 'rxjs';
 import { ApResponse } from 'shared/interfaces/response/response';
 import { AlertService } from '../alert/alert.service';
 import { ConfigService } from '../config/config.service';
-import { TranslationService } from '../translation/translation.service';
 import { HttpServiceBaseService } from './HttpServiceBaseService';
-import { HttpStatus } from './HttpStatus';
 import { UrlConfig } from './UrlConfig';
+import { TranslationService } from '../translation/translation.service';
+import { HttpStatus } from './HttpStatus';
 
 @Injectable({
   providedIn: 'root'
 })
-export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBaseService {
+export abstract class HttpService extends HttpServiceBaseService {
 
-  private domainName: string;
+  protected domainName: string;
   get alertService(): AlertService { return Shell.Injector.get(AlertService); }
   get configService(): ConfigService { return Shell.Injector.get(ConfigService); }
   get localize(): TranslationService { return Shell.Injector.get(TranslationService); }
-  constructor(private http: HttpClient) {
+  constructor(protected http: HttpClient) {
     super();
     this.domainName = this.configService.getAppUrl('HOST_API');
   }
 
-  get<T>(URL_Config: UrlConfig): Observable<TRead> {
-    return this.http.get<ApResponse<TRead>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, { params: URL_Config.params }).pipe(map(event => {
+  get<T>(URL_Config: UrlConfig): Observable<T> {
+    return this.http.get<ApResponse<T>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, { params: URL_Config.params }).pipe(map(event => {
       return event.data;
     }));
   }
 
-  getAll<T>(URL_Config: UrlConfig): Observable<TRead[]> {
-    return this.http.get<ApResponse<TRead[]>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, { params: URL_Config.params }).pipe(map(event => {
+  getAll<T>(URL_Config: UrlConfig): Observable<T[]> {
+    return this.http.get<ApResponse<T[]>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, { params: URL_Config.params }).pipe(map(event => {
       return event.data;
     }));
   }
 
-  post<T>(URL_Config: UrlConfig, body: TCreate): Observable<TRead> {
-    return this.http.post<ApResponse<TRead>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, body, { params: URL_Config.params }).pipe(map(event => {
+  postFilter<T , D>(URL_Config: UrlConfig, body: T): Observable<D> {
+    return this.http.post<ApResponse<D>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, body, { params: URL_Config.params }).pipe(map(event => {
       URL_Config.showAlert ? this.alertHandling(event) : '';
       return event.data;
     }));
   }
 
-  put(URL_Config: UrlConfig, body: TUpdate): Observable<TRead> {
-    return this.http.put<ApResponse<TRead>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, body, { params: URL_Config.params }).pipe(map((event: any) => {
+  post<T , D>(URL_Config: UrlConfig, body: T): Observable<D> {
+    return this.http.post<ApResponse<D>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, body, { params: URL_Config.params }).pipe(map(event => {
+      URL_Config.showAlert ? this.alertHandling(event) : '';
+      return event.data;
+    }));
+  }
+
+  postRange<T , D>(URL_Config: UrlConfig, body: T): Observable<D> {
+    return this.http.post<ApResponse<D>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, body, { params: URL_Config.params }).pipe(map(event => {
+      URL_Config.showAlert ? this.alertHandling(event) : '';
+      return event.data;
+    }));
+  }
+
+  put<T , D>(URL_Config: UrlConfig, body: T): Observable<T> {
+    return this.http.put<ApResponse<D>>(`${this.domainName}${this.baseUrl}${URL_Config.apiName}`, body, { params: URL_Config.params }).pipe(map((event: any) => {
       this.alertHandling(event);
       return event.data;
     }));
@@ -59,16 +73,15 @@ export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBa
 
   private alertHandling(event: ApResponse<any>) {
     if (event.status) {
-      debugger;
-      if (Number.isNaN(Number(event.status))) {
-        debugger;
+      if (!Number.isNaN(Number(event.status))) {
         if (event.status.toString().startsWith('2')) {
           this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
         } else {
           this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
         }
       } else {
-        switch (event.status.toString()) {
+        const status = event.status.toString();
+        switch (status) {
           case HttpStatus.Created: {
             this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
             break;
@@ -77,12 +90,8 @@ export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBa
             this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
             break;
           }
-          case HttpStatus.Created: {
+          case HttpStatus.NoContent: {
             this.alertService.success(event.message ? this.localize.translate.instant('Validation.' + event.message) : 'Successfully Done...');
-            break;
-          }
-          case HttpStatus.BadRequest: {
-            this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
             break;
           }
           case HttpStatus.BadRequest: {
@@ -93,6 +102,9 @@ export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBa
             this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : this.localize.translate.instant('Validation.InternalServerError'));
             break;
           }
+          case HttpStatus.Ok: {
+            break;
+          }
           default: {
             this.alertService.error(event.message ? this.localize.translate.instant('Validation.' + event.message) : '!NOT HANDLED ERROR!');
           }
@@ -101,5 +113,5 @@ export abstract class HttpService<TRead, TCreate, TUpdate> extends HttpServiceBa
       }
     }
   }
-
 }
+
