@@ -16,3 +16,10 @@
         }
     }
 }
+
+::ng-deep .mat-mdc-list-item,
+.mat-mdc-list-option {
+
+    width: unset !important;
+
+}
