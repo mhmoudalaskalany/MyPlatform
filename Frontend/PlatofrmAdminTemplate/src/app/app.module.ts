@@ -55,7 +55,7 @@ const initializerConfigFn = (appConfig: ConfigService) => {
       useFactory: initializerConfigFn,
       multi: true,
       deps: [ConfigService],
-    },
+    }
   ],
   bootstrap: [AppComponent]
 })
