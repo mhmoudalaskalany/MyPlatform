@@ -7,12 +7,16 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 const routes: Routes = [
   {
     path: '',
-    data: { title: 'Pages.Lookups.Categories.Title', pageType: 'list' },
+    data: { title: 'SETTINGS.CATEGORIES.TITLE' },
     component: CategoriesComponent,
     children: [
       {
         path: 'add',
-        data: { component: AddEditCategoryComponent, pageTitle: 'Actions.Add', pageType: 'add' },
+        data: {
+          component: AddEditCategoryComponent,
+          pageTitle: 'SETTINGS.CATEGORIES.ADD',
+          pageType: 'add'
+        },
         component: DialogComponent
       },
       {
@@ -21,11 +25,16 @@ const routes: Routes = [
           { path: '', redirectTo: '', pathMatch: 'full' },
           {
             path: ':id',
-            data: { component: AddEditCategoryComponent, redirectTo: '/lookups/categories', pageTitle: 'Actions.Edit', pageType: 'edit' },
+            data: {
+              component: AddEditCategoryComponent,
+              redirectTo: '/lookups/categories',
+              pageTitle: 'SETTINGS.CATEGORIES.EDIT',
+              pageType: 'edit'
+            },
             component: DialogComponent
           }
         ]
-      },
+      }
     ]
   }
 ];
@@ -34,4 +43,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CategoriesRoutingModule { }
+export class CategoriesRoutingModule {}
